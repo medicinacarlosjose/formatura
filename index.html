@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formatura Medicina UFS</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #eee;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .info-top {
+      margin-bottom: 40px;
+      color: #f5f5f5;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .meta {
+      font-size: 30px;
+      color: #00ff88;
+      text-shadow: 0 0 8px #00ff88;
+      margin-bottom: 20px;
+    }
+
+    .arrecadado {
+      font-size: 30px;
+      color: orange;
+      text-shadow: 0 0 12px orange;
+      animation: piscar 1.2s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes piscar {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .restante {
+      font-size: 30px;
+      color: #f2f2f2;
+      text-shadow: 0 0 6px #f2f2f2;
+      margin-bottom: 40px;
+    }
+
+    .texto {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #ddd;
+    }
+
+    /* Fogos */
+    .firework {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: explode 1.5s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="info-top" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+  
+<img src="foto-carlos.jpg" alt="Carlos José"
+     style="
+       width: 120px;
+       height: auto;
+       border-radius: 0;
+       box-shadow: none;
+     ">
+
+  <div style="line-height: 1.6;">
+    <strong style="font-size: 22px;">FORMATURA MEDICINA/UFS</strong><br>
+    DOE R$ 1,00<br>
+    CHAVE PIX: medicinacarlosjose@gmail.com<br>
+    Carlos José – Banco do Brasil<br>
+    Atualização ao final do dia
+  </div>
+
+</div>
+
+  <div class="meta">
+    Meta para não ficar em casa na noite da Formatura R$ 8.765,00
+  </div>
+
+  <div class="arrecadado">
+    VALOR RECEBIDO ATÉ AQUI R$ 32,50
+  </div>
+
+  <div class="restante">
+    FALTAM APENAS R$ 8.732,50
+  </div>
+
+  <div class="texto">
+    Chegar ao final da graduação é difícil, mesmo dentro da universidade pública.
+    Entrei no último ano de Medicina, e a formatura está chegando. Mas o pacote mais
+    simples custa quase R$ 9.000,00, um obstáculo complicado.<br><br>
+    Contribua para esse momento!<br>
+    Qualquer ajuda conta 🤍
+  </div>
+
+</div>
+
+<script>
+  function criarFogos() {
+    const fogo = document.createElement("div");
+    fogo.className = "firework";
+    fogo.style.left = Math.random() * window.innerWidth + "px";
+    fogo.style.top = Math.random() * window.innerHeight + "px";
+    fogo.style.backgroundColor =
+      ["red", "yellow", "blue", "purple", "green", "orange"][Math.floor(Math.random() * 6)];
+    document.body.appendChild(fogo);
+
+    setTimeout(() => {
+      fogo.remove();
+    }, 1500);
+  }
+
+  setInterval(criarFogos, 4000);
+</script>
+
+</body>
+</html>
