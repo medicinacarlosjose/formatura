@@ -102,19 +102,31 @@
 
     /* PROGRESS BAR */
     .progress-container {
-      margin-top: 18px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 10px;
-      overflow: hidden;
-      height: 10px;
-    }
+  margin-top: 18px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 12px;
+}
 
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #7cffb2, #4fdc9c);
-      width: 0%;
-      transition: width 0.6s ease;
-    }
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    #a67c00,
+    #ffd700,
+    #ffea70,
+    #ffd700,
+    #a67c00
+  );
+  box-shadow:
+    0 0 8px rgba(255, 215, 0, 0.7),
+    0 0 16px rgba(255, 215, 0, 0.5);
+  animation: pulseGold 1.8s ease-in-out infinite;
+  transition: width 0.8s ease;
+}
+
 
     /* TEXTO */
     .texto {
@@ -151,7 +163,7 @@
 
     <div class="header">
       <h1>FORMATURA MEDICINA · UFS</h1>
-      <p>Doe R$ 1,00 para ajudar na participação na formatura.<br>Atualização diária.</p>
+      <p>Doe R$1,00<br>Atualização diária.</p>
     </div>
 
     <div class="pix-box">
