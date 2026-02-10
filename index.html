@@ -65,63 +65,59 @@
       color: #ddd;
     }
 
-/* Fogos estilo explosão (traços brilhantes) */
-.firework {
+    .doadores {
   position: fixed;
-  width: 2px;
-  height: 16px;
-  background: white;
-  box-shadow: 0 0 14px currentColor;
-  transform-origin: bottom center;
+  font-size: 14px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.9);
   pointer-events: none;
-  animation: shoot 1.8s linear forwards;
+  animation: aparecer 1.6s ease-in-out forwards;
 }
 
-@keyframes shoot {
-  0% { transform: translateY(0) scaleY(0.2); opacity: 1; }
-  70% { opacity: 1; }
-  100% { transform: translateY(-280px) scaleY(1.6); opacity: 0; }
+@keyframes aparecer {
+  0%   { opacity: 0; transform: scale(0.9); }
+  20%  { opacity: 1; transform: scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.05); }
 }
   </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<div class="info-top" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-  
-<img src="foto-carlos.jpg" alt="Carlos José"
-     style="
-       width: 120px;
-       height: auto;
-       border-radius: 6px;
-       filter: brightness(1.05);
-     ">
+  <div class="info-top" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="foto-carlos.jpg" alt="Carlos José"
+         style="width:120px; height:auto; border-radius:6px; filter:brightness(1.05);">
 
-  <div style="line-height: 1.6;">
-    <strong style="font-size: 22px;">FORMATURA MEDICINA/UFS</strong><br>
-    DOE R$1,00<br>
-    CHAVE PIX medicinacarlosjose@gmail.com<br>
-    Carlos José – Banco do Brasil<br>
-    - atualização diária -
+    <div style="line-height: 1.6;">
+      <strong style="font-size: 22px;">FORMATURA MEDICINA/UFS</strong><br>
+      DOE R$ 1,00<br>
+      CHAVE PIX medicinacarlosjose@gmail.com<br>
+      Carlos José – Banco do Brasil<br>
+      - atualização diária -
+    </div>
+
   </div>
 
-</div>
-
   <div class="meta">
-    META PARA NÃO FICAR EM CASA NA NOITE DE FORMATURA R$8.765,00
+    META PARA NÃO FICAR EM CASA NA NOITE DE FORMATURA R$ 8.765,00
   </div>
 
   <div class="arrecadado">
-    VALOR RECEBIDO ATÉ AQUI R$329,50
+    VALOR RECEBIDO ATÉ AQUI R$ 329,50
   </div>
 
   <div class="restante">
-    FALTAM APENAS R$8.435,50
+    FALTAM APENAS R$ 8.435,50
   </div>
 
   <div class="texto">
-    Chegar ao final da graduação é difícil, mesmo dentro da universidade pública. Entrei no último ano de Medicina, e a formatura está chegando. Mas o pacote mais simples custa quase R$ 9.000,00, um obstáculo complicado.<br><br>
+    Chegar ao final da graduação é difícil, mesmo dentro da universidade pública.
+    Entrei no último ano de Medicina, e a formatura está chegando. Mas o pacote mais
+    simples custa quase R$ 9.000,00, um obstáculo complicado.<br><br>
     Contribua para esse momento!<br>
     Qualquer ajuda conta 🤍
   </div>
@@ -129,27 +125,34 @@
 </div>
 
 <script>
-  function criarFogos() {
-    for (let i = 0; i < 36; i++) {
-      const fogo = document.createElement("div");
-      fogo.className = "firework";
+  const nomes = [
+    "FERNANDO","FELIPE","TAIS","ROSANA","DANIELA","CARLOS","ANDRE","JOSE",
+    "DEVESSON","GLADISTON","GREZIELE","MACRONIEL","ANTONIO","OSMARIO",
+    "LEIRI","RAIANE","JOSEFA","DALILA","MARIA","RIVANETE","JAILLEN",
+    "PRISCILA","MARCEL","JULIANA","MARIAH","SAMUEL","ANA"
+  ];
 
-      fogo.style.left = Math.random() * window.innerWidth + "px";
-      fogo.style.top =
-        Math.random() * window.innerHeight * 0.5 + window.innerHeight * 0.25 + "px";
-      fogo.style.transform = `rotate(${Math.random() * 360}deg)`;
+  function mostrarNomeAleatorio() {
+    const nome = document.createElement("div");
+    nome.className = "doadores";
+    nome.textContent = nomes[Math.floor(Math.random() * nomes.length)];
 
-      const cores = ["#ffffff", "#00ffff", "#ffcc00", "#ff6600", "#ff00ff", "#00ff88"];
-      fogo.style.color = cores[Math.floor(Math.random() * cores.length)];
+    const margem = 40;
+    nome.style.left =
+      Math.random() * (window.innerWidth - margem * 2) + margem + "px";
+    nome.style.top =
+      Math.random() * (window.innerHeight - margem * 2) + margem + "px";
 
-      document.body.appendChild(fogo);
-      setTimeout(() => fogo.remove(), 1800);
-    }
+    document.body.appendChild(nome);
+
+    setTimeout(() => {
+      nome.remove();
+    }, 1600);
   }
 
-  setInterval(criarFogos, 2300);
+  // velocidade 1s (quanto menor, mais rápido)
+  setInterval(mostrarNomeAleatorio, 400);
 </script>
-
 
 </body>
 </html>
