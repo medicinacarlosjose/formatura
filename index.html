@@ -1,248 +1,425 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formatura Medicina UFS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formatura Medicina UFS</title>
 
 <style>
-.section {
-  margin-top: 22px;
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#0f0f0f,#000);
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:#eaeaea;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.label {
-  font-size: 13px;
-  color: #bdbdbd;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+.wrapper{
+  width:100%;
+  max-width:460px;
+  padding:40px 24px;
 }
 
-.value {
-  font-size: 26px;
-  font-weight: 600;
+.card{
+  background:linear-gradient(180deg,rgba(20,20,20,0.97),rgba(8,8,8,0.97));
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:18px;
+  padding:28px 22px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.9);
+  text-align:center;
+  position:relative;
+  overflow:visible;
 }
 
-/* 🔵 META VERDE */
-.meta .value {
-  color: #7cffb2;
-  text-shadow: 0 0 8px rgba(124,255,178,0.4);
+h1{
+  font-size:19px;
+  white-space:nowrap;
+  margin-bottom:8px;
+  cursor:pointer;
 }
 
-/* 🟡 ARRECADADO DOURADO */
-.arrecadado .value {
-  color: #d4af37;
-  text-shadow:
-    0 0 6px rgba(255,215,0,0.6),
-    0 0 12px rgba(255,215,0,0.4);
+.doe{
+  font-size:20px;
+  font-weight:700;
+  color:#ffd700;
+  text-shadow:0 0 10px #ffd700;
+  animation:brilho 1.2s infinite alternate;
 }
 
-/* ⚪ RESTANTE NEUTRO */
-.restante .value {
-  color: #e6e6e6;
+@keyframes brilho{
+  from{opacity:1;}
+  to{opacity:0.4;}
 }
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #0f0f0f, #000);
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: #eaeaea;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    overflow-y: auto; /* AGORA PERMITE ROLAR */
-  }
+.copy-btn{
+  margin-top:6px;
+  padding:6px 10px;
+  background:#ffd700;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-  .wrapper {
-    width: 100%;
-    max-width: 460px;
-    padding: 40px 24px;
-    position: relative;
-    z-index: 5;
-  }
+.section{margin-top:20px;}
 
-  .card {
-    background: linear-gradient(180deg, rgba(20,20,20,0.97), rgba(8,8,8,0.97));
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px;
-    padding: 28px 22px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
-    text-align: center;
-  }
+.label{
+  font-size:13px;
+  color:#bdbdbd;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
 
-  /* ===== DOE R$1,00 ===== */
-  .doe {
-    font-size: 20px;
-    font-weight: 700;
-    color: #ffd700;
-    letter-spacing: 1px;
-    text-shadow:
-      0 0 6px #ffd700,
-      0 0 12px #ffea70,
-      0 0 20px #d4af37;
-    animation: brilho 1.2s infinite alternate;
-  }
+.value{
+  font-size:26px;
+  font-weight:600;
+  transition:all 0.4s ease;
+}
 
-  @keyframes brilho {
-    from { opacity: 1; }
-    to { opacity: 0.4; }
-  }
+.meta-restante{
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+}
 
-  /* PROGRESS BAR */
-  .progress-container {
-    margin-top: 18px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-    height: 12px;
-  }
+.meta-box, .restante-box{
+  width:48%;
+}
 
-  .progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg,#a67c00,#ffd700,#ffea70,#ffd700,#a67c00);
-    box-shadow:
-      0 0 10px rgba(255,215,0,0.9),
-      0 0 20px rgba(255,215,0,0.6);
-    animation: pulseGold 1.5s ease-in-out infinite;
-    transition: width 0.8s ease;
-  }
+.meta-box .value{ color:#7cffb2; }
 
-  @keyframes pulseGold {
-    0% { filter: brightness(1); }
-    50% { filter: brightness(1.7); }
-    100% { filter: brightness(1); }
-  }
+.restante-box .value{
+  color:#8b0000;
+  text-shadow:0 0 8px rgba(139,0,0,0.6);
+}
 
-  /* NOMES DOURADOS NO FUNDO */
-  .doadores {
-    position: fixed;
-    font-size: 12px;
-    font-weight: bold;
-    color: #ffd700;
-    text-shadow:
-      0 0 6px #ffd700,
-      0 0 12px #ffea70;
-    pointer-events: none;
-    animation: piscaNome 1.4s ease-in-out forwards;
-    z-index: 1;
-  }
+/* PROGRESSO */
+.progress-wrapper{
+  position:relative;
+  margin-top:18px;
+}
 
-  @keyframes piscaNome {
-    0% { opacity: 0; transform: scale(0.8); }
-    30% { opacity: 1; }
-    70% { opacity: 1; }
-    100% { opacity: 0; transform: scale(1.1); }
-  }
+.meta-labels{
+  position:relative;
+  height:40px;
+}
 
-  .texto {
-    margin-top: 24px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: #cfcfcf;
-  }
+.meta-label{
+  position:absolute;
+  font-size:11px;
+  color:#aaa;
+  transform:translateX(-50%);
+  white-space:nowrap;
+}
+
+.progress-container{
+  background:rgba(255,255,255,0.08);
+  border-radius:12px;
+  height:18px;
+  position:relative;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ffd700,#ffea70);
+  box-shadow:0 0 10px rgba(255,215,0,0.9);
+  transition:width 1s ease, background 0.6s ease;
+}
+
+.milestone{
+  position:absolute;
+  top:0;
+  width:2px;
+  height:100%;
+  background:#555;
+}
+
+/* VALOR ARRECADADO PULSANTE */
+.pulse{
+  animation:pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes pulseGlow{
+  0%{ text-shadow:0 0 8px currentColor; }
+  100%{ text-shadow:0 0 20px currentColor; }
+}
+
+/* DOADORES */
+.marquee{
+  margin-top:12px;
+  overflow:hidden;
+  white-space:nowrap;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:8px;
+}
+
+.marquee span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 40s linear infinite;
+  color:#ffd700;
+  font-size:12px;
+}
+
+@keyframes scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-100%);}
+}
+
+/* FOTO */
+#fotoFinal{
+  position:absolute;
+  bottom:8px;
+  right:8px;
+  width:75px;
+  display:block;
+  z-index:10;
+}
+
+.rotate{
+  animation:rotateHead 2s infinite alternate ease-in-out;
+}
+
+@keyframes rotateHead{
+  0%{transform:rotate(45deg);}
+  100%{transform:rotate(135deg);}
+}
+
+.texto{
+  margin-top:20px;
+  font-size:14px;
+  line-height:1.6;
+  color:#cfcfcf;
+}
+
 </style>
-
 </head>
 
 <body>
 
 <div class="wrapper">
+<div class="card">
 
-  <div class="card">
+<h1>FORMATURA MEDICINA · UFS</h1>
+<div class="doe">DOE R$1,00</div>
 
-<div class="header">
-  <h1>FORMATURA MEDICINA · UFS</h1>
-  <div class="doe">DOE R$1,00</div>
-  <p>- atualização diária -</p>
+<div class="pix-key">medicinacarlosjose@gmail.com</div>
+<button class="copy-btn" onclick="copiarPix()">📋 Copiar chave pix - Carlos José</button>
+
+<div class="section arrecadado">
+<div class="label">Valor arrecadado</div>
+<div class="value pulse" id="arrecadado">R$0,00</div>
 </div>
 
-    <div class="pix-box">
-      <div>Chave Pix</div>
-      <div class="pix-key" id="pixKey">medicinacarlosjose@gmail.com</div>
-      <button class="copy-btn" onclick="copiarPix()">Copiar chave Pix</button>
-      <div style="font-size:13px; margin-top:6px;">Carlos José — Banco do Brasil</div>
-    </div>
+<div class="progress-wrapper">
+  <div class="meta-labels" id="metaLabels"></div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-    <div class="section meta">
-      <div class="label">Meta da formatura</div>
-      <div class="value" id="meta">R$8765,00</div>
-    </div>
-
-    <div class="section arrecadado">
-      <div class="label">Valor arrecadado</div>
-      <div class="value" id="arrecadado">R$888,00</div>
-    </div>
-
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <div class="section restante">
-      <div class="label">Valor restante</div>
-      <div class="value" id="restante">R$7877,00</div>
-    </div>
-
-    <div class="texto">
-      Chegar ao final da graduação é difícil, mesmo dentro da universidade pública. Estou no último ano de Medicina, e a formatura se aproxima. O pacote mais simples custa quase R$9000,00.<br><br>
-      Qualquer ajuda é muito bem-vinda 🤍
-    </div>
-
+  <div class="marquee">
+    <span>
+ADRIANO ⊳ AELSON ⊳ ALTEMARIA ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANDRE WILLIAM ⊳ ANDRE LUIZ ⊳ ANTONIO BARBOSA ⊳ AUGUSTO ⊳ CARLOS ALBERTO ⊳ DALILA COSTA ⊳ DANIELA ⊳ DEIVISSON ⊳ EDMILSON ⊳ FERNANDO GOIS ⊳ FERNANDO SANDES ⊳ FELIPE AFONSO ⊳ GLADISTON ⊳ GREZIELE ⊳ HORTENCIA ⊳ JAILLEN ⊳ JAILTON FILHO ⊳ JEFFERSON ⊳ JOSE CLEONES ⊳ JOSE EDLELUSON ⊳ DJANIRA ⊳ PATRICIA ⊳ RAYLANE DIAS ⊳ JULIANA ⊳ KAMILE ⊳ KATHLEYN ⊳ KELVIN ⊳ KEMELLY ⊳ LARISSE ⊳ LEIRI ⊳ LUAM DE OLIVEIRA ⊳ LUANA CRISTINA ⊳ MARCONIEL ⊳ CHAVES ⊳ DIDA ⊳ MARIAH CLARA ⊳ MARCEL FELIPE ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ RIVANETE ⊳ RONIERIC ⊳ ROSANA REIS ⊳ ROSILDA ⊳ SAMARA ⊳ SAMUEL ⊳ SANDRO ⊳ SIMONE FLORA ⊳ TAIS ⊳ TALYTA ⊳ THALUCHA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL ⊳    </span>
   </div>
 
 </div>
 
+<div class="meta-restante">
+<div class="meta-box">
+<div class="label">Meta da formatura</div>
+<div class="value" id="metaValor"></div>
+</div>
+
+<div class="restante-box">
+<div class="label">Valor restante</div>
+<div class="value" id="restanteValor"></div>
+</div>
+</div>
+
+<div class="texto">
+Concluir a graduação é um desafio de resistência. Agora, no último ano, surge um novo obstáculo: o pacote mais simples da Formatura custa quase R$9.000,00.
+<br><br>
+Doe! Corra comigo contra o tempo ⏳.
+</div>
+
+</div>
+</div>
+
 <script>
-  const META = 8765;
-  const ARRECADADO = 888;
+/* CONFETES */
 
-  const percentual = Math.min((ARRECADADO / META) * 100, 100);
-  document.getElementById("progressBar").style.width = percentual + "%";
-
-  function copiarPix() {
-    const chave = document.getElementById("pixKey").innerText;
-    navigator.clipboard.writeText(chave).then(() => {
-      alert("Chave Pix copiada!");
-    });
-  }
-
-  const nomes = [
-    "FERNANDO","FELIPE","TAIS","ROSANA","DANIELA","CARLOS","ANDRE","JOSE",
-    "DEVESSON","GLADISTON","GREZIELE","MACRONIEL","ANTONIO","OSMARIO",
-    "LEIRI","RAIANE","JOSEFA","DALILA","MARIA","RIVANETE","JAILLEN",
-    "PRISCILA","MARCEL","JULIANA","MARIAH","SAMUEL","ANA"
-  ];
-
-  function mostrarNome() {
-  const nome = document.createElement("div");
-  nome.className = "doadores";
-  nome.textContent = nomes[Math.floor(Math.random() * nomes.length)];
-
-  const card = document.querySelector(".card");
-  const rect = card.getBoundingClientRect();
-
-  let x, y;
-
-  do {
-    x = Math.random() * window.innerWidth;
-    y = Math.random() * window.innerHeight;
-  } while (
-    x > rect.left - 40 &&
-    x < rect.right + 40 &&
-    y > rect.top - 40 &&
-    y < rect.bottom + 40
-  );
-
-  nome.style.left = x + "px";
-  nome.style.top = y + "px";
-
-  document.body.appendChild(nome);
-
-  setTimeout(() => nome.remove(), 1400);
+function iniciarConfetes(verificarAnimacao){
+  const intervalo=setInterval(()=>{
+    if(!verificarAnimacao()){
+      clearInterval(intervalo);
+      return;
+    }
+    criarConfete();
+  },70);
 }
 
-setInterval(mostrarNome, 700);
+function criarConfete(){
+  const confete=document.createElement("div");
+  confete.style.position="fixed";
+  confete.style.width="8px";
+  confete.style.height="14px";
+  confete.style.top="-20px";
+  confete.style.left=Math.random()*window.innerWidth+"px";
+  confete.style.background=corAleatoria();
+  confete.style.opacity="0.9";
+  confete.style.borderRadius="2px";
+  confete.style.transform="rotate("+Math.random()*360+"deg)";
+  confete.style.zIndex="9999";
+  document.body.appendChild(confete);
+
+  let queda=0;
+  const velocidade=3+Math.random()*3;
+
+  const cair=setInterval(()=>{
+    queda+=velocidade;
+    confete.style.top=queda+"px";
+    if(queda>window.innerHeight){
+      clearInterval(cair);
+      confete.remove();
+    }
+  },16);
+}
+
+function corAleatoria(){
+  const cores=["#ff4d4d","#ffd700","#00ffcc","#00c6ff","#ff00cc","#ff8800"];
+  return cores[Math.floor(Math.random()*cores.length)];
+}
+
+const META = 8765;
+let ARRECADADO_ATUAL = 888;
+const SENHA_HASH = "6d656432303235";
+
+const metasValores = [1000,2000,4000,6000,8765];
+
+const arrecadadoEl = document.getElementById("arrecadado");
+const restanteEl = document.getElementById("restanteValor");
+const metaEl = document.getElementById("metaValor");
+const barra = document.getElementById("progressBar");
+const titulo = document.querySelector("h1");
+
+metaEl.innerText = formatar(META);
+
+criarMarcadoresMetas();
+atualizarSistema();
+
+function atualizarSistema(){
+  restanteEl.innerText = formatar(META - ARRECADADO_ATUAL);
+  animarContador(0, ARRECADADO_ATUAL, 2500);
+}
+
+function animarContador(inicio,fim,duracao){
+  let start=null;
+  let animando=true;
+
+  iniciarConfetes(()=>animando);
+
+  function step(timestamp){
+    if(!start) start=timestamp;
+    let progress=timestamp-start;
+    let valor=Math.min(inicio+(fim-inicio)*(progress/duracao),fim);
+
+    arrecadadoEl.innerText=formatar(valor);
+    atualizarBarra(valor);
+
+    if(progress<duracao){
+      requestAnimationFrame(step);
+    } else {
+      animando=false; // PARA CONFETES
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function atualizarBarra(valor){
+  const percentual=Math.min((valor/META)*100,100);
+  barra.style.width=percentual+"%";
+
+  let grad="#ffd700";
+
+  if(valor>=1000) grad="linear-gradient(90deg,#00c6ff,#0072ff)";
+  if(valor>=2000) grad="linear-gradient(90deg,#00ff87,#60efff)";
+  if(valor>=4000) grad="linear-gradient(90deg,#f7971e,#ffd200)";
+  if(valor>=6000) grad="linear-gradient(90deg,#ff512f,#dd2476)";
+  if(valor>=META) grad="linear-gradient(90deg,#00ffcc,#ff00cc)";
+
+  barra.style.background=grad;
+  arrecadadoEl.style.color=getComputedStyle(barra).backgroundImage.includes("linear") ? "#ffd700" : "#ffd700";
+}
+
+function criarMarcadoresMetas(){
+  const container=document.querySelector(".progress-container");
+  const labelContainer=document.getElementById("metaLabels");
+
+  metasValores.forEach((meta,index)=>{
+    const porcentagem=(meta/META)*100;
+
+    const marcador=document.createElement("div");
+    marcador.className="milestone";
+    marcador.style.left=porcentagem+"%";
+    container.appendChild(marcador);
+
+    const label=document.createElement("div");
+    label.className="meta-label";
+    label.innerText=formatar(meta);
+    label.style.left=porcentagem+"%";
+    label.style.top=index%2===0?"0px":"22px";
+    labelContainer.appendChild(label);
+  });
+}
+
+function copiarPix(){
+  navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
+  alert("Chave Pix copiada!");
+}
+
+function formatar(valor){
+  return "R$"+valor.toLocaleString("pt-BR",{minimumFractionDigits:2});
+}
+
+/* BOTÃO SECRETO */
+
+let contadorClique = 0;
+
+titulo.addEventListener("click",()=>{
+  contadorClique++;
+  if(contadorClique>=5){
+    contadorClique=0;
+    painelAdmin();
+  }
+});
+
+function painelAdmin(){
+  const senha = prompt("Digite a senha:");
+  if(!senha) return;
+
+  if(toHex(senha)===SENHA_HASH){
+    const novo = parseFloat(prompt("Novo valor arrecadado:"));
+    if(!isNaN(novo) && novo>=0){
+      ARRECADADO_ATUAL = novo;
+      atualizarSistema();
+    }
+  } else {
+    alert("Senha incorreta.");
+  }
+}
+
+function toHex(str){
+  let hex="";
+  for(let i=0;i<str.length;i++){
+    hex+=str.charCodeAt(i).toString(16);
+  }
+  return hex;
+}
+
 </script>
 
 </body>
