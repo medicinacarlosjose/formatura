@@ -5,154 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formatura Medicina UFS</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #0f0f0f, #000);
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: #eaeaea;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .wrapper {
-      width: 100%;
-      max-width: 460px;
-      padding: 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* CARD */
-    .card {
-      background: linear-gradient(180deg, rgba(20,20,20,0.97), rgba(8,8,8,0.97));
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 18px;
-      padding: 28px 22px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.9);
-      text-align: center;
-    }
-
-    /* HEADER */
-    .header h1 {
-      font-size: 20px;
-      margin: 0 0 8px;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-
-    .header p {
-      font-size: 14px;
-      color: #cfcfcf;
-      margin: 0 0 14px;
-      line-height: 1.6;
-    }
-
-    /* PIX */
-    .pix-box {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .pix-key {
-      margin: 8px 0;
-      font-weight: 600;
-      word-break: break-all;
-    }
-
-    .copy-btn {
-      margin-top: 6px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: transparent;
-      color: #fff;
-      cursor: pointer;
-      font-size: 13px;
-      transition: all 0.2s ease;
-    }
-
-    .copy-btn:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    /* SECTIONS */
-    .section {
-      margin-top: 22px;
-    }
-
-    .label {
-      font-size: 13px;
-      color: #bdbdbd;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .value {
-      font-size: 26px;
-      font-weight: 600;
-    }
-
-    .meta .value { color: #7cffb2; }
-    .arrecadado .value { color: #d4af37; }
-    .restante .value { color: #e6e6e6; }
-
-    /* PROGRESS BAR */
-    .progress-container {
-  margin-top: 18px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 12px;
-  overflow: hidden;
-  height: 12px;
+<style>
+.section {
+  margin-top: 22px;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(
-    90deg,
-    #a67c00,
-    #ffd700,
-    #ffea70,
-    #ffd700,
-    #a67c00
-  );
-  box-shadow:
-    0 0 8px rgba(255, 215, 0, 0.7),
-    0 0 16px rgba(255, 215, 0, 0.5);
-  animation: pulseGold 1.8s ease-in-out infinite;
-  transition: width 0.8s ease;
+.label {
+  font-size: 13px;
+  color: #bdbdbd;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
+.value {
+  font-size: 26px;
+  font-weight: 600;
+}
 
-    /* TEXTO */
-    .texto {
-      margin-top: 24px;
-      font-size: 14px;
-      line-height: 1.65;
-      color: #cfcfcf;
-    }
+/* 🔵 META VERDE */
+.meta .value {
+  color: #7cffb2;
+  text-shadow: 0 0 8px rgba(124,255,178,0.4);
+}
 
-    /* NOMES FUNDO */
-    .doadores {
-      position: fixed;
-      font-size: 11px;
-      color: rgba(255,255,255,0.55);
-      pointer-events: none;
-      animation: fadeMove 1.3s ease-in-out forwards;
-      z-index: 1;
-    }
+/* 🟡 ARRECADADO DOURADO */
+.arrecadado .value {
+  color: #d4af37;
+  text-shadow:
+    0 0 6px rgba(255,215,0,0.6),
+    0 0 12px rgba(255,215,0,0.4);
+}
 
-    @keyframes fadeMove {
-      0% { opacity: 0; transform: translateY(6px); }
-      25% { opacity: 1; }
-      75% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-6px); }
-    }
-  </style>
+/* ⚪ RESTANTE NEUTRO */
+.restante .value {
+  color: #e6e6e6;
+}
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0f0f0f, #000);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto; /* AGORA PERMITE ROLAR */
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 460px;
+    padding: 40px 24px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .card {
+    background: linear-gradient(180deg, rgba(20,20,20,0.97), rgba(8,8,8,0.97));
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 28px 22px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+    text-align: center;
+  }
+
+  /* ===== DOE R$1,00 ===== */
+  .doe {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffd700;
+    letter-spacing: 1px;
+    text-shadow:
+      0 0 6px #ffd700,
+      0 0 12px #ffea70,
+      0 0 20px #d4af37;
+    animation: brilho 1.2s infinite alternate;
+  }
+
+  @keyframes brilho {
+    from { opacity: 1; }
+    to { opacity: 0.4; }
+  }
+
+  /* PROGRESS BAR */
+  .progress-container {
+    margin-top: 18px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    height: 12px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#a67c00,#ffd700,#ffea70,#ffd700,#a67c00);
+    box-shadow:
+      0 0 10px rgba(255,215,0,0.9),
+      0 0 20px rgba(255,215,0,0.6);
+    animation: pulseGold 1.5s ease-in-out infinite;
+    transition: width 0.8s ease;
+  }
+
+  @keyframes pulseGold {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.7); }
+    100% { filter: brightness(1); }
+  }
+
+  /* NOMES DOURADOS NO FUNDO */
+  .doadores {
+    position: fixed;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow:
+      0 0 6px #ffd700,
+      0 0 12px #ffea70;
+    pointer-events: none;
+    animation: piscaNome 1.4s ease-in-out forwards;
+    z-index: 1;
+  }
+
+  @keyframes piscaNome {
+    0% { opacity: 0; transform: scale(0.8); }
+    30% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.1); }
+  }
+
+  .texto {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #cfcfcf;
+  }
+</style>
+
 </head>
 
 <body>
@@ -161,10 +152,11 @@
 
   <div class="card">
 
-    <div class="header">
-      <h1>FORMATURA MEDICINA · UFS</h1>
-      <p>Doe R$1,00<br>Atualização diária.</p>
-    </div>
+<div class="header">
+  <h1>FORMATURA MEDICINA · UFS</h1>
+  <div class="doe">DOE R$1,00</div>
+  <p>- atualização diária -</p>
+</div>
 
     <div class="pix-box">
       <div>Chave Pix</div>
@@ -175,12 +167,12 @@
 
     <div class="section meta">
       <div class="label">Meta da formatura</div>
-      <div class="value" id="meta">R$ 8.765,00</div>
+      <div class="value" id="meta">R$8765,00</div>
     </div>
 
     <div class="section arrecadado">
       <div class="label">Valor arrecadado</div>
-      <div class="value" id="arrecadado">R$ 329,50</div>
+      <div class="value" id="arrecadado">R$888,00</div>
     </div>
 
     <div class="progress-container">
@@ -189,13 +181,11 @@
 
     <div class="section restante">
       <div class="label">Valor restante</div>
-      <div class="value" id="restante">R$ 8.435,50</div>
+      <div class="value" id="restante">R$7877,00</div>
     </div>
 
     <div class="texto">
-      Chegar ao final da graduação é difícil, mesmo dentro da universidade pública.
-      Estou no último ano de Medicina, e a formatura se aproxima.
-      O pacote mais simples custa quase R$ 9.000,00.<br><br>
+      Chegar ao final da graduação é difícil, mesmo dentro da universidade pública. Estou no último ano de Medicina, e a formatura se aproxima. O pacote mais simples custa quase R$9000,00.<br><br>
       Qualquer ajuda é muito bem-vinda 🤍
     </div>
 
@@ -205,7 +195,7 @@
 
 <script>
   const META = 8765;
-  const ARRECADADO = 329.5;
+  const ARRECADADO = 888;
 
   const percentual = Math.min((ARRECADADO / META) * 100, 100);
   document.getElementById("progressBar").style.width = percentual + "%";
@@ -225,21 +215,34 @@
   ];
 
   function mostrarNome() {
-    const nome = document.createElement("div");
-    nome.className = "doadores";
-    nome.textContent = nomes[Math.floor(Math.random() * nomes.length)];
+  const nome = document.createElement("div");
+  nome.className = "doadores";
+  nome.textContent = nomes[Math.floor(Math.random() * nomes.length)];
 
-    let x = Math.random() * window.innerWidth;
-    let y = Math.random() * window.innerHeight;
+  const card = document.querySelector(".card");
+  const rect = card.getBoundingClientRect();
 
-    document.body.appendChild(nome);
-    nome.style.left = x + "px";
-    nome.style.top = y + "px";
+  let x, y;
 
-    setTimeout(() => nome.remove(), 1300);
-  }
+  do {
+    x = Math.random() * window.innerWidth;
+    y = Math.random() * window.innerHeight;
+  } while (
+    x > rect.left - 40 &&
+    x < rect.right + 40 &&
+    y > rect.top - 40 &&
+    y < rect.bottom + 40
+  );
 
-  setInterval(mostrarNome, 550);
+  nome.style.left = x + "px";
+  nome.style.top = y + "px";
+
+  document.body.appendChild(nome);
+
+  setTimeout(() => nome.remove(), 1400);
+}
+
+setInterval(mostrarNome, 700);
 </script>
 
 </body>
