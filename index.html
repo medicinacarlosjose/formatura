@@ -6,213 +6,153 @@
 <title>Formatura Medicina UFS</title>
 
 <style>
+
 body{
   margin:0;
   min-height:100vh;
-  background:radial-gradient(circle at top,#0f0f0f,#000);
+  background: radial-gradient(circle at 30% 20%, #2a0000, #0a0000 70%);
   font-family:"Segoe UI",Arial,sans-serif;
-  color:#eaeaea;
+  color:#f5e6c8;
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow-y:auto; /* corrigido */
 }
 
-.wrapper{
-  width:100%;
-  max-width:460px;
-  padding:40px 24px;
-}
-
+/* CARD */
 .card{
-  background:linear-gradient(180deg,rgba(20,20,20,0.97),rgba(8,8,8,0.97));
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:18px;
-  padding:28px 22px;
-  box-shadow:0 30px 80px rgba(0,0,0,0.9);
+  backdrop-filter: blur(28px);
+  background:rgba(35,0,0,0.65);
+  border:1px solid rgba(255,215,0,0.25);
+  border-radius:26px;
+  padding:36px 32px;
+  box-shadow:
+    0 50px 120px rgba(0,0,0,0.9),
+    inset 0 0 40px rgba(139,0,0,0.3);
   text-align:center;
-  position:relative;
-  overflow:visible;
+  width:100%;
+  max-width:500px;
 }
 
-h1{
-  font-size:19px;
-  white-space:nowrap;
-  margin-bottom:8px;
-  cursor:pointer;
-}
-
+/* DOE */
 .doe{
-  font-size:20px;
-  font-weight:700;
+  font-size:24px;
+  font-weight:800;
   color:#ffd700;
-  text-shadow:0 0 10px #ffd700;
-  animation:brilho 1.2s infinite alternate;
+  animation:royalPulse 1.2s infinite alternate;
 }
 
-@keyframes brilho{
-  from{opacity:1;}
-  to{opacity:0.4;}
+@keyframes royalPulse{
+  from{ text-shadow:0 0 15px #ffd700; }
+  to{ text-shadow:0 0 40px #ffae00; }
 }
 
-.copy-btn{
-  margin-top:6px;
-  padding:6px 10px;
-  background:#ffd700;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.section{margin-top:20px;}
-
+/* LABEL */
 .label{
   font-size:13px;
-  color:#bdbdbd;
   text-transform:uppercase;
+  letter-spacing:1px;
   margin-bottom:6px;
 }
 
-.value{
-  font-size:26px;
-  font-weight:600;
+/* ARRECADADO */
+#arrecadado{
+  font-size:36px;
+  font-weight:800;
+  color:#ffd700;
+  text-shadow:0 0 25px #ffd700, 0 0 50px #ffae00;
 }
 
-.meta-restante{
-  display:flex;
-  justify-content:space-between;
-  margin-top:20px;
-}
-
-.meta-box, .restante-box{
-  width:48%;
-}
-
-.meta-box .value{ color:#7cffb2; }
-
-.restante-box .value{
-  color:#8b0000;
-  text-shadow:0 0 8px rgba(139,0,0,0.6);
-}
-
-/* PROGRESSO */
-.progress-wrapper{
-  position:relative;
-  margin-top:30px;
-}
-
-.meta-labels{
-  position:relative;
-  height:18px;
-}
-
-.meta-label{
-  position:absolute;
-  font-size:11px;
-  color:#aaa;
-  transform:translateX(-50%);
-  white-space:nowrap;
-}
-
+/* BARRA */
 .progress-container{
-  background:rgba(255,255,255,0.08);
-  border-radius:12px;
-  height:18px;
-  position:relative;
+  margin-top:30px;
+  height:24px;
+  border-radius:40px;
+  background:rgba(255,255,255,0.05);
+  overflow:hidden;
 }
 
 .progress-bar{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#ffd700,#ffea70);
-  box-shadow:0 0 10px rgba(255,215,0,0.9);
-  transition:width 1s ease, background 0.6s ease;
+  border-radius:40px;
+  background: linear-gradient(90deg,#8b0000,#ff0000,#ff3c3c);
+  box-shadow:0 0 25px #ff0000,0 0 60px #ffd700;
+  transition:width 1.4s ease;
 }
 
-.milestone{
-  position:absolute;
-  top:0;
-  width:2px;
-  height:100%;
-  background:#555;
-}
-
-/* VALOR ARRECADADO PULSANTE */
-.pulse{
-  animation:pulseGlow 3.5s infinite alternate;
-}
-
-@keyframes pulseGlow{
-  0%{ text-shadow:0 0 8px currentColor; }
-  100%{ text-shadow:0 0 20px currentColor; }
-}
-
-/* DOADORES */
+/* MARQUEE */
 .marquee{
-  margin-top:12px;
+  margin-top:15px;
   overflow:hidden;
   white-space:nowrap;
-  border-top:1px solid rgba(255,255,255,0.1);
-  padding-top:8px;
 }
 
 .marquee span{
   display:inline-block;
   padding-left:100%;
-  animation:scroll 160s linear infinite;
-  color:#ffd700;
-  font-size:12px;
+  animation:scroll 120s linear infinite;
+  font-size:10px;
+  opacity:.8;
 }
 
 @keyframes scroll{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-100%);}
+  from{transform:translateX(0);}
+  to{transform:translateX(-100%);}
+}
+
+.meta-restante{
+  display:flex;
+  justify-content:space-between;
+  margin-top:32px;
+}
+
+.value{
+  font-size:20px;
+  font-weight:700;
 }
 
 .texto{
-  margin-top:20px;
+  margin-top:30px;
   font-size:14px;
   line-height:1.6;
-  color:#cfcfcf;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
 <div class="card">
 
 <h1>FORMATURA MEDICINA · UFS</h1>
 <div class="doe">DOE R$1,00</div>
 
-<div class="pix-key">medicinacarlosjose@gmail.com</div>
-<button class="copy-btn" onclick="copiarPix()">📋 Copiar chave pix - Carlos José</button>
+<div class="pix-key">CHAVE PIX medicinacarlosjose@gmail.com</div>
+<button onclick="copiarPix()">📋 Copiar chave pix - Carlos José</button>
 
-<div class="section arrecadado">
+<div style="margin-top:25px;">
 <div class="label">Valor arrecadado</div>
-<div class="value pulse" id="arrecadado">R$0,00</div>
+<div id="arrecadado">R$0,00</div>
 </div>
 
-<div class="progress-wrapper">
-  <div class="meta-labels" id="metaLabels"></div>
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-  <div class="marquee">
-    <span>
-ADRIANO ⊳ AELSON ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANDRE ⊳ AUGUSTO ⊳ CARLOS ⊳ DANIELA ⊳ EDMILSON ⊳ FERNANDO ⊳ FELIPE ⊳ GLADISTON ⊳ GREZIELE ⊳ JAILLEN ⊳ JEFFERSON ⊳ JULIANA ⊳ KAMILE ⊳ LARISSE ⊳ LUANA ⊳ MARCEL ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ ROSANA ⊳ SAMARA ⊳ SIMONE ⊳ TAIS ⊳ TALYTA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL ⊳ ADRIANO ⊳ AELSON ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANDRE ⊳ AUGUSTO ⊳ CARLOS ⊳ DANIELA ⊳ EDMILSON ⊳ FERNANDO ⊳ FELIPE ⊳ GLADISTON ⊳ GREZIELE ⊳ JAILLEN ⊳ JEFFERSON ⊳ JULIANA ⊳ KAMILE ⊳ LARISSE ⊳ LUANA ⊳ MARCEL ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ ROSANA ⊳ SAMARA ⊳ SIMONE ⊳ TAIS ⊳ TALYTA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL ⊳ ADRIANO ⊳ AELSON ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANDRE ⊳ AUGUSTO ⊳ CARLOS ⊳ DANIELA ⊳ EDMILSON ⊳ FERNANDO ⊳ FELIPE ⊳ GLADISTON ⊳ GREZIELE ⊳ JAILLEN ⊳ JEFFERSON ⊳ JULIANA ⊳ KAMILE ⊳ LARISSE ⊳ LUANA ⊳ MARCEL ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ ROSANA ⊳ SAMARA ⊳ SIMONE ⊳ TAIS ⊳ TALYTA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL ⊳ ADRIANO ⊳ AELSON ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANDRE ⊳ AUGUSTO ⊳ CARLOS ⊳ DANIELA ⊳ EDMILSON ⊳ FERNANDO ⊳ FELIPE ⊳ GLADISTON ⊳ GREZIELE ⊳ JAILLEN ⊳ JEFFERSON ⊳ JULIANA ⊳ KAMILE ⊳ LARISSE ⊳ LUANA ⊳ MARCEL ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ ROSANA ⊳ SAMARA ⊳ SIMONE ⊳ TAIS ⊳ TALYTA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL ⊳
-    </span>
-  </div>
+<div class="marquee">
+<span>
+⊳ ADRIANA ⊳ ADRIANO ⊳ AELSON ⊳ ALTEMARIA ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANA PAULA ⊳ ANDRE WILLIAM ⊳ ANDRE LUIZ ⊳ ANTONIO BARBOSA ⊳ AUGUSTO ⊳ CARLOS ALBERTO ⊳ DALILA COSTA ⊳ DAMIÃO ⊳ DANIEL ⊳ DANIELA ⊳ DEIVISSON ⊳ EDMILSON ⊳ FERNANDO GOIS ⊳ FERNANDO SANDES ⊳ FELIPE ⊳ GICLECIO ⊳ GLADISTON ⊳ GREZIELE ⊳ HORTENCIA ⊳ ISIS ⊳ ISLLAINNE ⊳ IVANETE ⊳ JAILLEN ⊳ JAILTON FILHO ⊳ JEFFERSON ⊳ JOSE CLEONES ⊳ JOSE EDLELUSON ⊳ JÚLIA BEATRIZ ⊳ LAISA ⊳ LUANA ⊳ DJANIRA ⊳ PATRICIA ⊳ RAYLANE DIAS ⊳ JULIANA ⊳ KAMILE ⊳ KATHLEYN ⊳ KELVIN ⊳ KEMELLY ⊳ LARISSE ⊳ LEIRI ⊳ LUAM DE OLIVEIRA ⊳ LUANA CRISTINA ⊳ MARCONIEL ⊳ CHAVES ⊳ DIDA ⊳ MARIAH CLARA ⊳ MARCEL FELIPE ⊳ NADJA ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ RIVANETE ⊳ RONIERIC ⊳ ROSANA REIS ⊳ ROSILDA ⊳ RUBENS ⊳ SAMARA ⊳ SAMUEL ⊳ SANDRO ⊳ SIMONE FLORA ⊳ TAIS ⊳ TALYTA ⊳ THALUCHA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL
+</span>
 </div>
 
 <div class="meta-restante">
-<div class="meta-box">
+<div>
 <div class="label">Meta da formatura</div>
 <div class="value" id="metaValor"></div>
 </div>
 
-<div class="restante-box">
+<div>
 <div class="label">Valor restante</div>
 <div class="value" id="restanteValor"></div>
 </div>
@@ -225,69 +165,36 @@ Doe! Corra comigo contra o tempo ⏳.
 </div>
 
 </div>
-</div>
 
 <script>
 
-/* CONFIG */
 const META = 8765;
-const SENHA_HASH = "6d656432303235";
-const metasValores = [1000,2000,4000,6000,8765];
+let ARRECADADO_ATUAL = 1291.59;
 
-let ARRECADADO_ATUAL = 1041.94;
-localStorage.setItem("valorArrecadado", ARRECADADO_ATUAL);
-
-
-localStorage.setItem("valorArrecadado", ARRECADADO_ATUAL);
-
-/* ELEMENTOS */
 const arrecadadoEl = document.getElementById("arrecadado");
 const restanteEl = document.getElementById("restanteValor");
 const metaEl = document.getElementById("metaValor");
 const barra = document.getElementById("progressBar");
-const titulo = document.querySelector("h1");
 
 metaEl.innerText = formatar(META);
+restanteEl.innerText = formatar(META - ARRECADADO_ATUAL);
 
-criarMarcadoresMetas();
-atualizarSistema();
-
-/* SISTEMA */
-function atualizarSistema(){
-  restanteEl.innerText = formatar(META - ARRECADADO_ATUAL);
-  animarContador(0, ARRECADADO_ATUAL, 2500);
-}
+animarContador(0, ARRECADADO_ATUAL, 2000);
 
 function animarContador(inicio,fim,duracao){
-
   let start=null;
-  let animando=true;
-
-  const inicioCent = Math.round(inicio * 100);
-  const fimCent = Math.round(fim * 100);
-
-  iniciarConfetes(()=>animando);
 
   function step(timestamp){
     if(!start) start=timestamp;
     let progress=timestamp-start;
 
-    let valorCent = Math.min(
-      inicioCent + (fimCent-inicioCent)*(progress/duracao),
-      fimCent
-    );
+    let valor = Math.min(inicio + (fim-inicio)*(progress/duracao), fim);
 
-    let valorFinal = valorCent / 100;
-
-    arrecadadoEl.innerText = formatar(valorFinal);
-    atualizarBarra(valorFinal);
+    arrecadadoEl.innerText = formatar(valor);
+    atualizarBarra(valor);
 
     if(progress<duracao){
       requestAnimationFrame(step);
-    } else {
-      animando=false;
-      arrecadadoEl.innerText = formatar(fim);
-      atualizarBarra(fim);
     }
   }
 
@@ -297,110 +204,6 @@ function animarContador(inicio,fim,duracao){
 function atualizarBarra(valor){
   const percentual=Math.min((valor/META)*100,100);
   barra.style.width=percentual+"%";
-
-  if(valor>=1000) barra.style.background="linear-gradient(90deg,#00c6ff,#0072ff)";
-  if(valor>=2000) barra.style.background="linear-gradient(90deg,#00ff87,#60efff)";
-  if(valor>=4000) barra.style.background="linear-gradient(90deg,#f7971e,#ffd200)";
-  if(valor>=6000) barra.style.background="linear-gradient(90deg,#ff512f,#dd2476)";
-  if(valor>=META) barra.style.background="linear-gradient(90deg,#00ffcc,#ff00cc)";
-}
-
-/* MARCADORES */
-function criarMarcadoresMetas(){
-  const container=document.querySelector(".progress-container");
-  const labelContainer=document.getElementById("metaLabels");
-
-  metasValores.forEach((meta,index)=>{
-    const porcentagem=(meta/META)*100;
-
-    const marcador=document.createElement("div");
-    marcador.className="milestone";
-    marcador.style.left=porcentagem+"%";
-    container.appendChild(marcador);
-
-    const label=document.createElement("div");
-    label.className="meta-label";
-    label.innerText=formatar(meta);
-    label.style.left=porcentagem+"%";
-    label.style.top=index%2===0?"0px":"18px";
-    labelContainer.appendChild(label);
-  });
-}
-
-/* CONFETES */
-function iniciarConfetes(verificar){
-  const intervalo=setInterval(()=>{
-    if(!verificar()){
-      clearInterval(intervalo);
-      return;
-    }
-    criarConfete();
-  },70);
-}
-
-function criarConfete(){
-  const confete=document.createElement("div");
-  confete.style.position="fixed";
-  confete.style.width="8px";
-  confete.style.height="14px";
-  confete.style.top="-20px";
-  confete.style.left=Math.random()*window.innerWidth+"px";
-  confete.style.background=corAleatoria();
-  confete.style.borderRadius="2px";
-  confete.style.zIndex="9999";
-  document.body.appendChild(confete);
-
-  let queda=0;
-  const velocidade=3+Math.random()*3;
-
-  const cair=setInterval(()=>{
-    queda+=velocidade;
-    confete.style.top=queda+"px";
-    if(queda>window.innerHeight){
-      clearInterval(cair);
-      confete.remove();
-    }
-  },16);
-}
-
-function corAleatoria(){
-  const cores=["#ff4d4d","#ffd700","#00ffcc","#00c6ff","#ff00cc","#ff8800"];
-  return cores[Math.floor(Math.random()*cores.length)];
-}
-
-/* ADMIN */
-let contadorClique=0;
-
-titulo.addEventListener("click",()=>{
-  contadorClique++;
-  if(contadorClique>=5){
-    contadorClique=0;
-    painelAdmin();
-  }
-});
-
-function painelAdmin(){
-  const senha = prompt("Digite a senha:");
-  if(!senha) return;
-
-  if(toHex(senha)===SENHA_HASH){
-    const novo = parseFloat(prompt("Novo valor arrecadado:"));
-    if(!isNaN(novo) && novo>=0){
-      ARRECADADO_ATUAL = novo;
-      localStorage.setItem("valorArrecadado", novo);
-      atualizarSistema();
-    }
-  } else {
-    alert("Senha incorreta.");
-  }
-}
-
-function toHex(str){
-  let hex="";
-  for(let i=0;i<str.length;i++){
-    hex+=str.charCodeAt(i).toString(16);
-  }
-  return hex;
 }
 
 function copiarPix(){
