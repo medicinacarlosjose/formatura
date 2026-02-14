@@ -29,7 +29,7 @@
       calc(18px + env(safe-area-inset-bottom))
       calc(18px + env(safe-area-inset-left));
 
-    background:linear-gradient(180deg,#041826,#06283d,#041826);
+background:linear-gradient(180deg,#022d22,#064e3b,#022d22);
     position:relative;
   }
 
@@ -38,8 +38,8 @@
     position:fixed;
     inset:-60%;
     background:
-      radial-gradient(circle at 20% 30%, rgba(0,180,255,0.15), transparent 40%),
-      radial-gradient(circle at 70% 60%, rgba(0,120,255,0.12), transparent 50%);
+      radial-gradient(circle at 20% 30%, rgba(16,185,129,0.15), transparent 40%),
+radial-gradient(circle at 70% 60%, rgba(5,150,105,0.15), transparent 50%);
     animation:oceanFlow 50s ease-in-out infinite alternate;
     z-index:0;
     pointer-events:none;
@@ -158,7 +158,7 @@
     border:1px solid rgba(212,175,55,0.35);
     border-radius:16px;
     padding:12px;
-    height:130px;
+height:95px;
     overflow:hidden;
     position:relative;
     background:rgba(0,0,0,0.25);
@@ -179,13 +179,17 @@
   }
 
   .donor{
-    position:absolute;
-    width:100%;
-    text-align:center;
-    font-size:14px;
-    transition:transform .25s ease, opacity .25s ease;
-    will-change:transform, opacity, top;
-  }
+  position:absolute;
+  width:100%;
+  text-align:center;
+  font-size:16px;
+  font-weight:600;
+  color:#ffd700;
+  opacity:0;
+  transform:scale(0.8);
+  transition:opacity .6s ease, transform .6s ease;
+  text-shadow:0 0 8px rgba(255,215,0,0.6);
+}
 
   /* ===== ESTRELA (sem som; só visual) ===== */
   .star{
@@ -249,7 +253,7 @@ z-index: 2;
     opacity:1;
   }
   100%{
-    transform:translateY(130px); /* altura da caixa */
+    transform:translateY(80px); /* altura da caixa */
     opacity:0;
   }
 }
@@ -309,7 +313,7 @@ z-index: 2;
 <script>
   /* ===== VALORES ===== */
   const META = 8765;
-  const ARRECADADO_FINAL = 1319.05; // +18 reais já somado
+const ARRECADADO_FINAL = 1440.05;
 
   function formatar(v){
     return "R$" + Number(v).toLocaleString("pt-BR", {
@@ -349,17 +353,34 @@ z-index: 2;
 
   /* ===== DOADORES (lista completa) ===== */
   const nomes = [
-    "⊳ ADRIANA","⊳ ADRIANO","⊳ AELSON","⊳ ALTEMARIA","⊳ AMILTON","⊳ ANA LUIZA","⊳ ANA PAULA",
-    "⊳ ANDRE WILLIAM","⊳ ANDRE LUIZ","⊳ ANTONIO BARBOSA","⊳ AUGUSTO","⊳ CARLOS ALBERTO",
-    "⊳ DALILA COSTA","⊳ DAMIÃO","⊳ DANIEL","⊳ DANIELA","⊳ DEIVISSON","⊳ EDMILSON",
-    "⊳ FERNANDO GOIS","⊳ FERNANDO SANDES","⊳ FELIPE","⊳ GICLECIO","⊳ GLADISTON","⊳ GREZIELE",
-    "⊳ HORTENCIA","⊳ ISIS","⊳ ISLLAINNE","⊳ IVANETE","⊳ JAILLEN","⊳ JAILTON FILHO","⊳ JEFFERSON",
-    "⊳ JOSE CLEONES","⊳ JOSE EDLELUSON","⊳ JÚLIA BEATRIZ","⊳ LAISA","⊳ LUANA","⊳ DJANIRA",
-    "⊳ PATRICIA","⊳ RAYLANE DIAS","⊳ JULIANA","⊳ KAMILE","⊳ KATHLEYN","⊳ KELVIN","⊳ KEMELLY",
-    "⊳ LARISSE","⊳ LEIRI","⊳ LUAM DE OLIVEIRA","⊳ LUANA CRISTINA","⊳ MARCONIEL","⊳ CHAVES","⊳ DIDA",
-    "⊳ MARIAH CLARA","⊳ MARCEL FELIPE","⊳ NADJA","⊳ OSMARIO","⊳ PRISCILA","⊳ RAIANE","⊳ RIVANETE",
-    "⊳ RONIERIC","⊳ ROSANA REIS","⊳ ROSILDA","⊳ RUBENS","⊳ SAMARA","⊳ SAMUEL","⊳ SANDRO",
-    "⊳ SIMONE FLORA","⊳ TAIS","⊳ TALYTA","⊳ THALUCHA","⊳ VALERIA","⊳ VINICIUS","⊳ WENDELL"
+    "⊳ WAGNER","⊳ DILZA","⊳ LUIZ EDUARDO",
+"⊳ LUIZ CARLOS","⊳ INGRID","⊳ DAIANE",
+"⊳ SERGIO SANTANA","⊳ RAYANNE","⊳ RO",
+"⊳ SUELY",  "⊳ ADRIANA","⊳ ADRIANO",
+"⊳ AELSON","⊳ ALTEMARIA","⊳ AMILTON",
+"⊳ ANA LUIZA","⊳ ANA PAULA","⊳ ANDRE WILLIAM",
+"⊳ ANDRE LUIZ", "⊳ ANTONIO BARBOSA","⊳ AUGUSTO",
+"⊳ CARLOS ALBERTO","⊳ DALILA COSTA","⊳ DAMIÃO",
+"⊳ DANIEL","⊳ DANIELA","⊳ DEIVISSON",
+"⊳ EDMILSON","⊳ FERNANDO GOIS","⊳ FERNANDO SANDES",
+"⊳ FELIPE","⊳ GICLECIO","⊳ GLADISTON",
+"⊳ GREZIELE","⊳ HORTENCIA","⊳ ISIS",
+"⊳ ISLLAINNE","⊳ IVANETE","⊳ JAILLEN",
+"⊳ JAILTON FILHO","⊳ JEFFERSON","⊳ JOSE CLEONES",
+"⊳ JOSE EDLELUSON","⊳ JÚLIA BEATRIZ","⊳ LAISA",
+"⊳ LUANA","⊳ DJANIRA","⊳ PATRICIA",
+"⊳ RAYLANE DIAS","⊳ JULIANA","⊳ KAMILE",
+"⊳ KATHLEYN","⊳ KELVIN","⊳ KEMELLY",
+"⊳ LARISSE","⊳ LEIRI","⊳ LUAM DE OLIVEIRA",
+"⊳ LUANA CRISTINA","⊳ MARCONIEL","⊳ CHAVES",
+"⊳ DIDA","⊳ MARIAH CLARA","⊳ MARCEL FELIPE",
+"⊳ NADJA","⊳ OSMARIO","⊳ PRISCILA",
+"⊳ RAIANE","⊳ RIVANETE","⊳ RONIERIC",
+"⊳ ROSANA REIS","⊳ ROSILDA","⊳ RUBENS",
+"⊳ SAMARA","⊳ SAMUEL","⊳ SANDRO",
+"⊳ SIMONE FLORA","⊳ TAIS","⊳ TALYTA",
+"⊳ THALUCHA","⊳ VALERIA","⊳ VINICIUS",
+"⊳ WENDELL"
   ];
 
 const lista = document.getElementById("donorList");
@@ -371,31 +392,34 @@ function mostrarProximoNome(){
   const div = document.createElement("div");
   div.className = "donor";
   div.innerText = nomes[idx];
-  div.style.top = "130px";
+  div.style.top = "50%";
+div.style.transform = "translateY(-50%) scale(0.8)";
+ // centralizado na caixa
+
   lista.appendChild(div);
 
-  let pos = 130;
+  // entrada suave
+  setTimeout(()=>{
+    div.style.opacity = "1";
+    div.style.transform = "translateY(-50%) scale(1)";
+  },50);
 
-  const anim = setInterval(()=>{
-    pos -= 3;
-    div.style.top = pos + "px";
+  // saída suave
+  setTimeout(()=>{
+    div.style.opacity = "0";
+div.style.transform = "translateY(-50%) scale(1.2)";
+},1000);
 
-    if(pos <= 0){
-      div.style.transform = "scale(1.4)";
-      div.style.opacity = "0";
-      clearInterval(anim);
-
-      setTimeout(()=>{
-        div.remove();
-      }, 300);
-    }
-  }, 20);
+  // remove após animação
+  setTimeout(()=>{
+    div.remove();
+},1500);
 
   idx++;
 }
 
 setTimeout(mostrarProximoNome, 300);
-setInterval(mostrarProximoNome, 1200);
+setInterval(mostrarProximoNome, 1600);
 
   /* ===== METAS VISUAIS NA BARRA ===== */
   const metas = [1500,2000,2500,3000,3500,4000,6000,8765];
@@ -462,7 +486,6 @@ setInterval(mostrarProximoNome, 1200);
   }
 
 // frequência da chuva
-setInterval(criarEstrelaCaindo, 500);
 
 /* ===== ESTRELAS CAINDO DENTRO DA CAIXA ===== */
 
