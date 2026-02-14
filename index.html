@@ -7,86 +7,103 @@
 
 <style>
 
+/* ===== FUNDO OCEANO ===== */
+
 body{
   margin:0;
   min-height:100vh;
-  background: radial-gradient(circle at 30% 20%, #2a0000, #0a0000 70%);
   font-family:"Segoe UI",Arial,sans-serif;
-  color:#f5e6c8;
+  color:#f4f6f9;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:12px; /* evita colar nas bordas no celular */
+  overflow:hidden;
+  background:linear-gradient(180deg,#041826,#06283d,#041826);
 }
 
-/* CARD */
+body::before{
+  content:"";
+  position:absolute;
+  width:300%;
+  height:300%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,180,255,0.15), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(0,120,255,0.12), transparent 50%);
+  animation:oceanFlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes oceanFlow{
+  0%{ transform:translate(-5%,-5%); }
+  50%{ transform:translate(5%,5%); }
+  100%{ transform:translate(-5%,-5%); }
+}
+
+/* ===== CARD ===== */
+
 .card{
-  backdrop-filter: blur(22px);
-  background:rgba(35,0,0,0.65);
-  border:1px solid rgba(255,215,0,0.25);
-  border-radius:22px;
-  padding:22px 18px; /* reduzido */
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.9),
-    inset 0 0 30px rgba(139,0,0,0.3);
-  text-align:center;
   width:100%;
-  max-width:420px; /* menor */
+  max-width:420px;
+  backdrop-filter: blur(25px);
+  background:rgba(5,25,40,0.9);
+  border:1px solid rgba(212,175,55,0.35);
+  border-radius:26px;
+  padding:28px 22px;
+  text-align:center;
+  box-shadow:0 40px 120px rgba(0,0,0,0.8);
 }
 
-/* TÍTULO */
-h1{
-  font-size:20px;
-  margin:0 0 10px 0;
-}
+h1{ font-size:20px; color:#d4af37; }
 
-/* DOE */
 .doe{
-  font-size:20px;
+  font-size:22px;
   font-weight:800;
   color:#ffd700;
-  margin-bottom:10px;
-  animation:royalPulse 1.2s infinite alternate;
+  margin:12px 0;
 }
 
-@keyframes royalPulse{
-  from{ text-shadow:0 0 10px #ffd700; }
-  to{ text-shadow:0 0 25px #ffae00; }
-}
+/* ===== PIX ===== */
 
-/* PIX */
-.pix-key{
-  font-size:12px;
-  margin-bottom:8px;
-  word-break:break-all; /* evita estourar no celular */
-}
+.pix-key{ font-size:12px; margin-top:8px; }
 
 button{
+  margin-top:8px;
+  background:linear-gradient(90deg,#0d2b45,#123a5a);
+  border:1px solid #d4af37;
+  color:#d4af37;
+  padding:8px 14px;
   font-size:12px;
-  padding:6px 10px;
-  border-radius:8px;
-  border:none;
+  border-radius:10px;
   cursor:pointer;
 }
 
-/* LABEL */
+button:hover{
+  background:#d4af37;
+  color:#041826;
+}
+
+/* ===== VALOR ===== */
+
 .label{
+  margin-top:18px;
   font-size:11px;
   text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:4px;
-  opacity:.8;
+  opacity:.7;
 }
 
-/* ARRECADADO */
 #arrecadado{
-  font-size:28px;
+  font-size:30px;
   font-weight:800;
   color:#ffd700;
-  text-shadow:0 0 18px #ffd700, 0 0 35px #ffae00;
+  animation:goldPulse 1.5s infinite alternate;
 }
 
-/* BARRA */
+@keyframes goldPulse{
+  from{ text-shadow:0 0 10px rgba(255,215,0,0.6); }
+  to{ text-shadow:0 0 40px rgba(255,215,0,1); }
+}
+
+/* ===== PROGRESSO ===== */
+
 .progress-container{
   margin-top:18px;
   height:16px;
@@ -99,79 +116,73 @@ button{
   height:100%;
   width:0%;
   border-radius:40px;
-  background: linear-gradient(90deg,#8b0000,#ff0000,#ff3c3c);
-  box-shadow:0 0 18px #ff0000,0 0 40px #ffd700;
-  transition:width 1.4s ease;
+  background:linear-gradient(90deg,#0d2b45,#1b5e85,#d4af37);
+  transition:width 2s ease;
 }
 
-/* MARQUEE */
-.marquee{
-  margin-top:10px;
+/* ===== DOADORES ===== */
+
+.donors-box{
+  margin-top:22px;
+  border:1px solid rgba(212,175,55,0.35);
+  border-radius:16px;
+  padding:12px;
+  height:130px;
   overflow:hidden;
-  white-space:nowrap;
+  position:relative;
+  background:rgba(0,0,0,0.25);
 }
 
-.marquee span{
-  display:inline-block;
-  padding-left:100%;
-  animation:scroll 120s linear infinite;
-  font-size:9px;
-  opacity:.75;
+.donors-title{
+  text-align:left;
+  padding-left:8px;
+  font-size:11px;
+  text-transform:uppercase;
+  color:#d4af37;
+  margin-bottom:8px;
 }
 
-@keyframes scroll{
-  from{transform:translateX(0);}
-  to{transform:translateX(-100%);}
+.donors-list{
+  position:relative;
+  height:100%;
 }
+
+.donor{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  font-size:14px;
+  transition:transform .3s ease, opacity .3s ease;
+}
+
+/* ===== ESTRELA ===== */
+
+.star{
+  position:absolute;
+  color:#ffd700;
+  font-size:18px;
+  pointer-events:none;
+  animation:fallStar 1.8s linear forwards;
+}
+
+@keyframes fallStar{
+  0%{ transform:translateY(0) scale(1); opacity:1; }
+  100%{ transform:translateY(200px) translateX(120px) scale(0.3); opacity:0; }
+}
+
+/* ===== META ===== */
 
 .meta-restante{
   display:flex;
   justify-content:space-between;
-  margin-top:18px;
-  gap:10px;
-}
-
-.value{
-  font-size:16px;
-  font-weight:700;
+  margin-top:20px;
 }
 
 .texto{
   margin-top:18px;
   font-size:12px;
-  line-height:1.5;
-  opacity:.9;
-}
-
-/* RESPONSIVO EXTRA */
-@media (max-width:380px){
-  h1{ font-size:18px; }
-  #arrecadado{ font-size:24px; }
-  .value{ font-size:14px; }
-}
-
-/* ESTRELAS */
-.star {
-  position: absolute;
-  top: -20px;
-  color: #ffd700;
-  font-size: 14px;
-  pointer-events: none;
-  animation: fall linear forwards;
-  text-shadow: 0 0 8px #ffd700, 0 0 15px #ffae00;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(500px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* garante que a card seja referência */
-.card {
-  position: relative;
-  overflow: hidden;
+  line-height:1.6;
+  opacity:.85;
 }
 
 </style>
@@ -184,130 +195,177 @@ button{
 <h1>FORMATURA MEDICINA · UFS</h1>
 <div class="doe">DOE R$1,00</div>
 
-<div class="pix-key">CHAVE PIX medicinacarlosjose@gmail.com</div>
-<button onclick="copiarPix()">📋 Copiar chave pix - Carlos José</button>
+<div class="pix-key">CHAVE PIX: medicinacarlosjose@gmail.com</div>
+<button onclick="copiarPix()">Copiar chave PIX</button>
+<button onclick="toggleSom()" id="botaoSom">🌊 Ativar Som do Oceano</button>
 
-<div style="margin-top:25px;">
-<div class="label">Valor arrecadado</div>
+<div class="label">VALOR ARRECADADO</div>
 <div id="arrecadado">R$0,00</div>
-</div>
 
 <div class="progress-container">
   <div class="progress-bar" id="progressBar"></div>
 </div>
 
-<div class="marquee">
-<span>
-⊳ ADRIANA ⊳ ADRIANO ⊳ AELSON ⊳ ALTEMARIA ⊳ AMILTON ⊳ ANA LUIZA ⊳ ANA PAULA ⊳ ANDRE WILLIAM ⊳ ANDRE LUIZ ⊳ ANTONIO BARBOSA ⊳ AUGUSTO ⊳ CARLOS ALBERTO ⊳ DALILA COSTA ⊳ DAMIÃO ⊳ DANIEL ⊳ DANIELA ⊳ DEIVISSON ⊳ EDMILSON ⊳ FERNANDO GOIS ⊳ FERNANDO SANDES ⊳ FELIPE ⊳ GICLECIO ⊳ GLADISTON ⊳ GREZIELE ⊳ HORTENCIA ⊳ ISIS ⊳ ISLLAINNE ⊳ IVANETE ⊳ JAILLEN ⊳ JAILTON FILHO ⊳ JEFFERSON ⊳ JOSE CLEONES ⊳ JOSE EDLELUSON ⊳ JÚLIA BEATRIZ ⊳ LAISA ⊳ LUANA ⊳ DJANIRA ⊳ PATRICIA ⊳ RAYLANE DIAS ⊳ JULIANA ⊳ KAMILE ⊳ KATHLEYN ⊳ KELVIN ⊳ KEMELLY ⊳ LARISSE ⊳ LEIRI ⊳ LUAM DE OLIVEIRA ⊳ LUANA CRISTINA ⊳ MARCONIEL ⊳ CHAVES ⊳ DIDA ⊳ MARIAH CLARA ⊳ MARCEL FELIPE ⊳ NADJA ⊳ OSMARIO ⊳ PRISCILA ⊳ RAIANE ⊳ RIVANETE ⊳ RONIERIC ⊳ ROSANA REIS ⊳ ROSILDA ⊳ RUBENS ⊳ SAMARA ⊳ SAMUEL ⊳ SANDRO ⊳ SIMONE FLORA ⊳ TAIS ⊳ TALYTA ⊳ THALUCHA ⊳ VALERIA ⊳ VINICIUS ⊳ WENDELL
-</span>
+<div class="donors-box">
+  <div class="donors-title">DOADORES HONRADOS</div>
+  <div class="donors-list" id="donorList"></div>
 </div>
 
 <div class="meta-restante">
-<div>
-<div class="label">Meta da formatura</div>
-<div class="value" id="metaValor"></div>
-</div>
-
-<div>
-<div class="label">Valor restante</div>
-<div class="value" id="restanteValor"></div>
-</div>
+  <div>
+    <div class="label">META</div>
+    <div id="metaValor"></div>
+  </div>
+  <div>
+    <div class="label">RESTANTE</div>
+    <div id="restanteValor"></div>
+  </div>
 </div>
 
 <div class="texto">
-Concluir a graduação é um desafio de resistência. Agora, no último ano, surge um novo obstáculo: o pacote mais simples da Formatura custa quase R$9.000,00.
-<br><br>
-Doe! Corra comigo contra o tempo ⏳.
+Concluir a graduação é um desafio de resistência.
+No último ano surge um novo obstáculo:
+o pacote mais simples da formatura custa quase R$9.000,00.
 </div>
 
 </div>
 
 <script>
 
+/* ===== VALORES ===== */
+
 const META = 8765;
-let ARRECADADO_ATUAL = 1291.59;
+const ARRECADADO_FINAL = 1301.05;
+
+function formatar(v){
+  return "R$"+v.toLocaleString("pt-BR",{minimumFractionDigits:2});
+}
+
+document.getElementById("metaValor").innerText = formatar(META);
+document.getElementById("restanteValor").innerText = formatar(META - ARRECADADO_FINAL);
 
 const arrecadadoEl = document.getElementById("arrecadado");
-const restanteEl = document.getElementById("restanteValor");
-const metaEl = document.getElementById("metaValor");
 const barra = document.getElementById("progressBar");
 
-metaEl.innerText = formatar(META);
-restanteEl.innerText = formatar(META - ARRECADADO_ATUAL);
+function animar(){
+  let inicio=0;
+  const duracao=2000;
+  const inicioTempo=performance.now();
 
-animarContador(0, ARRECADADO_ATUAL, 2000);
-
-function animarContador(inicio,fim,duracao){
-  let start=null;
-
-  function step(timestamp){
-    if(!start) start=timestamp;
-    let progress=timestamp-start;
-
-    let valor = Math.min(inicio + (fim-inicio)*(progress/duracao), fim);
-
-    arrecadadoEl.innerText = formatar(valor);
-    atualizarBarra(valor);
-
-    if(progress<duracao){
-      requestAnimationFrame(step);
-    }
+  function passo(t){
+    let p=(t-inicioTempo)/duracao;
+    if(p>1) p=1;
+    let valor=inicio+(ARRECADADO_FINAL-inicio)*p;
+    arrecadadoEl.innerText=formatar(valor);
+    barra.style.width=(valor/META*100)+"%";
+    if(p<1) requestAnimationFrame(passo);
   }
+  requestAnimationFrame(passo);
+}
+animar();
 
-  requestAnimationFrame(step);
+/* ===== LISTA COMPLETA ===== */
+
+const nomes = [
+"⊳ ADRIANA","⊳ ADRIANO","⊳ AELSON","⊳ ALTEMARIA","⊳ AMILTON",
+"⊳ ANA LUIZA","⊳ ANA PAULA","⊳ ANDRE WILLIAM","⊳ ANDRE LUIZ",
+"⊳ ANTONIO BARBOSA","⊳ AUGUSTO","⊳ CARLOS ALBERTO","⊳ DALILA COSTA",
+"⊳ DAMIÃO","⊳ DANIEL","⊳ DANIELA","⊳ DEIVISSON","⊳ EDMILSON",
+"⊳ FERNANDO GOIS","⊳ FERNANDO SANDES","⊳ FELIPE","⊳ GICLECIO",
+"⊳ GLADISTON","⊳ GREZIELE","⊳ HORTENCIA","⊳ ISIS","⊳ ISLLAINNE",
+"⊳ IVANETE","⊳ JAILLEN","⊳ JAILTON FILHO","⊳ JEFFERSON",
+"⊳ JOSE CLEONES","⊳ JOSE EDLELUSON","⊳ JÚLIA BEATRIZ",
+"⊳ LAISA","⊳ LUANA","⊳ DJANIRA","⊳ PATRICIA","⊳ RAYLANE DIAS",
+"⊳ JULIANA","⊳ KAMILE","⊳ KATHLEYN","⊳ KELVIN","⊳ KEMELLY",
+"⊳ LARISSE","⊳ LEIRI","⊳ LUAM DE OLIVEIRA","⊳ LUANA CRISTINA",
+"⊳ MARCONIEL","⊳ CHAVES","⊳ DIDA","⊳ MARIAH CLARA",
+"⊳ MARCEL FELIPE","⊳ NADJA","⊳ OSMARIO","⊳ PRISCILA",
+"⊳ RAIANE","⊳ RIVANETE","⊳ RONIERIC","⊳ ROSANA REIS",
+"⊳ ROSILDA","⊳ RUBENS","⊳ SAMARA","⊳ SAMUEL",
+"⊳ SANDRO","⊳ SIMONE FLORA","⊳ TAIS","⊳ TALYTA",
+"⊳ THALUCHA","⊳ VALERIA","⊳ VINICIUS","⊳ WENDELL"
+];
+
+const lista = document.getElementById("donorList");
+let index=0;
+
+function subir(){
+  if(index>=nomes.length) index=0;
+
+  const div=document.createElement("div");
+  div.className="donor";
+  div.innerText=nomes[index];
+  div.style.top="130px";
+
+  lista.appendChild(div);
+
+  let pos=130;
+
+  const anim=setInterval(()=>{
+    pos-=3;
+    div.style.top=pos+"px";
+
+    if(pos<=0){
+      div.style.transform="scale(1.4)";
+      div.style.opacity="0";
+      criarEstrela();
+      setTimeout(()=>div.remove(),300);
+      clearInterval(anim);
+    }
+  },30);
+
+  index++;
 }
 
-function atualizarBarra(valor){
-  const percentual=Math.min((valor/META)*100,100);
-  barra.style.width=percentual+"%";
+function criarEstrela(){
+  const estrela=document.createElement("div");
+  estrela.className="star";
+  estrela.innerText="★";
+  estrela.style.left="70%";
+  estrela.style.top="100px";
+  document.querySelector(".donors-box").appendChild(estrela);
+  setTimeout(()=>estrela.remove(),1800);
 }
+
+setInterval(subir,2000);
+
+/* ===== PIX ===== */
 
 function copiarPix(){
   navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
   alert("Chave Pix copiada!");
 }
 
-function formatar(valor){
-  return "R$"+Number(valor).toLocaleString("pt-BR",{
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
-  });
+/* ===== SOM ===== */
+
+let audio=new Audio("oceano.mp3");
+audio.loop=true;
+audio.volume=0;
+let tocando=false;
+
+function fadeIn(){
+  audio.play();
+  let v=0;
+  let i=setInterval(()=>{
+    if(v<0.3){ v+=0.02; audio.volume=v; }
+    else clearInterval(i);
+  },100);
 }
 
-function iniciarEstrelas() {
-  const card = document.querySelector(".card");
-  const duracaoTotal = 5000; // 5 segundos
-  const intervalo = 80; // frequência das estrelas
-
-  const gerador = setInterval(() => {
-    const estrela = document.createElement("div");
-    estrela.className = "star";
-    estrela.innerHTML = "★";
-
-    // posição horizontal aleatória dentro da card
-    estrela.style.left = Math.random() * card.clientWidth + "px";
-
-    // duração de queda aleatória
-    estrela.style.animationDuration = (Math.random() * 2 + 2) + "s";
-
-    card.appendChild(estrela);
-
-    // remover estrela depois que cair
-    setTimeout(() => {
-      estrela.remove();
-    }, 4000);
-
-  }, intervalo);
-
-  // parar após 5 segundos
-  setTimeout(() => {
-    clearInterval(gerador);
-  }, duracaoTotal);
+function fadeOut(){
+  let i=setInterval(()=>{
+    if(audio.volume>0.02){ audio.volume-=0.02; }
+    else{ audio.pause(); audio.volume=0; clearInterval(i); }
+  },100);
 }
 
-// iniciar ao carregar página
-window.addEventListener("load", iniciarEstrelas);
+function toggleSom(){
+  const btn=document.getElementById("botaoSom");
+  if(!tocando){ fadeIn(); btn.innerText="🔇 Desativar Som"; tocando=true; }
+  else{ fadeOut(); btn.innerText="🌊 Ativar Som do Oceano"; tocando=false; }
+}
 
 </script>
+
 </body>
 </html>
