@@ -1,370 +1,421 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Formatura Medicina UFS</title>
 
 <style>
+  *{ box-sizing:border-box; }
 
-/* ===== FUNDO OCEANO ===== */
+  /* ===== FUNDO OCEANO (ondas) ===== */
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#f4f6f9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    overflow-y:auto; /* no celular não corta */
+    -webkit-overflow-scrolling:touch;
 
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Segoe UI",Arial,sans-serif;
-  color:#f4f6f9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:linear-gradient(180deg,#041826,#06283d,#041826);
-}
+    /* safe-area p/ notch */
+    padding:
+      calc(18px + env(safe-area-inset-top))
+      calc(18px + env(safe-area-inset-right))
+      calc(18px + env(safe-area-inset-bottom))
+      calc(18px + env(safe-area-inset-left));
 
-body::before{
-  content:"";
-  position:absolute;
-  width:300%;
-  height:300%;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(0,180,255,0.15), transparent 40%),
-    radial-gradient(circle at 70% 60%, rgba(0,120,255,0.12), transparent 50%);
-  animation:oceanFlow 20s ease-in-out infinite alternate;
-}
+    background:linear-gradient(180deg,#041826,#06283d,#041826);
+    position:relative;
+  }
 
-@keyframes oceanFlow{
-  0%{ transform:translate(-5%,-5%); }
-  50%{ transform:translate(5%,5%); }
-  100%{ transform:translate(-5%,-5%); }
-}
+  body::before{
+    content:"";
+    position:fixed;
+    inset:-60%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0,180,255,0.15), transparent 40%),
+      radial-gradient(circle at 70% 60%, rgba(0,120,255,0.12), transparent 50%);
+    animation:oceanFlow 20s ease-in-out infinite alternate;
+    z-index:0;
+    pointer-events:none;
+  }
 
-/* ===== CARD ===== */
+  @keyframes oceanFlow{
+    0%{ transform:translate(-5%,-5%); }
+    50%{ transform:translate(5%,5%); }
+    100%{ transform:translate(-5%,-5%); }
+  }
 
-.card{
-  width:100%;
-  max-width:420px;
-  backdrop-filter: blur(25px);
-  background:rgba(5,25,40,0.9);
-  border:1px solid rgba(212,175,55,0.35);
-  border-radius:26px;
-  padding:28px 22px;
-  text-align:center;
-  box-shadow:0 40px 120px rgba(0,0,0,0.8);
-}
+  /* ===== CARD (mantém layout) ===== */
+  .card{
+    width:min(92vw, 420px);
+    backdrop-filter: blur(25px);
+    background:rgba(5,25,40,0.9);
+    border:1px solid rgba(212,175,55,0.35);
+    border-radius:26px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 40px 120px rgba(0,0,0,0.8);
+    position:relative;
+    z-index:1;
+  }
 
-h1{ font-size:20px; color:#d4af37; }
+  h1{ font-size:20px; color:#d4af37; margin:0 0 8px; }
+  .doe{
+    font-size:22px;
+    font-weight:800;
+    color:#ffd700;
+    margin:10px 0 12px;
+  }
 
-.doe{
-  font-size:22px;
-  font-weight:800;
-  color:#ffd700;
-  margin:12px 0;
-}
+  /* ===== PIX + BOTÕES ===== */
+  .pix-key{ font-size:12px; margin-top:8px; word-break:break-word; }
 
-/* ===== PIX ===== */
+  .btn-row{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:10px;
+  }
 
-.pix-key{ font-size:12px; margin-top:8px; }
+  button{
+    background:linear-gradient(90deg,#0d2b45,#123a5a);
+    border:1px solid #d4af37;
+    color:#d4af37;
+    padding:8px 14px;
+    font-size:12px;
+    border-radius:10px;
+    cursor:pointer;
+    min-width:150px;
+  }
+  button:hover{ background:#d4af37; color:#041826; }
 
-button{
-  margin-top:8px;
-  background:linear-gradient(90deg,#0d2b45,#123a5a);
-  border:1px solid #d4af37;
-  color:#d4af37;
-  padding:8px 14px;
-  font-size:12px;
-  border-radius:10px;
-  cursor:pointer;
-}
+  /* ===== VALOR ===== */
+  .label{
+    margin-top:18px;
+    font-size:11px;
+    text-transform:uppercase;
+    opacity:.7;
+  }
 
-button:hover{
-  background:#d4af37;
-  color:#041826;
-}
+  #arrecadado{
+    font-size:30px;
+    font-weight:800;
+    color:#ffd700;
+    animation:goldPulse 1.5s infinite alternate;
+    margin-top:4px;
+  }
 
-/* ===== VALOR ===== */
+  @keyframes goldPulse{
+    from{ text-shadow:0 0 10px rgba(255,215,0,0.6); }
+    to{ text-shadow:0 0 40px rgba(255,215,0,1); }
+  }
 
-.label{
-  margin-top:18px;
-  font-size:11px;
-  text-transform:uppercase;
-  opacity:.7;
-}
+  /* ===== PROGRESSO ===== */
+  .progress-container{
+    margin-top:18px;
+    height:16px;
+    border-radius:40px;
+    background:rgba(255,255,255,0.05);
+    overflow:hidden;
+  }
+  .progress-bar{
+    height:100%;
+    width:0%;
+    border-radius:40px;
+    background:linear-gradient(90deg,#0d2b45,#1b5e85,#d4af37);
+    transition:width 2s ease;
+  }
 
-#arrecadado{
-  font-size:30px;
-  font-weight:800;
-  color:#ffd700;
-  animation:goldPulse 1.5s infinite alternate;
-}
+  /* ===== DOADORES ===== */
+  .donors-box{
+    margin-top:22px;
+    border:1px solid rgba(212,175,55,0.35);
+    border-radius:16px;
+    padding:12px;
+    height:130px;
+    overflow:hidden;
+    position:relative;
+    background:rgba(0,0,0,0.25);
+  }
 
-@keyframes goldPulse{
-  from{ text-shadow:0 0 10px rgba(255,215,0,0.6); }
-  to{ text-shadow:0 0 40px rgba(255,215,0,1); }
-}
+  .donors-title{
+    text-align:left;
+    padding-left:8px; /* lateralizado */
+    font-size:11px;
+    text-transform:uppercase;
+    color:#d4af37;
+    margin-bottom:8px;
+  }
 
-/* ===== PROGRESSO ===== */
+  .donors-list{
+    position:relative;
+    height:100%;
+  }
 
-.progress-container{
-  margin-top:18px;
-  height:16px;
-  border-radius:40px;
-  background:rgba(255,255,255,0.05);
-  overflow:hidden;
-}
+  .donor{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    font-size:14px;
+    transition:transform .25s ease, opacity .25s ease;
+    will-change:transform, opacity, top;
+  }
 
-.progress-bar{
-  height:100%;
-  width:0%;
-  border-radius:40px;
-  background:linear-gradient(90deg,#0d2b45,#1b5e85,#d4af37);
-  transition:width 2s ease;
-}
+  /* ===== ESTRELA (sem som; só visual) ===== */
+  .star{
+    position:absolute;
+    color:#ffd700;
+    font-size:18px;
+    pointer-events:none;
+    animation:fallStar 1.8s linear forwards;
+    filter:drop-shadow(0 0 10px rgba(255,215,0,.6));
+  }
 
-/* ===== DOADORES ===== */
+  @keyframes fallStar{
+    0%{ transform:translateY(0) translateX(0) scale(1); opacity:1; }
+    100%{ transform:translateY(200px) translateX(120px) scale(0.3); opacity:0; }
+  }
 
-.donors-box{
-  margin-top:22px;
-  border:1px solid rgba(212,175,55,0.35);
-  border-radius:16px;
-  padding:12px;
-  height:130px;
-  overflow:hidden;
-  position:relative;
-  background:rgba(0,0,0,0.25);
-}
+  /* ===== META ===== */
+  .meta-restante{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    margin-top:20px;
+    text-align:left;
+  }
 
-.donors-title{
-  text-align:left;
-  padding-left:8px;
-  font-size:11px;
-  text-transform:uppercase;
-  color:#d4af37;
-  margin-bottom:8px;
-}
+  .meta-restante > div{
+    flex:1;
+    text-align:center;
+  }
 
-.donors-list{
-  position:relative;
-  height:100%;
-}
+  .texto{
+    margin-top:18px;
+    font-size:12px;
+    line-height:1.6;
+    opacity:.85;
+  }
 
-.donor{
-  position:absolute;
-  width:100%;
-  text-align:center;
-  font-size:14px;
-  transition:transform .3s ease, opacity .3s ease;
-}
-
-/* ===== ESTRELA ===== */
-
-.star{
-  position:absolute;
-  color:#ffd700;
-  font-size:18px;
-  pointer-events:none;
-  animation:fallStar 1.8s linear forwards;
-}
-
-@keyframes fallStar{
-  0%{ transform:translateY(0) scale(1); opacity:1; }
-  100%{ transform:translateY(200px) translateX(120px) scale(0.3); opacity:0; }
-}
-
-/* ===== META ===== */
-
-.meta-restante{
-  display:flex;
-  justify-content:space-between;
-  margin-top:20px;
-}
-
-.texto{
-  margin-top:18px;
-  font-size:12px;
-  line-height:1.6;
-  opacity:.85;
-}
-
+  /* micro-ajuste em telas muito pequenas */
+  @media (max-width:360px){
+    .card{ padding:24px 18px; }
+    #arrecadado{ font-size:28px; }
+    button{ min-width:140px; }
+  }
 </style>
 </head>
 
 <body>
 
 <div class="card">
+  <h1>FORMATURA MEDICINA · UFS</h1>
+  <div class="doe">DOE R$1,00</div>
 
-<h1>FORMATURA MEDICINA · UFS</h1>
-<div class="doe">DOE R$1,00</div>
+  <div class="pix-key">CHAVE PIX medicinacarlosjose@gmail.com</div>
 
-<div class="pix-key">CHAVE PIX: medicinacarlosjose@gmail.com</div>
-<button onclick="copiarPix()">Copiar chave PIX</button>
-<button onclick="toggleSom()" id="botaoSom">🌊 Ativar Som do Oceano</button>
-
-<div class="label">VALOR ARRECADADO</div>
-<div id="arrecadado">R$0,00</div>
-
-<div class="progress-container">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
-
-<div class="donors-box">
-  <div class="donors-title">DOADORES HONRADOS</div>
-  <div class="donors-list" id="donorList"></div>
-</div>
-
-<div class="meta-restante">
-  <div>
-    <div class="label">META</div>
-    <div id="metaValor"></div>
+  <div class="btn-row">
+    <button onclick="copiarPix()">Copiar chave PIX</button>
+    <button onclick="toggleSom()" id="botaoSom">🌊 Ativar Som do Oceano</button>
   </div>
-  <div>
-    <div class="label">RESTANTE</div>
-    <div id="restanteValor"></div>
+
+  <div class="label">VALOR ARRECADADO</div>
+  <div id="arrecadado">R$0,00</div>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="donors-box">
+    <div class="donors-title">DOADORES</div>
+    <div class="donors-list" id="donorList"></div>
+  </div>
+
+  <div class="meta-restante">
+    <div>
+      <div class="label">META</div>
+      <div id="metaValor"></div>
+    </div>
+    <div>
+      <div class="label">RESTANTE</div>
+      <div id="restanteValor"></div>
+    </div>
+  </div>
+
+  <div class="texto">
+    Concluir a graduação é um desafio de resistência. No último ano surge um novo obstáculo: o pacote mais simples da formatura custa quase R$9.000,00.
+	
+    Doe! Conquiste comigo essa nova etapa.
+	
+    Deus te abençoe!
   </div>
 </div>
 
-<div class="texto">
-Concluir a graduação é um desafio de resistência.
-No último ano surge um novo obstáculo:
-o pacote mais simples da formatura custa quase R$9.000,00.
-</div>
-
-</div>
+<!-- Áudio: apenas oceano.mp3 (sem sons extras) -->
+<audio id="oceanoAudio" src="oceano.mp3" preload="auto" loop></audio>
 
 <script>
+  /* ===== VALORES ===== */
+  const META = 8765;
+  const ARRECADADO_FINAL = 1301.05;
 
-/* ===== VALORES ===== */
-
-const META = 8765;
-const ARRECADADO_FINAL = 1301.05;
-
-function formatar(v){
-  return "R$"+v.toLocaleString("pt-BR",{minimumFractionDigits:2});
-}
-
-document.getElementById("metaValor").innerText = formatar(META);
-document.getElementById("restanteValor").innerText = formatar(META - ARRECADADO_FINAL);
-
-const arrecadadoEl = document.getElementById("arrecadado");
-const barra = document.getElementById("progressBar");
-
-function animar(){
-  let inicio=0;
-  const duracao=2000;
-  const inicioTempo=performance.now();
-
-  function passo(t){
-    let p=(t-inicioTempo)/duracao;
-    if(p>1) p=1;
-    let valor=inicio+(ARRECADADO_FINAL-inicio)*p;
-    arrecadadoEl.innerText=formatar(valor);
-    barra.style.width=(valor/META*100)+"%";
-    if(p<1) requestAnimationFrame(passo);
+  function formatar(v){
+    return "R$" + Number(v).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
-  requestAnimationFrame(passo);
-}
-animar();
 
-/* ===== LISTA COMPLETA ===== */
+  document.getElementById("metaValor").innerText = formatar(META);
+  document.getElementById("restanteValor").innerText = formatar(META - ARRECADADO_FINAL);
 
-const nomes = [
-"⊳ ADRIANA","⊳ ADRIANO","⊳ AELSON","⊳ ALTEMARIA","⊳ AMILTON",
-"⊳ ANA LUIZA","⊳ ANA PAULA","⊳ ANDRE WILLIAM","⊳ ANDRE LUIZ",
-"⊳ ANTONIO BARBOSA","⊳ AUGUSTO","⊳ CARLOS ALBERTO","⊳ DALILA COSTA",
-"⊳ DAMIÃO","⊳ DANIEL","⊳ DANIELA","⊳ DEIVISSON","⊳ EDMILSON",
-"⊳ FERNANDO GOIS","⊳ FERNANDO SANDES","⊳ FELIPE","⊳ GICLECIO",
-"⊳ GLADISTON","⊳ GREZIELE","⊳ HORTENCIA","⊳ ISIS","⊳ ISLLAINNE",
-"⊳ IVANETE","⊳ JAILLEN","⊳ JAILTON FILHO","⊳ JEFFERSON",
-"⊳ JOSE CLEONES","⊳ JOSE EDLELUSON","⊳ JÚLIA BEATRIZ",
-"⊳ LAISA","⊳ LUANA","⊳ DJANIRA","⊳ PATRICIA","⊳ RAYLANE DIAS",
-"⊳ JULIANA","⊳ KAMILE","⊳ KATHLEYN","⊳ KELVIN","⊳ KEMELLY",
-"⊳ LARISSE","⊳ LEIRI","⊳ LUAM DE OLIVEIRA","⊳ LUANA CRISTINA",
-"⊳ MARCONIEL","⊳ CHAVES","⊳ DIDA","⊳ MARIAH CLARA",
-"⊳ MARCEL FELIPE","⊳ NADJA","⊳ OSMARIO","⊳ PRISCILA",
-"⊳ RAIANE","⊳ RIVANETE","⊳ RONIERIC","⊳ ROSANA REIS",
-"⊳ ROSILDA","⊳ RUBENS","⊳ SAMARA","⊳ SAMUEL",
-"⊳ SANDRO","⊳ SIMONE FLORA","⊳ TAIS","⊳ TALYTA",
-"⊳ THALUCHA","⊳ VALERIA","⊳ VINICIUS","⊳ WENDELL"
-];
+  const arrecadadoEl = document.getElementById("arrecadado");
+  const barra = document.getElementById("progressBar");
 
-const lista = document.getElementById("donorList");
-let index=0;
+  function animarArrecadado(){
+    let inicio = 0;
+    const duracao = 2000;
+    const t0 = performance.now();
 
-function subir(){
-  if(index>=nomes.length) index=0;
+    function passo(t){
+      let p = (t - t0) / duracao;
+      if(p > 1) p = 1;
 
-  const div=document.createElement("div");
-  div.className="donor";
-  div.innerText=nomes[index];
-  div.style.top="130px";
+      const valor = inicio + (ARRECADADO_FINAL - inicio) * p;
+      arrecadadoEl.innerText = formatar(valor);
+      barra.style.width = (valor / META * 100) + "%";
 
-  lista.appendChild(div);
-
-  let pos=130;
-
-  const anim=setInterval(()=>{
-    pos-=3;
-    div.style.top=pos+"px";
-
-    if(pos<=0){
-      div.style.transform="scale(1.4)";
-      div.style.opacity="0";
-      criarEstrela();
-      setTimeout(()=>div.remove(),300);
-      clearInterval(anim);
+      if(p < 1) requestAnimationFrame(passo);
     }
-  },30);
+    requestAnimationFrame(passo);
+  }
+  animarArrecadado();
 
-  index++;
-}
+  /* ===== DOADORES (lista completa) ===== */
+  const nomes = [
+    "⊳ ADRIANA","⊳ ADRIANO","⊳ AELSON","⊳ ALTEMARIA","⊳ AMILTON","⊳ ANA LUIZA","⊳ ANA PAULA",
+    "⊳ ANDRE WILLIAM","⊳ ANDRE LUIZ","⊳ ANTONIO BARBOSA","⊳ AUGUSTO","⊳ CARLOS ALBERTO",
+    "⊳ DALILA COSTA","⊳ DAMIÃO","⊳ DANIEL","⊳ DANIELA","⊳ DEIVISSON","⊳ EDMILSON",
+    "⊳ FERNANDO GOIS","⊳ FERNANDO SANDES","⊳ FELIPE","⊳ GICLECIO","⊳ GLADISTON","⊳ GREZIELE",
+    "⊳ HORTENCIA","⊳ ISIS","⊳ ISLLAINNE","⊳ IVANETE","⊳ JAILLEN","⊳ JAILTON FILHO","⊳ JEFFERSON",
+    "⊳ JOSE CLEONES","⊳ JOSE EDLELUSON","⊳ JÚLIA BEATRIZ","⊳ LAISA","⊳ LUANA","⊳ DJANIRA",
+    "⊳ PATRICIA","⊳ RAYLANE DIAS","⊳ JULIANA","⊳ KAMILE","⊳ KATHLEYN","⊳ KELVIN","⊳ KEMELLY",
+    "⊳ LARISSE","⊳ LEIRI","⊳ LUAM DE OLIVEIRA","⊳ LUANA CRISTINA","⊳ MARCONIEL","⊳ CHAVES","⊳ DIDA",
+    "⊳ MARIAH CLARA","⊳ MARCEL FELIPE","⊳ NADJA","⊳ OSMARIO","⊳ PRISCILA","⊳ RAIANE","⊳ RIVANETE",
+    "⊳ RONIERIC","⊳ ROSANA REIS","⊳ ROSILDA","⊳ RUBENS","⊳ SAMARA","⊳ SAMUEL","⊳ SANDRO",
+    "⊳ SIMONE FLORA","⊳ TAIS","⊳ TALYTA","⊳ THALUCHA","⊳ VALERIA","⊳ VINICIUS","⊳ WENDELL"
+  ];
 
-function criarEstrela(){
-  const estrela=document.createElement("div");
-  estrela.className="star";
-  estrela.innerText="★";
-  estrela.style.left="70%";
-  estrela.style.top="100px";
-  document.querySelector(".donors-box").appendChild(estrela);
-  setTimeout(()=>estrela.remove(),1800);
-}
+  const lista = document.getElementById("donorList");
+  const donorsBox = document.querySelector(".donors-box");
+  let idx = 0;
 
-setInterval(subir,2000);
+  // mais rápido: 50% a mais (era 2px/step; agora 3px/step)
+  const STEP_PX = 3;
+  const INTERVAL_MS = 20;
 
-/* ===== PIX ===== */
+  // controla para não empilhar vários ao mesmo tempo
+  let rodando = false;
 
-function copiarPix(){
-  navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
-  alert("Chave Pix copiada!");
-}
+  function criarEstrela(){
+    const estrela = document.createElement("div");
+    estrela.className = "star";
+    estrela.innerText = "★";
+    estrela.style.left = "70%";
+    estrela.style.top = "100px";
+    donorsBox.appendChild(estrela);
+    setTimeout(()=>estrela.remove(), 1800);
+  }
 
-/* ===== SOM ===== */
+  function subirUmNome(){
+    if(rodando) return;
+    rodando = true;
 
-let audio=new Audio("oceano.mp3");
-audio.loop=true;
-audio.volume=0;
-let tocando=false;
+    if(idx >= nomes.length) idx = 0;
 
-function fadeIn(){
-  audio.play();
-  let v=0;
-  let i=setInterval(()=>{
-    if(v<0.3){ v+=0.02; audio.volume=v; }
-    else clearInterval(i);
-  },100);
-}
+    const div = document.createElement("div");
+    div.className = "donor";
+    div.innerText = nomes[idx];
+    div.style.top = "130px";
+    lista.appendChild(div);
 
-function fadeOut(){
-  let i=setInterval(()=>{
-    if(audio.volume>0.02){ audio.volume-=0.02; }
-    else{ audio.pause(); audio.volume=0; clearInterval(i); }
-  },100);
-}
+    let pos = 130;
 
-function toggleSom(){
-  const btn=document.getElementById("botaoSom");
-  if(!tocando){ fadeIn(); btn.innerText="🔇 Desativar Som"; tocando=true; }
-  else{ fadeOut(); btn.innerText="🌊 Ativar Som do Oceano"; tocando=false; }
-}
+    const anim = setInterval(()=>{
+      pos -= STEP_PX;
+      div.style.top = pos + "px";
 
+      if(pos <= 0){
+        div.style.transform = "scale(1.4)";
+        div.style.opacity = "0";
+        criarEstrela();
+
+        clearInterval(anim);
+        setTimeout(()=>{
+          div.remove();
+          rodando = false;
+        }, 260);
+      }
+    }, INTERVAL_MS);
+
+    idx++;
+  }
+
+  // início imediato e ritmo coerente com a nova velocidade
+  // (não “muito espaçado”; sem ficar lento para começar)
+  setTimeout(subirUmNome, 150);
+  setInterval(subirUmNome, 1200);
+
+  /* ===== PIX ===== */
+  function copiarPix(){
+    navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
+    alert("Chave Pix copiada!");
+  }
+
+  /* ===== SOM: SOMENTE oceano.mp3 ===== */
+  const audio = document.getElementById("oceanoAudio");
+  const btnSom = document.getElementById("botaoSom");
+  let tocando = false;
+
+  function fadeTo(target, ms=600){
+    const start = audio.volume;
+    const delta = target - start;
+    const t0 = performance.now();
+
+    function step(t){
+      const p = Math.min((t - t0)/ms, 1);
+      audio.volume = Math.max(0, Math.min(1, start + delta*p));
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  async function toggleSom(){
+    // nada de som extra em estrela/nome; só este áudio aqui.
+    try{
+      if(!tocando){
+        audio.volume = 0;
+        const p = audio.play();
+        if(p && typeof p.then === "function") await p;
+        fadeTo(0.30, 700);
+        tocando = true;
+        btnSom.innerText = "🔇 Desativar música";
+      }else{
+        fadeTo(0, 500);
+        setTimeout(()=>{ audio.pause(); }, 520);
+        tocando = false;
+        btnSom.innerText = "🌊 Ativar música";
+      }
+    }catch(e){
+      // Se o arquivo não estiver na pasta/rota, ou o navegador bloquear, avisamos.
+      alert("Não consegui tocar o oceano.mp3. Verifique se o arquivo está na mesma pasta do site e se o nome está exatamente 'oceano.mp3'.");
+      tocando = false;
+      btnSom.innerText = "🌊 Ativar música";
+    }
+  }
 </script>
 
 </body>
