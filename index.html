@@ -187,7 +187,7 @@ height:95px;
   position:absolute;
   width:100%;
   text-align:center;
-  font-size:16px;
+font-size:clamp(12px, 3vw, 16px);
   font-weight:600;
   color:#ffd700;
   opacity:0;
@@ -222,7 +222,7 @@ height:95px;
 
 
 .donor-row div{
-  font-size:16px;
+font-size:clamp(12px, 3vw, 16px);
   font-weight:700;
   text-shadow:0 0 8px rgba(255,255,255,0.3);
 }
@@ -606,6 +606,14 @@ setInterval(mostrarTresNomes, 3000);
 
     container.appendChild(marcador);
   });
+
+/* ===== AJUSTE MOBILE DOADORES ===== */
+@media (max-width: 480px){
+
+  .donor-row div{
+    font-size:13px;          /* reduz um pouco */
+    letter-spacing:-0.3px;   /* compacta levemente */
+  }
 
   /* ===== PIX ===== */
   function copiarPix(){
