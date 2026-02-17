@@ -29,7 +29,7 @@
       calc(18px + env(safe-area-inset-bottom))
       calc(18px + env(safe-area-inset-left));
 
-background:linear-gradient(180deg,#022d22,#064e3b,#022d22);
+background:linear-gradient(180deg,#1b0033,#3a003f,#120021);
     position:relative;
   }
 
@@ -37,9 +37,9 @@ background:linear-gradient(180deg,#022d22,#064e3b,#022d22);
     content:"";
     position:fixed;
     inset:-60%;
-    background:
-      radial-gradient(circle at 20% 30%, rgba(16,185,129,0.15), transparent 40%),
-radial-gradient(circle at 70% 60%, rgba(5,150,105,0.15), transparent 50%);
+   background:
+  radial-gradient(circle at 20% 30%, rgba(255,0,128,0.15), transparent 40%),
+  radial-gradient(circle at 70% 60%, rgba(255,140,0,0.15), transparent 50%);
     animation:oceanFlow 50s ease-in-out infinite alternate;
     z-index:0;
     pointer-events:none;
@@ -52,18 +52,22 @@ radial-gradient(circle at 70% 60%, rgba(5,150,105,0.15), transparent 50%);
   }
 
   /* ===== CARD (mantém layout) ===== */
-  .card{
-    width:min(92vw, 420px);
-    backdrop-filter: blur(25px);
-    background:rgba(5,25,40,0.9);
-    border:1px solid rgba(212,175,55,0.35);
-    border-radius:26px;
-    padding:28px 22px;
-    text-align:center;
-    box-shadow:0 40px 120px rgba(0,0,0,0.8);
-    position:relative;
-    z-index:1;
-  }
+.card{
+  width:min(92vw, 420px);
+  backdrop-filter: blur(25px);
+  background:linear-gradient(
+    180deg,
+    rgba(58,0,63,0.92),
+    rgba(40,0,55,0.95),
+    rgba(27,0,51,0.92)
+  );
+  border-radius:26px;
+  padding:28px 22px;
+  text-align:center;
+  box-shadow:0 40px 120px rgba(0,0,0,0.8);
+  position:relative;
+  z-index:1;
+}
 
   h1{ font-size:20px; color:#d4af37; margin:0 0 8px; }
   .doe{
@@ -85,7 +89,7 @@ radial-gradient(circle at 70% 60%, rgba(5,150,105,0.15), transparent 50%);
   }
 
   button{
-    background:linear-gradient(90deg,#0d2b45,#123a5a);
+  background:linear-gradient(90deg,#0f1a3a,#5c0033);
     border:1px solid #d4af37;
     color:#d4af37;
     padding:8px 14px;
@@ -127,12 +131,13 @@ radial-gradient(circle at 70% 60%, rgba(5,150,105,0.15), transparent 50%);
     overflow:hidden;
   }
   .progress-bar{
-    height:100%;
-    width:0%;
-    border-radius:40px;
-    background:linear-gradient(90deg,#0d2b45,#1b5e85,#d4af37);
-    transition:width 2s ease;
-  }
+  height:100%;
+  width:0%;
+  border-radius:40px;
+  background:linear-gradient(90deg,#0f1a3a,#5c0033,#ff9f1c);
+  transition:width 2s ease;
+  box-shadow:0 0 12px rgba(255,159,28,0.6);
+}
 
 .meta-marker{
   position:absolute;
@@ -155,7 +160,7 @@ radial-gradient(circle at 70% 60%, rgba(5,150,105,0.15), transparent 50%);
   /* ===== DOADORES ===== */
   .donors-box{
     margin-top:22px;
-    border:1px solid rgba(212,175,55,0.35);
+border:none;
     border-radius:16px;
     padding:12px;
 height:95px;
@@ -190,6 +195,38 @@ height:95px;
   transition:opacity .6s ease, transform .6s ease;
   text-shadow:0 0 8px rgba(255,215,0,0.6);
 }
+
+/* ===== 3 DOADORES POR VEZ ===== */
+
+/* ===== 3 DOADORES LADO A LADO ===== */
+
+.donor-row{
+  position:absolute;
+  width:100%;
+  top:50%;
+  left:0;
+  transform:translateY(-50%);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+
+.donor-row div{
+  font-size:15px;
+  font-weight:700;
+  white-space:nowrap;
+  text-shadow:0 0 8px rgba(255,255,255,0.3);
+}
+
+
+.donor-row div{
+  font-size:16px;
+  font-weight:700;
+  text-shadow:0 0 8px rgba(255,255,255,0.3);
+}
+
 
   /* ===== ESTRELA (sem som; só visual) ===== */
   .star{
@@ -258,6 +295,71 @@ z-index: 2;
   }
 }
 
+/* ===== SLOT MACHINE REALISTA ===== */
+
+.slot-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  height:70px;
+  perspective:1000px;
+  position:relative;
+}
+
+.slot-digit{
+  position:relative;
+  width:46px;
+  height:70px;
+  overflow:hidden;
+  border-radius:8px;
+  background:linear-gradient(180deg,#f8f8f8,#dcdcdc,#ffffff);
+  border:2px solid #bfbfbf;
+  box-shadow:
+    inset 0 6px 10px rgba(0,0,0,0.4),
+    inset 0 -6px 10px rgba(0,0,0,0.4),
+    0 8px 20px rgba(0,0,0,0.7);
+}
+
+.slot-strip{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  transition:transform 2.6s cubic-bezier(.17,.89,.32,1.2);
+}
+
+.slot-strip div{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:44px;
+  font-weight:900;
+  color:#c00000;
+  text-shadow:
+    0 3px 4px rgba(0,0,0,0.6),
+    0 0 12px rgba(255,0,0,0.6);
+}
+
+/* brilho metálico passando */
+.slot-container::after{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:100%;
+  background:linear-gradient(90deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent);
+  animation:shine 3s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes shine{
+  from{ transform:translateX(-120%); }
+  to{ transform:translateX(120%); }
+}
 
 </style>
 </head>
@@ -272,11 +374,11 @@ z-index: 2;
 
   <div class="btn-row">
     <button onclick="copiarPix()">Copiar chave PIX</button>
-    <button onclick="toggleSom()" id="botaoSom">🌊 Ativar Som do Oceano</button>
+    <button onclick="toggleSom()" id="botaoSom">🌊 Ativar música</button>
   </div>
 
   <div class="label">VALOR ARRECADADO</div>
-  <div id="arrecadado">R$0,00</div>
+<div id="arrecadado" class="slot-container"></div>
 
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
@@ -313,7 +415,7 @@ z-index: 2;
 <script>
   /* ===== VALORES ===== */
   const META = 8765;
-const ARRECADADO_FINAL = 1440.05;
+const ARRECADADO_FINAL = 1674.21;
 
   function formatar(v){
     return "R$" + Number(v).toLocaleString("pt-BR", {
@@ -331,29 +433,82 @@ const ARRECADADO_FINAL = 1440.05;
   const container = document.querySelector(".progress-container");
 
   /* ===== ANIMAÇÃO VALOR ===== */
-  function animarArrecadado(){
-    let inicio = 0;
-    const duracao = 2000;
-    const t0 = performance.now();
+function animarArrecadado(){
 
-    function passo(t){
-      let p = (t - t0) / duracao;
-      if(p > 1) p = 1;
+  const container = document.getElementById("arrecadado");
+  container.innerHTML = "";
 
-      const valor = inicio + (ARRECADADO_FINAL - inicio) * p;
-      arrecadadoEl.innerText = formatar(valor);
-      barra.style.width = (valor / META * 100) + "%";
+  const valorFormatado = ARRECADADO_FINAL.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
 
-      if(p < 1) requestAnimationFrame(passo);
+  // adiciona R$
+  const simbolo = document.createElement("span");
+  simbolo.style.fontSize = "26px";
+  simbolo.style.fontWeight = "800";
+  simbolo.style.color = "#ffd700";
+  simbolo.style.marginRight = "6px";
+  simbolo.innerText = "R$";
+  container.appendChild(simbolo);
+
+  valorFormatado.split("").forEach((char, index)=>{
+
+    // vírgula fixa
+    if(char === ","){
+      const virgula = document.createElement("span");
+      virgula.style.fontSize = "40px";
+      virgula.style.fontWeight = "900";
+      virgula.style.color = "#ffd700";
+      virgula.style.margin = "0 4px";
+      virgula.innerText = ",";
+      container.appendChild(virgula);
+      return;
     }
-    requestAnimationFrame(passo);
-  }
+
+    if(!isNaN(char)){
+
+      const digitBox = document.createElement("div");
+      digitBox.className = "slot-digit";
+
+      const strip = document.createElement("div");
+      strip.className = "slot-strip";
+
+      const altura = 70;
+
+      // cria 15 voltas reais
+      for(let i=0;i<15;i++){
+        for(let n=0;n<=9;n++){
+          const d = document.createElement("div");
+          d.innerText = n;
+          strip.appendChild(d);
+        }
+      }
+
+      digitBox.appendChild(strip);
+      container.appendChild(digitBox);
+
+      setTimeout(()=>{
+        const numeroFinal = parseInt(char);
+        const totalNumeros = strip.children.length;
+        const voltasReais = totalNumeros - 10; // garante que não ultrapassa
+        const posicaoFinal = (voltasReais + numeroFinal) * altura;
+
+        strip.style.transform = `translateY(-${posicaoFinal}px)`;
+      }, 200 + (index * 200));
+    }
+  });
+
+  // mantém barra funcionando
+  barra.style.width = (ARRECADADO_FINAL / META * 100) + "%";
+}
+
 
   animarArrecadado();
 
   /* ===== DOADORES (lista completa) ===== */
   const nomes = [
-    "⊳ WAGNER","⊳ DILZA","⊳ LUIZ EDUARDO",
+    "⊳ LAIS","⊳ JUSCILEIDE","⊳ GILVAN","⊳ DANIELA","⊳ VIVIAN","⊳ EDLA","⊳ RAFAELA","⊳ GABRIEL","⊳ THAIZA","⊳ MIGUEL","⊳ LIDIANE","⊳ ELENICE","⊳ JULIO","⊳ ROBSON","⊳ MARIA ELAIN","⊳ FAGNER","⊳ FABIANA","⊳ WAGNER","⊳ DILZA","⊳ LUIZ EDUARDO",
 "⊳ LUIZ CARLOS","⊳ INGRID","⊳ DAIANE",
 "⊳ SERGIO SANTANA","⊳ RAYANNE","⊳ RO",
 "⊳ SUELY",  "⊳ ADRIANA","⊳ ADRIANO",
@@ -386,40 +541,53 @@ const ARRECADADO_FINAL = 1440.05;
 const lista = document.getElementById("donorList");
 let idx = 0;
 
-function mostrarProximoNome(){
+const cores = [
+  "#ffd700", // dourado
+  "#00f5c4", // turquesa premium
+  "#ff4d6d"  // rosa vibrante
+];
+
+function mostrarTresNomes(){
+
   if(idx >= nomes.length) idx = 0;
 
-  const div = document.createElement("div");
-  div.className = "donor";
-  div.innerText = nomes[idx];
-  div.style.top = "50%";
-div.style.transform = "translateY(-50%) scale(0.8)";
- // centralizado na caixa
+  const bloco = document.createElement("div");
+  bloco.className = "donor-row";
 
-  lista.appendChild(div);
+  for(let i=0; i<3; i++){
 
-  // entrada suave
+    if(idx >= nomes.length) idx = 0;
+
+    const nome = document.createElement("div");
+    nome.innerText = nomes[idx];
+    nome.style.color = cores[i];
+    nome.style.textShadow = `0 0 10px ${cores[i]}`;
+
+    bloco.appendChild(nome);
+    idx++;
+  }
+
+  lista.appendChild(bloco);
+
+  // fade in
   setTimeout(()=>{
-    div.style.opacity = "1";
-    div.style.transform = "translateY(-50%) scale(1)";
+    bloco.style.opacity = "1";
   },50);
 
-  // saída suave
+  // fade out
   setTimeout(()=>{
-    div.style.opacity = "0";
-div.style.transform = "translateY(-50%) scale(1.2)";
-},1000);
+    bloco.style.opacity = "0";
+  },2200);
 
-  // remove após animação
+  // remove
   setTimeout(()=>{
-    div.remove();
-},1500);
-
-  idx++;
+    bloco.remove();
+  },2800);
 }
 
-setTimeout(mostrarProximoNome, 300);
-setInterval(mostrarProximoNome, 1600);
+setTimeout(mostrarTresNomes, 300);
+setInterval(mostrarTresNomes, 3000);
+
 
   /* ===== METAS VISUAIS NA BARRA ===== */
   const metas = [1500,2000,2500,3000,3500,4000,6000,8765];
