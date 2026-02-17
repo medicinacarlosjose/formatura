@@ -607,6 +607,14 @@ setInterval(mostrarTresNomes, 3000);
     container.appendChild(marcador);
   });
 
+/* ===== AJUSTE MOBILE DOADORES ===== */
+@media (max-width: 480px){
+
+  .donor-row div{
+    font-size:13px;          /* reduz um pouco */
+    letter-spacing:-0.3px;   /* compacta levemente */
+  }
+
   /* ===== PIX ===== */
   function copiarPix(){
     navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
