@@ -3,437 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formatura Medicina · UFS</title>
+<title>Formatura Medicina - UFS</title>
 
 <style>
-:root{
-  --gold:#d4af37;
-  --gold2:#f7e27a;
-}
-
-/* ================= FUNDO ================= */
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background: radial-gradient(circle at top,#1a1f3a,#090a12 70%);
+  height:100vh;
+  overflow:hidden;
+  font-family:Segoe UI, sans-serif;
+  background:radial-gradient(circle at center,#001d3d,#000814 70%);
   color:white;
-  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
-/* Partículas */
-canvas{
+/* FUNDO ANIMADO */
+body::before{
+  content:"";
   position:fixed;
   inset:0;
+  background:radial-gradient(circle,#ffd60a33 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:moveBg 20s linear infinite;
   z-index:-1;
 }
-
-/* ================= BORDADO ================= */
-
-.container{
-  max-width:950px;
-  margin:50px auto;
-  padding:4px;
-  border-radius:30px;
-  background:linear-gradient(45deg,var(--gold),var(--gold2),var(--gold));
-  background-size:300% 300%;
-  animation:borderFlow 6s linear infinite;
+@keyframes moveBg{
+  from{background-position:0 0;}
+  to{background-position:200px 200px;}
 }
 
-@keyframes borderFlow{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+/* ALERTA */
+.alert{
+  background:#ff0000;
+  text-align:center;
+  padding:8px;
+  font-weight:800;
+  animation:emergency 0.7s infinite;
+  font-size:clamp(12px,2vh,18px);
+}
+@keyframes emergency{
+  0%{background:#ff0000;}
+  50%{background:#8b0000;}
+  100%{background:#ff0000;}
 }
 
-.card{
-  background:rgba(15,18,35,0.95);
-  border-radius:26px;
-  padding:45px;
+/* PRAZO */
+.deadline{
+  text-align:center;
+  padding:6px;
+  font-weight:700;
+  color:#ffd60a;
+  animation:goldGlow 2s infinite;
+  font-size:clamp(11px,1.8vh,16px);
+}
+@keyframes goldGlow{
+  0%{text-shadow:0 0 5px #ffd60a;}
+  50%{text-shadow:0 0 25px #ffd60a;}
+  100%{text-shadow:0 0 5px #ffd60a;}
 }
 
-/* ================= FOTO ================= */
-
-.profile-wrapper{
+/* MAIN */
+.main{
+  flex:1;
   display:flex;
-  justify-content:center;
-  margin-bottom:25px;
+  flex-direction:column;
+  justify-content:space-evenly;
+  align-items:center;
+  padding:10px;
+  text-align:center;
 }
-.profile-img{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid var(--gold);
-  box-shadow:0 0 40px rgba(212,175,55,0.9);
-}
-
-/* ================= TEXTOS ================= */
 
 h1{
-  text-align:center;
-  letter-spacing:3px;
-  font-size:30px;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  font-size:clamp(18px,3vh,32px);
+  color:#ffd60a;
+  letter-spacing:2px;
 }
 
-.subtitle{
-  text-align:center;
-  opacity:.85;
-  margin-bottom:25px;
+.sub{
+  font-size:clamp(12px,2vh,18px);
+  opacity:.9;
 }
 
-.value-label{
-  text-align:center;
-  font-size:14px;
-  letter-spacing:3px;
-  font-weight:600;
-  color:var(--gold2);
+.value{
+  font-size:clamp(30px,6vh,65px);
+  font-weight:900;
+  color:#ffd60a;
+  text-shadow:0 0 20px #ffd60a;
 }
 
-.counter{
-  text-align:center;
-  font-size:52px;
-  font-weight:800;
-  margin:20px 0;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-/* ================= PROGRESSO ================= */
-.progress-container{
-  background:#1b1e2f;
-  height:30px;
+/* BARRA */
+.progress-wrapper{
+  width:90%;
+  height:20px;
+  background:#001f3f;
   border-radius:50px;
   overflow:hidden;
-  box-shadow:inset 0 0 15px #000;
+  box-shadow:0 0 10px #000;
 }
 
-.progress-bar{
+.progress{
   height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--gold),var(--gold2));
-  box-shadow:0 0 30px var(--gold);
-  transition:width 2s ease;
+  width:23.81%;
+  background:linear-gradient(90deg,#ffd60a,#ffea00,#ffd60a);
+  background-size:200% 100%;
+  animation:flow 2s linear infinite;
+}
+@keyframes flow{
+  0%{background-position:0% 0;}
+  100%{background-position:200% 0;}
 }
 
 .percent{
-  text-align:center;
-  margin:15px 0;
+  font-size:clamp(12px,2vh,16px);
 }
 
 .meta{
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-  opacity:.8;
+  font-size:clamp(11px,1.8vh,15px);
 }
 
-/* ================= PIX ================= */
 .pix{
-  margin-top:35px;
-  background:#14172b;
-  padding:20px;
-  border-radius:15px;
-  text-align:center;
+  font-size:clamp(12px,2vh,16px);
 }
 
-.copy-btn{
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
+button{
+  padding:8px 20px;
   border:none;
-  padding:10px 20px;
-  border-radius:10px;
-  font-weight:600;
+  border-radius:25px;
+  background:#ffd60a;
+  font-weight:bold;
   cursor:pointer;
-}
-
-/* ================= DOADORES ================= */
-
-.donor-rotator{
-  margin-top:40px;
-  text-align:center;
-  min-height:80px;
-}
-
-.donor-message{
-  background:#111425;
-  display:inline-block;
-  padding:12px 20px;
-  border-radius:15px;
-  margin:6px;
-  border:1px solid rgba(212,175,55,0.4);
-  animation:fadeIn .8s ease;
-}
-
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ================= BOTÃO FLUTUANTE ================= */
-
-.help-btn{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  padding:14px 24px;
-  border-radius:50px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(212,175,55,0.9);
   transition:.3s;
+  box-shadow:0 0 15px #ffd60a;
 }
-
-.help-btn:hover{
+button:hover{
   transform:scale(1.08);
+  box-shadow:0 0 25px #ffd60a;
 }
 
-/* ================= RESPONSIVO ================= */
-
-@media (max-width:768px){
-
-  .container{
-    margin:20px 12px;
-  }
-
-  .card{
-    padding:25px 18px;
-  }
-
-  h1{font-size:20px;}
-  .counter{font-size:34px;}
-  .profile-img{width:100px;height:100px;}
-  .meta{flex-direction:column;align-items:center;gap:5px;}
-  .copy-btn{width:100%;margin-top:10px;}
-  .help-btn{bottom:15px;right:15px;padding:10px 18px;font-size:14px;}
+.gif{
+  width:clamp(50px,8vh,100px);
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
 }
 
-@media (max-width:420px){
-  .counter{font-size:28px;}
-  h1{font-size:18px;}
-  .profile-img{width:85px;height:85px;}
-}
-
+/* FOOTER */
 .footer{
-  margin-top:45px;
+  padding:10px;
   text-align:center;
-  line-height:1.6;
+  font-size:clamp(10px,1.7vh,15px);
+  line-height:1.4;
 }
-
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-
-<div class="container">
-<div class="card">
-
-<div class="profile-wrapper">
-  <img src="perfil.png" class="profile-img">
+<div class="alert">
+🚨 Estamos há quase 3 dias sem doações. MUDE ISSO!
 </div>
 
-<h1>FORMATURA MEDICINA · UFS</h1>
-<div class="subtitle">DOE a partir de R$1,00</div>
-
-<div class="value-label">VALOR ARRECADADO</div>
-<div class="counter" id="counter"></div>
-
-<div class="progress-container">
-  <div class="progress-bar" id="progressBar"></div>
+<div class="deadline">
+Prazo final para assinar o Contrato de Formatura, dia 14 de Março de 2026.
 </div>
 
-<div class="percent" id="percent"></div>
+<div class="main">
+
+<h1>FORMATURA MEDICINA - UFS</h1>
+<div class="sub">DOE R$1,00</div>
+
+<div class="value">R$ 2087,19</div>
+
+<div class="progress-wrapper">
+  <div class="progress"></div>
+</div>
+
+<div class="percent">23,81% da meta alcançada</div>
 
 <div class="meta">
-<span id="meta"></span>
-<span id="restante"></span>
+Meta R$8765,00 • Restante R$6677,81
 </div>
 
-<div class="pix" id="pixArea">
-<strong>CHAVE PIX</strong>
-<div>medicinacarlosjose@gmail.com</div>
-<button class="copy-btn" onclick="copyPix()">📋 Copiar chave PIX</button>
+<div class="pix">
+CHAVE PIX<br>
+<strong>medicinacarlosjose@gmail.com</strong>
 </div>
 
-<div class="donor-rotator" id="rotator"></div>
+<button onclick="copyPix()">Copiar chave PIX</button>
+
+<img src="doar.gif" class="gif">
+
+</div>
 
 <div class="footer">
-Concluir a graduação é um desafio de resistência.<br>
+Concluir a graduação é um desafio de resistência.
 No último ano surge um novo obstáculo: o pacote mais simples da formatura custa quase R$9.000,00.<br><br>
 <strong>Doe! Conquiste comigo essa nova etapa.</strong><br>
 Deus te abençoe!
 </div>
 
-</div>
-</div>
-
-<div class="help-btn" onclick="helpNow()">💛 Quero ajudar</div>
-
 <script>
-
-/* ================= META AUTOMÁTICA ================= */
-
-let meta=8765;
-let arrecadado=2087.19; 
-
-let percentual=(arrecadado/meta)*100;
-let restante=meta-arrecadado;
-
-document.getElementById("counter").innerText="R$ "+arrecadado.toFixed(2);
-document.getElementById("percent").innerText=percentual.toFixed(2)+"% da meta alcançada";
-document.getElementById("meta").innerText="Meta: R$ "+meta.toFixed(2);
-document.getElementById("restante").innerText="Restante: R$ "+restante.toFixed(2);
-document.getElementById("progressBar").style.width=percentual+"%";
-
-/* ================= PIX ================= */
-
 function copyPix(){
   navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
   alert("Chave PIX copiada!");
 }
-
-function helpNow(){
-  navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
-  document.getElementById("pixArea").scrollIntoView({behavior:"smooth"});
-  alert("Chave PIX copiada! Muito obrigado pelo apoio 💛");
-}
-
-/* ================= DOADORES ================= */
-
-/* ================= DOADORES ORDEM FIXA COM FRASES ÚNICAS ================= */
-
-const names = [
-"Terezinha","Luciana","Cristiana","Flávia","Edcleiton","Fabiano","Janete","Gilma","Eduardo","George","Cristiano","Paloma","Antônio","Murilo","Auxiliadora","Alisson","Lais","Juscileide","Gilvan","Daniela","Vivian","Edla","Rafaela","Gabriel","Thaiza","Miguel","Lidiane","Elenice","Julio","Robson","Maria Elain","Fagner","Fabiana","Wagner","Dilza","Luiz Eduardo","Luiz Carlos","Ingrid","Daiane","Sergio Santana","Rayanne","Ro","Suely","Adriana","Adriano","Aelson","Altemaria","Amilton","Ana Luiza","Ana Paula","Andre William","Andre Luiz","Antonio Barbosa","Augusto","Carlos Alberto","Dalila Costa","Damião","Daniel","Daniela","Deivisson","Edmilson","Fernando Gois","Fernando Sandes","Felipe","Giclecio","Gladiston","Greziele","Hortencia","Isis","Isllainne","Ivanete","Jaillen","Jailton Filho","Jefferson","Jose Cleones","Jose Edleluson","Júlia Beatriz","Laisa","Luana","Djanira","Patricia","Raylane Dias","Juliana","Kamile","Kathleyn","Kelvin","Kemelly","Larisse","Leiri","Luam de Oliveira","Luana Cristina","Marconiel","Chaves","Dida","Mariah Clara","Marcel Felipe","Nadja","Osmario","Priscila","Raiane","Rivanete","Ronieric","Rosana Reis","Rosilda","Rubens","Samara","Samuel","Sandro","Simone Flora","Tais","Talyta","Thalucha","Valeria","Vinicius","Wendell" 
-];
-
-const phrases = [
-"seu incentivo transforma esse sonho em realidade!", 
-"você é parte essencial dessa caminhada!", 
-"sua colaboração faz tudo valer a pena!", 
-"seu carinho impulsiona essa conquista!", 
-"você fortalece cada passo dessa trajetória!", 
-"sua participação torna isso possível!", 
-"seu apoio sustenta esse projeto!", 
-"você ajuda a escrever essa história!", 
-"sua generosidade constrói futuros!", 
-"seu gesto torna tudo mais especial!", 
-"você faz esse sonho ganhar força!", 
-"sua ajuda é combustível para seguir!", 
-"seu apoio é base dessa realização!", 
-"você é fundamental nessa vitória!", 
-"sua contribuição deixa tudo mais leve!", 
-"seu incentivo dá sentido a cada esforço!", 
-"você está marcando presença nesse marco!", 
-"sua atitude faz esse objetivo crescer!", 
-"seu apoio renova minhas energias!", 
-"você compartilha dessa realização!", 
-"sua colaboração faz esse plano acontecer!", 
-"seu gesto ecoa em cada conquista!", 
-"você é parte dessa construção!", 
-"sua ajuda torna tudo mais possível!", 
-"seu apoio engrandece essa jornada!", 
-"você contribui para cada avanço!", 
-"sua generosidade abre caminhos!", 
-"seu incentivo fortalece essa missão!", 
-"você caminha ao meu lado nessa meta!", 
-"sua confiança impulsiona meus sonhos!", 
-"seu apoio transforma desafios em conquistas!", 
-"você faz essa meta ganhar vida!", 
-"sua colaboração é essencial nessa etapa!", 
-"seu gesto inspira continuidade!", 
-"você fortalece essa realização!", 
-"sua ajuda torna cada detalhe possível!", 
-"seu apoio é parte dessa celebração!", 
-"você é peça-chave nesse momento!", 
-"sua contribuição ilumina o percurso!", 
-"seu incentivo torna esse sonho coletivo!", 
-"você soma forças nessa vitória!", 
-"sua generosidade faz tudo florescer!", 
-"seu apoio constrói cada resultado!", 
-"você ajuda a tornar isso inesquecível!", 
-"sua presença fortalece esse projeto!", 
-"seu gesto carrega significado profundo!", 
-"você faz parte desse grande passo!", 
-"sua ajuda transforma intenção em ação!", 
-"seu apoio torna essa conquista ainda maior!", 
-"você é parte viva desse sonho!" 
-];
-
-let donorMessages = names.map((name, index) => {
-  return name + ", " + phrases[index % phrases.length];
-});
-
-let currentIndex = 0;
-const rotator = document.getElementById("rotator");
-
-function showNextDonors(){
-  rotator.innerHTML = "";
-  let quantity = Math.floor(Math.random()*3)+1;
-
-  for(let i=0; i<quantity; i++){
-
-    if(currentIndex >= donorMessages.length){
-      currentIndex = 0;
-    }
-
-    let div = document.createElement("div");
-    div.className = "donor-message";
-    div.innerText = donorMessages[currentIndex];
-
-    rotator.appendChild(div);
-    currentIndex++;
-  }
-}
-
-showNextDonors();
-setInterval(showNextDonors, 4000);
-
-
-/* ================= PARTÍCULAS ================= */
-
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-
-function resizeCanvas(){
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize",resizeCanvas);
-
-let particles=[];
-for(let i=0;i<70;i++){
-  particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    r:Math.random()*2+1,
-    d:Math.random()*0.6+0.2
-  });
-}
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="rgba(212,175,55,0.6)";
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-    p.y-=p.d;
-    if(p.y<0){
-      p.y=canvas.height;
-      p.x=Math.random()*canvas.width;
-    }
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-
 </script>
 
 </body>
