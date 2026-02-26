@@ -3,210 +3,323 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formatura Medicina - UFS</title>
+<title>Formature um Médico - UFS</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  height:100vh;
-  overflow:hidden;
-  font-family:Segoe UI, sans-serif;
-  background:radial-gradient(circle at center,#001d3d,#000814 70%);
+  font-family:'Segoe UI',sans-serif;
   color:white;
   display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  overflow:hidden;
+  position:relative;
 }
 
-/* FUNDO ANIMADO */
+/* AURORA BOREAL REAL */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:radial-gradient(circle,#ffd60a33 1px,transparent 1px);
-  background-size:40px 40px;
-  animation:moveBg 20s linear infinite;
+  background:url("aurora.gif") center/cover no-repeat;
+  z-index:-3;
+}
+
+/* CAMADA ESCURA SUAVE */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:-2;
+}
+
+/* ESTRELAS DINÂMICAS */
+.stars{
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle,#ffd70055 1px,transparent 1px);
+  background-size:80px 80px;
+  animation:moveStars 40s linear infinite;
   z-index:-1;
 }
-@keyframes moveBg{
+@keyframes moveStars{
   from{background-position:0 0;}
-  to{background-position:200px 200px;}
+  to{background-position:400px 400px;}
+}
+
+/* ENQUADRAMENTO ÚNICO RESPONSIVO */
+.container{
+  width:min(95%,700px);
+  padding:25px;
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  background:rgba(10,15,30,0.75);
+  box-shadow:0 0 40px #000;
+  text-align:center;
 }
 
 /* ALERTA */
 .alert{
-  background:#ff0000;
-  text-align:center;
-  padding:8px;
-  font-weight:800;
-  animation:emergency 0.7s infinite;
-  font-size:clamp(12px,2vh,18px);
+  background:red;
+  padding:10px;
+  font-weight:900;
+  animation:blink 0.8s infinite;
+  border-radius:10px;
 }
-@keyframes emergency{
+@keyframes blink{
   0%{background:#ff0000;}
   50%{background:#8b0000;}
   100%{background:#ff0000;}
 }
 
-/* PRAZO */
-.deadline{
-  text-align:center;
-  padding:6px;
-  font-weight:700;
-  color:#ffd60a;
-  animation:goldGlow 2s infinite;
-  font-size:clamp(11px,1.8vh,16px);
-}
-@keyframes goldGlow{
-  0%{text-shadow:0 0 5px #ffd60a;}
-  50%{text-shadow:0 0 25px #ffd60a;}
-  100%{text-shadow:0 0 5px #ffd60a;}
-}
-
-/* MAIN */
-.main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-evenly;
-  align-items:center;
-  padding:10px;
-  text-align:center;
-}
-
+/* TÍTULO ALTO RELEVO */
 h1{
-  font-size:clamp(18px,3vh,32px);
-  color:#ffd60a;
-  letter-spacing:2px;
-}
-
-.sub{
-  font-size:clamp(12px,2vh,18px);
-  opacity:.9;
+  margin-top:20px;
+  font-size:clamp(20px,4vw,30px);
+  color:#ffd700;
+  text-shadow:
+    0 2px 0 #b8860b,
+    0 4px 10px #000,
+    0 0 25px #ffd700;
 }
 
 .value{
-  font-size:clamp(30px,6vh,65px);
+  font-size:clamp(28px,6vw,48px);
   font-weight:900;
-  color:#ffd60a;
-  text-shadow:0 0 20px #ffd60a;
+  margin-top:15px;
+  color:#ffd700;
+  text-shadow:
+    0 2px 0 #b8860b,
+    0 6px 15px #000,
+    0 0 30px #ffd700;
 }
 
-/* BARRA */
-.progress-wrapper{
-  width:90%;
-  height:20px;
-  background:#001f3f;
-  border-radius:50px;
-  overflow:hidden;
-  box-shadow:0 0 10px #000;
+/* FOTO */
+.photo-wrapper{
+  position:relative;
+  margin:15px auto;
+  width:clamp(120px,22vh,200px);
+  height:clamp(120px,22vh,200px);
 }
 
-.progress{
+.photo-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  padding:6px;
+  background:conic-gradient(#ffd700,#ffea00,#ffd700);
+  animation:rotate 6s linear infinite;
+  z-index:0;
+}
+
+.photo{
+  position:relative;
+  width:100%;
   height:100%;
-  width:23.81%;
-  background:linear-gradient(90deg,#ffd60a,#ffea00,#ffd60a);
-  background-size:200% 100%;
-  animation:flow 2s linear infinite;
-}
-@keyframes flow{
-  0%{background-position:0% 0;}
-  100%{background-position:200% 0;}
+  border-radius:50%;
+  overflow:hidden;
+  z-index:1;
 }
 
-.percent{
-  font-size:clamp(12px,2vh,16px);
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.meta{
-  font-size:clamp(11px,1.8vh,15px);
+@keyframes rotate{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+/* PROGRESSO */
+.progress-container{
+  width:100%;
+  height:22px;
+  background:#222;
+  border-radius:50px;
+  margin:20px 0;
+  overflow:hidden;
 }
 
-.pix{
-  font-size:clamp(12px,2vh,16px);
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ffd700,#fff176,#ffd700);
+  box-shadow:0 0 30px #ffd700;
 }
 
+/* BOTÃO */
 button{
-  padding:8px 20px;
+  margin-top:10px;
+  padding:10px 25px;
   border:none;
-  border-radius:25px;
-  background:#ffd60a;
+  border-radius:30px;
+  background:#ffd700;
   font-weight:bold;
   cursor:pointer;
   transition:.3s;
-  box-shadow:0 0 15px #ffd60a;
 }
 button:hover{
   transform:scale(1.08);
-  box-shadow:0 0 25px #ffd60a;
+  box-shadow:0 0 25px #ffd700;
 }
 
-.gif{
-  width:clamp(50px,8vh,100px);
-  animation:float 3s ease-in-out infinite;
+/* ESTRELAS CLIQUE */
+.star{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  pointer-events:none;
+  animation:explode 1s ease-out forwards;
 }
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-8px);}
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
 }
 
-/* FOOTER */
 .footer{
-  padding:10px;
-  text-align:center;
-  font-size:clamp(10px,1.7vh,15px);
-  line-height:1.4;
+  margin-top:20px;
+  font-size:14px;
+  line-height:1.5;
 }
 </style>
 </head>
 
 <body>
 
+<div class="stars"></div>
+
+<div class="container">
+
 <div class="alert">
-🚨 Estamos há quase 3 dias sem doações. MUDE ISSO!
+🚨 Estamos há <span id="timeWithoutDonation"></span> sem doações. MUDE ISSO!
 </div>
-
 <div class="deadline">
-Prazo final para assinar o Contrato de Formatura, dia 14 de Março de 2026.
+DOAÇÕES ATÉ 14 DE MARÇO
+</div>
+<h1>FORMATURE UM MÉDICO<br>• MEDICINA - UFS •</h1>
+<div class="deadline">
+DOE R$1,00
+</div>
+<div class="photo-wrapper">
+  <div class="photo">
+    <img src="SUA_FOTO_AQUI.jpg">
+  </div>
 </div>
 
-<div class="main">
+<div class="value">R$ 2237,19</div>
 
-<h1>FORMATURA MEDICINA - UFS</h1>
-<div class="sub">DOE R$1,00</div>
-
-<div class="value">R$ 2087,19</div>
-
-<div class="progress-wrapper">
-  <div class="progress"></div>
+<div class="progress-container">
+  <div class="progress-bar" id="bar"></div>
 </div>
 
-<div class="percent">23,81% da meta alcançada</div>
+<div>25,52% da meta</div>
+<div>Meta R$8765,00 • Restante R$6527,81</div>
 
-<div class="meta">
-Meta R$8765,00 • Restante R$6677,81
-</div>
-
-<div class="pix">
-CHAVE PIX<br>
-<strong>medicinacarlosjose@gmail.com</strong>
+<div style="margin-top:10px">
+CHAVE PIX • <strong>medicinacarlosjose@gmail.com</strong>
 </div>
 
 <button onclick="copyPix()">Copiar chave PIX</button>
 
-<img src="doar.gif" class="gif">
-
-</div>
-
 <div class="footer">
 Concluir a graduação é um desafio de resistência.
-No último ano surge um novo obstáculo: o pacote mais simples da formatura custa quase R$9.000,00.<br><br>
-<strong>Doe! Conquiste comigo essa nova etapa.</strong><br>
+No último ano surge um novo obstáculo: pacotes com valores de quase R$9.000,00, R$13.000,00 ou R$19.000,00.
+Ajude a alcançar o pacote básico de R$8765,00.
+<strong>Doe! Conquiste comigo essa nova etapa.</strong><br><br>
 Deus te abençoe!
 </div>
 
+</div>
+
 <script>
+
+/* CONTADOR COM SEGUNDOS */
+const lastDonation = new Date("2026-02-24T22:39:00");
+
+function updateCounter(){
+  const now = new Date();
+  const diff = now - lastDonation;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const minutes = Math.floor((diff / (1000*60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("timeWithoutDonation")
+  .innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+setInterval(updateCounter,1000);
+updateCounter();
+
+/* BARRA SUAVE E HARMÔNICA */
+const bar = document.getElementById("bar");
+const target = 25.52;
+
+function animateBar(){
+  let start = null;
+  const duration = 5000; // 5 segundos enchendo suavemente
+
+  function easeInOut(t){
+    return t < 0.5 
+      ? 2 * t * t 
+      : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  }
+
+  function step(timestamp){
+    if(!start) start = timestamp;
+    const progress = timestamp - start;
+    const percentage = Math.min(progress / duration, 1);
+
+    const eased = easeInOut(percentage);
+    bar.style.width = (eased * target) + "%";
+
+    if(progress < duration){
+      requestAnimationFrame(step);
+    } else {
+      setTimeout(() => {
+        bar.style.transition = "opacity 0.4s";
+        bar.style.opacity = "0";
+        setTimeout(() => {
+          bar.style.width = "0%";
+          bar.style.opacity = "1";
+          start = null;
+          requestAnimationFrame(step);
+        }, 400);
+      }, 3000);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+animateBar();
+
+/* ESTRELAS AO CLICAR */
+document.addEventListener("click", function(e){
+  for(let i=0;i<20;i++){
+    const star=document.createElement("div");
+    star.className="star";
+    star.style.left=e.pageX+"px";
+    star.style.top=e.pageY+"px";
+    star.style.setProperty("--x",(Math.random()*200-100)+"px");
+    star.style.setProperty("--y",(Math.random()*200-100)+"px");
+    document.body.appendChild(star);
+    setTimeout(()=>star.remove(),1000);
+  }
+});
+
+/* COPIAR PIX */
 function copyPix(){
   navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
   alert("Chave PIX copiada!");
