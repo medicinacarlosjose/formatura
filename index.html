@@ -92,11 +92,31 @@ h1{
   font-size:clamp(28px,6vw,48px);
   font-weight:900;
   margin-top:15px;
-  color:#ffd700;
+  color:#e0aaff;
   text-shadow:
-    0 2px 0 #b8860b,
+    0 2px 0 #9d4edd,
     0 6px 15px #000,
-    0 0 30px #ffd700;
+    0 0 20px #c77dff,
+    0 0 45px #c77dff,
+    0 0 70px #b5179e;
+  animation:lilacPulse 2s ease-in-out infinite;
+}
+
+@keyframes lilacPulse{
+  0%,100%{
+    text-shadow:
+      0 2px 0 #9d4edd,
+      0 0 20px #c77dff,
+      0 0 45px #c77dff,
+      0 0 70px #b5179e;
+  }
+  50%{
+    text-shadow:
+      0 2px 0 #9d4edd,
+      0 0 35px #e0aaff,
+      0 0 65px #c77dff,
+      0 0 100px #b5179e;
+  }
 }
 
 /* FOTO */
@@ -148,10 +168,49 @@ h1{
 }
 
 .progress-bar{
+  position:relative;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#ffd700,#fff176,#ffd700);
-  box-shadow:0 0 30px #ffd700;
+  background:linear-gradient(90deg,#b5179e,#c77dff,#e0aaff,#c77dff,#b5179e);
+  background-size:300% 100%;
+  box-shadow:
+    0 0 15px #c77dff,
+    0 0 30px #c77dff,
+    0 0 60px #b5179e;
+  overflow:visible;
+  animation:lilacFlow 4s linear infinite;
+}
+
+/* ENERGIA CORRENDO */
+.progress-bar::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-40%;
+  width:40%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.7),
+    transparent
+  );
+  filter:blur(6px);
+  animation:energyRun 2s linear infinite;
+}
+
+@keyframes energyRun{
+  0%{left:-40%;}
+  100%{left:140%;}
+}
+
+@keyframes lilacFlow{
+  0%{background-position:0% 0;}
+  100%{background-position:300% 0;}
+}
+@keyframes lilacFlow{
+  0%{background-position:0% 0;}
+  100%{background-position:300% 0;}
 }
 
 /* BOTÃO */
@@ -192,6 +251,30 @@ button:hover{
   font-size:14px;
   line-height:1.5;
 }
+
+.energy-particle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:#e0aaff;
+  border-radius:50%;
+  pointer-events:none;
+  box-shadow:
+    0 0 6px #c77dff,
+    0 0 12px #b5179e;
+  animation:particleFloat 1.2s ease-out forwards;
+}
+
+@keyframes particleFloat{
+  0%{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
+  100%{
+    opacity:0;
+    transform:translate(var(--x), -30px) scale(0.3);
+  }
+}
 </style>
 </head>
 
@@ -217,14 +300,14 @@ DOE R$1,00
   </div>
 </div>
 
-<div class="value">R$ 2237,19</div>
+<div class="value">R$ 2399,59</div>
 
 <div class="progress-container">
   <div class="progress-bar" id="bar"></div>
 </div>
 
-<div>25,52% da meta</div>
-<div>Meta R$8765,00 • Restante R$6527,81</div>
+<div>27,38% da meta</div>
+<div>Meta R$8765,00 • Restante R$6365,41</div>
 
 <div style="margin-top:10px">
 CHAVE PIX • <strong>medicinacarlosjose@gmail.com</strong>
@@ -233,8 +316,7 @@ CHAVE PIX • <strong>medicinacarlosjose@gmail.com</strong>
 <button onclick="copyPix()">Copiar chave PIX</button>
 
 <div class="footer">
-Os pacotes de formatura custam quase R$9.000,00, R$13.000,00 ou R$19.000,00.
-Ajude a alcançar o pacote básico de R$8765,00.<strong>Doe! Deus te abençoe!</strong><br><br>
+Os pacotes de formatura custam quase R$9.000,00, R$13.000,00 ou R$19.000,00. Ajude a alcançar o pacote básico de R$8765,00.<strong> Doe! Deus te abençoe!</strong><br><br>
 
 </div>
 
@@ -243,7 +325,7 @@ Ajude a alcançar o pacote básico de R$8765,00.<strong>Doe! Deus te abençoe!</
 <script>
 
 /* CONTADOR COM SEGUNDOS */
-const lastDonation = new Date("2026-02-24T22:39:00");
+const lastDonation = new Date("2026-02-26T22:58:00");
 
 function updateCounter(){
   const now = new Date();
@@ -262,11 +344,11 @@ updateCounter();
 
 /* BARRA SUAVE E HARMÔNICA */
 const bar = document.getElementById("bar");
-const target = 25.52;
+const target = 27.38;
 
 function animateBar(){
   let start = null;
-  const duration = 5000; // 5 segundos enchendo suavemente
+  const duration = 5000; // 7 segundos enchendo suavemente
 
   function easeInOut(t){
     return t < 0.5 
@@ -303,6 +385,24 @@ function animateBar(){
 
 animateBar();
 
+/* PARTÍCULAS ESCAPANDO DA BARRA */
+function spawnEnergy(){
+  const rect = bar.getBoundingClientRect();
+
+  const particle = document.createElement("div");
+  particle.className = "energy-particle";
+
+  particle.style.left = (rect.left + rect.width - 5) + "px";
+  particle.style.top = (rect.top + rect.height/2) + "px";
+
+  particle.style.setProperty("--x",(Math.random()*40 - 20)+"px");
+
+  document.body.appendChild(particle);
+
+  setTimeout(()=>particle.remove(),1200);
+}
+
+setInterval(spawnEnergy, 250);
 /* ESTRELAS AO CLICAR */
 document.addEventListener("click", function(e){
   for(let i=0;i<20;i++){
