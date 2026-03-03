@@ -15,7 +15,8 @@ body{
   justify-content:center;
   align-items:center;
   min-height:100vh;
-  overflow:hidden;
+  padding:10px;
+  margin:0;
   position:relative;
 }
 
@@ -54,13 +55,17 @@ body::after{
 
 /* ENQUADRAMENTO ÚNICO RESPONSIVO */
 .container{
-  width:min(95%,700px);
-  padding:25px;
+  width:min(95vw,700px);
+  max-height:calc(100vh - 20px);
+  padding:18px;
   border-radius:20px;
   backdrop-filter:blur(12px);
   background:rgba(10,15,30,0.75);
   box-shadow:0 0 40px #000;
   text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
 /* ALERTA */
@@ -92,16 +97,31 @@ h1{
   font-size:clamp(28px,6vw,48px);
   font-weight:900;
   margin-top:15px;
-  color:#e0aaff;
+  color:#4fc3f7;
   text-shadow:
-    0 2px 0 #9d4edd,
-    0 6px 15px #000,
-    0 0 20px #c77dff,
-    0 0 45px #c77dff,
-    0 0 70px #b5179e;
-  animation:lilacPulse 2s ease-in-out infinite;
+    0 2px 0 #0288d1,
+    0 0 20px #4fc3f7,
+    0 0 40px #29b6f6,
+    0 0 70px #03a9f4;
+  animation:bluePulse 2s ease-in-out infinite;
 }
 
+@keyframes bluePulse{
+  0%,100%{
+    text-shadow:
+      0 2px 0 #0288d1,
+      0 0 20px #4fc3f7,
+      0 0 40px #29b6f6,
+      0 0 70px #03a9f4;
+  }
+  50%{
+    text-shadow:
+      0 2px 0 #0288d1,
+      0 0 35px #81d4fa,
+      0 0 60px #4fc3f7,
+      0 0 100px #29b6f6;
+  }
+}
 @keyframes lilacPulse{
   0%,100%{
     text-shadow:
@@ -171,14 +191,19 @@ h1{
   position:relative;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#b5179e,#c77dff,#e0aaff,#c77dff,#b5179e);
+  background:linear-gradient(90deg,#0288d1,#4fc3f7,#81d4fa,#4fc3f7,#0288d1);
   background-size:300% 100%;
   box-shadow:
-    0 0 15px #c77dff,
-    0 0 30px #c77dff,
-    0 0 60px #b5179e;
+    0 0 15px #4fc3f7,
+    0 0 30px #29b6f6,
+    0 0 60px #0288d1;
   overflow:visible;
-  animation:lilacFlow 4s linear infinite;
+  animation:blueFlow 4s linear infinite;
+}
+
+@keyframes blueFlow{
+  0%{background-position:0% 0;}
+  100%{background-position:300% 0;}
 }
 
 /* ENERGIA CORRENDO */
@@ -275,6 +300,11 @@ button:hover{
     transform:translate(var(--x), -30px) scale(0.3);
   }
 }
+@media (max-height:680px){
+  .container{
+    transform:scale(0.88);
+  }
+}
 </style>
 </head>
 
@@ -300,17 +330,17 @@ DOE R$1,00
   </div>
 </div>
 
-<div class="value">R$ 2399,59</div>
-
+<div class="value">• R$2817,59</div>
 <div class="progress-container">
   <div class="progress-bar" id="bar"></div>
 </div>
 
-<div>27,38% da meta</div>
-<div>Meta R$8765,00 • Restante R$6365,41</div>
+<div>32,15% arrecadados</div>
+<div>• VALOR DO PACOTE DE FORMATURA R$8765,00</div>
+<div>• Restante R$5947,41</div>
 
 <div style="margin-top:10px">
-CHAVE PIX • <strong>medicinacarlosjose@gmail.com</strong>
+CHAVE PIX <strong>medicinacarlosjose@gmail.com</strong>
 </div>
 
 <button onclick="copyPix()">Copiar chave PIX</button>
@@ -325,8 +355,7 @@ Os pacotes de formatura custam quase R$9.000,00, R$13.000,00 ou R$19.000,00. Aju
 <script>
 
 /* CONTADOR COM SEGUNDOS */
-const lastDonation = new Date("2026-02-26T22:58:00");
-
+const lastDonation = new Date("2026-02-28T17:20:00");
 function updateCounter(){
   const now = new Date();
   const diff = now - lastDonation;
@@ -344,8 +373,7 @@ updateCounter();
 
 /* BARRA SUAVE E HARMÔNICA */
 const bar = document.getElementById("bar");
-const target = 27.38;
-
+const target = 32.15;
 function animateBar(){
   let start = null;
   const duration = 5000; // 7 segundos enchendo suavemente
