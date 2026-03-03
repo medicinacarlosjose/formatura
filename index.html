@@ -44,35 +44,24 @@ body{
   animation:alertEmergency 0.6s infinite;
 }
 
-/* PISCAR FORTE COM LUZ */
 @keyframes alertEmergency{
   0%{
     background:linear-gradient(90deg,#ff0000,#8b0000,#ff0000);
-    box-shadow:
-      0 0 10px #ff0000,
-      0 0 20px #ff0000,
-      0 0 40px #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000;
     transform:scale(1);
   }
   50%{
     background:linear-gradient(90deg,#ff3b3b,#b30000,#ff3b3b);
-    box-shadow:
-      0 0 25px #ff0000,
-      0 0 50px #ff0000,
-      0 0 80px #ff0000,
-      0 0 120px #ff0000;
+    box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000, 0 0 80px #ff0000, 0 0 120px #ff0000;
     transform:scale(1.04);
   }
   100%{
     background:linear-gradient(90deg,#ff0000,#8b0000,#ff0000);
-    box-shadow:
-      0 0 10px #ff0000,
-      0 0 20px #ff0000,
-      0 0 40px #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000;
     transform:scale(1);
   }
 }
-/* FOTO */
+
 .photo{
   width:220px;
   height:220px;
@@ -89,7 +78,6 @@ body{
   object-fit:cover;
 }
 
-/* TÍTULO */
 h1{
   font-size:36px;
   margin-bottom:10px;
@@ -98,12 +86,11 @@ h1{
 
 .subtitle{
   font-size:21.5px;
-font-weight:700;
+  font-weight:700;
   opacity:0.85;
   margin-bottom:5px;
 }
 
-/* VALOR PRINCIPAL */
 .value{
   font-size:30px;
   font-weight:900;
@@ -111,7 +98,6 @@ font-weight:700;
   margin-bottom:0px;
 }
 
-/* PROGRESSO */
 .progress-container{
   width:100%;
   height:20px;
@@ -119,6 +105,7 @@ font-weight:700;
   border-radius:30px;
   overflow:hidden;
   margin:2px 0;
+  position:relative;
 }
 
 .progress-bar{
@@ -126,9 +113,10 @@ font-weight:700;
   width:0%;
   background:linear-gradient(90deg,#ffd700,#ffb300);
   border-radius:30px;
+  position:relative;
+  overflow:hidden;
 }
 
-/* STATS */
 .stats{
   font-size:18px;
   line-height:1.8;
@@ -142,7 +130,6 @@ font-weight:700;
   opacity:0.9;
 }
 
-/* PIX */
 .pix-box{
   width:70%;
   margin: 0 auto;
@@ -156,13 +143,10 @@ font-weight:700;
   border:1px solid rgba(255,215,0,0.9);
   transition:.3s;
   position:relative;
-
-  /* 🔥 CORREÇÃO IMPORTANTE */
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
-/* BOTÃO */
 button{
   width:30%;
   padding:18px;
@@ -181,26 +165,6 @@ button:hover{
   box-shadow:0 0 30px #ffd700;
 }
 
-.footer{
-  margin-top:35px;
-  font-size:14px;
-  opacity:0.7;
-}
-
-.progress-container{
-  position:relative;
-}
-
-.progress-bar{
-  position:relative;
-  overflow:hidden;
-}
-
-/* TEXTO SOBRE A BARRA */
-.progress-container{
-  position:relative;
-}
-
 .progress-text{
   position:absolute;
   left:50%;
@@ -208,23 +172,15 @@ button:hover{
   transform:translate(-50%,-50%);
   font-weight:900;
   font-size:14px;
-  white-space:nowrap; /* força linha única */
+  white-space:nowrap;
   opacity:0;
   pointer-events:none;
   color:#1a1a1a;
   z-index:2;
 }
 
-/* OURO DERRETIDO */
 .progress-bar.completed{
-  background:linear-gradient(
-    120deg,
-    #ffd700 0%,
-    #fff8dc 25%,
-    #ffb300 50%,
-    #fff8dc 75%,
-    #ffd700 100%
-  );
+  background:linear-gradient(120deg, #ffd700 0%, #fff8dc 25%, #ffb300 50%, #fff8dc 75%, #ffd700 100%);
   background-size:300% 100%;
   animation:goldFlow 3s linear infinite;
 }
@@ -240,172 +196,52 @@ button:hover{
 }
 
 @keyframes goldPulse{
-  from{
-    text-shadow:0 0 5px #ffd700;
-  }
-  to{
-    text-shadow:
-      0 0 10px #ffd700,
-      0 0 20px #ffb300,
-      0 0 30px #ffd700;
-  }
+  from{ text-shadow:0 0 5px #ffd700; }
+  to{ text-shadow: 0 0 10px #ffd700, 0 0 20px #ffb300, 0 0 30px #ffd700; }
 }
 
-/* ======================================
-   RESPONSIVIDADE PARA CELULAR E TABLET
-   ====================================== */
-
-/* Tablet */
-@media (max-width: 1024px){
-
-  .container{
-    padding:30px;
-  }
-
-  .photo{
-    width:180px;
-    height:180px;
-    margin-bottom:20px;
-  }
-
-  h1{
-    font-size:28px;
-  }
-
-  .subtitle{
-    font-size:16px;
-    margin-bottom:25px;
-  }
-
-  .value{
-    font-size:42px;
-  }
-
-  .stats{
-    font-size:16px;
-    margin-bottom:20px;
-  }
-
-  .emotional{
-    font-size:16px;
-    margin-bottom:20px;
-  }
-
-  .pix-box{
-    font-size:16px;
-    padding:15px;
-  }
-
-  button{
-    padding:14px;
-    font-size:16px;
-  }
-
-}
-
-/* Celular */
+/* Responsividade */
 @media (max-width: 600px){
-
-  body{
-    padding:10px;
-  }
-
-  .container{
-    padding:20px;
-    border-radius:20px;
-  }
-
-  .alert{
-    font-size:13px;
-    padding:12px;
-    margin-bottom:20px;
-  }
-
-  .photo{
-    width:140px;
-    height:140px;
-    margin-bottom:15px;
-  }
-
-  h1{
-    font-size:22px;
-  }
-
-  .subtitle{
-    font-size:14px;
-    margin-bottom:20px;
-  }
-
-  .value{
-    font-size:32px;
-  }
-
-  .progress-container{
-    height:14px;
-    margin:15px 0;
-  }
-
-  .progress-text{
-    font-size:11px;
-  }
-
-  .stats{
-    font-size:14px;
-    margin-bottom:15px;
-  }
-
-  .emotional{
-    font-size:14px;
-    margin-bottom:15px;
-  }
-
-  .pix-box{
-    font-size:14px;
-    padding:12px;
-  }
-
-  button{
-    padding:12px;
-    font-size:14px;
-  }
-
-  .footer{
-    font-size:12px;
-    margin-top:20px;
-  }
-
+  .container{ padding:20px; border-radius:20px; }
+  .alert{ font-size:13px; padding:12px; }
+  .photo{ width:140px; height:140px; }
+  h1{ font-size:22px; }
+  .value{ font-size:32px; }
+  .pix-box{ width:90%; font-size:14px; }
+  button{ width:60%; }
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
 <div class="alert">
 🚨 Estamos há <span id="timeWithoutDonation"></span> sem doações. SUA AJUDA MUDA ISSO.
 </div>
 
 <div class="photo">
-<img src="SUA_FOTO_AQUI.jpg">
+<img src="SUA_FOTO_AQUI.jpg" alt="Foto">
 </div>
 
 <h1>FORMATURE UM MÉDICO</h1>
 <div class="subtitle">Medicina • UFS</div>
 
-<div class="value">R$ 2.614,59</div>
+<div class="value">R$ 2.670,59</div>
 
 <div class="progress-container">
   <div class="progress-bar" id="bar"></div>
   <div class="progress-text" id="progressText">
-      29,83% arrecadados
+      30,47% arrecadados
   </div>
 </div>
 
 <div class="stats">
-Meta: R$ 8.765,00   •   Faltam: <strong>R$ 6.150,41</strong><br>
-</div> <div class="emotional"> Cada contribuição é um passo para transformar esforço em conquista. Deus nos abençoe!
+Meta: R$ 8.765,00 • Faltam: <strong>R$ 6.094,41</strong><br>
+</div> 
+
+<div class="emotional"> 
+Cada contribuição é um passo para transformar esforço em conquista. Deus nos abençoe!
 </div>
 
 <div class="pix-box">
@@ -415,10 +251,10 @@ CHAVE PIX<br>
 
 <button onclick="copyPix()">Doar Agora</button>
 </div>
-<script>
 
-/* CONTADOR */
-const lastDonation = new Date("2026-02-28T17:29:00-03:00");
+<script>
+/* CONTADOR - Atualizado para 03/03/2026 às 20:37 */
+const lastDonation = new Date("2026-03-03T20:37:00-03:00");
 
 function updateCounter(){
   const now = new Date();
@@ -436,10 +272,9 @@ function updateCounter(){
 setInterval(updateCounter,1000);
 updateCounter();
 
-/* BARRA */
-
+/* BARRA - Atualizada para 30.47% */
 const bar = document.getElementById("bar");
-const target = 29.83;
+const target = 30.47;
 
 function animateBar(){
   bar.style.transition = "width 2.5s ease";
@@ -447,19 +282,16 @@ function animateBar(){
 
   setTimeout(()=>{
       bar.classList.add("completed");
-      document.querySelector(".progress-container")
-              .classList.add("completed");
+      document.querySelector(".progress-container").classList.add("completed");
   }, 2600);
 }
 
 animateBar();
 
-/* COPIAR PIX */
 function copyPix(){
   navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
   alert("Chave PIX copiada!");
 }
-
 </script>
 
 </body>
