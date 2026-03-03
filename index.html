@@ -10,161 +10,77 @@
 
 body{
   font-family:'Segoe UI',sans-serif;
-  color:white;
+  background:radial-gradient(circle at top,#0f1c2e,#08111d 70%);
+  color:#f5f5f5;
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  min-height:100vh;
-  padding:10px;
-  margin:0;
-  position:relative;
+  padding:20px;
 }
 
-/* AURORA BOREAL REAL */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:url("aurora.gif") center/cover no-repeat;
-  z-index:-3;
-}
-
-/* CAMADA ESCURA SUAVE */
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.55);
-  z-index:-2;
-}
-
-/* ESTRELAS DINÂMICAS */
-.stars{
-  position:fixed;
-  inset:0;
-  background:
-  radial-gradient(circle,#ffd70055 1px,transparent 1px);
-  background-size:80px 80px;
-  animation:moveStars 40s linear infinite;
-  z-index:-1;
-}
-@keyframes moveStars{
-  from{background-position:0 0;}
-  to{background-position:400px 400px;}
-}
-
-/* ENQUADRAMENTO ÚNICO RESPONSIVO */
 .container{
-  width:min(95vw,700px);
-  max-height:calc(100vh - 20px);
-  padding:18px;
-  border-radius:20px;
-  backdrop-filter:blur(12px);
-  background:rgba(10,15,30,0.75);
-  box-shadow:0 0 40px #000;
+  max-width:900px;
+  width:100%;
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(25px);
+  border-radius:30px;
+  padding:50px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.7);
   text-align:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
 }
 
 /* ALERTA */
 .alert{
-  background:red;
-  padding:10px;
+  background:linear-gradient(90deg,#ff0000,#8b0000,#ff0000);
+  padding:16px;
+  border-radius:18px;
   font-weight:900;
-  animation:blink 0.8s infinite;
-  border-radius:10px;
-}
-@keyframes blink{
-  0%{background:#ff0000;}
-  50%{background:#8b0000;}
-  100%{background:#ff0000;}
+  font-size:16px;
+  margin-bottom:30px;
+  letter-spacing:1px;
+  animation:alertEmergency 0.6s infinite;
 }
 
-/* TÍTULO ALTO RELEVO */
-h1{
-  margin-top:20px;
-  font-size:clamp(20px,4vw,30px);
-  color:#ffd700;
-  text-shadow:
-    0 2px 0 #b8860b,
-    0 4px 10px #000,
-    0 0 25px #ffd700;
-}
-
-.value{
-  font-size:clamp(28px,6vw,48px);
-  font-weight:900;
-  margin-top:15px;
-  color:#4fc3f7;
-  text-shadow:
-    0 2px 0 #0288d1,
-    0 0 20px #4fc3f7,
-    0 0 40px #29b6f6,
-    0 0 70px #03a9f4;
-  animation:bluePulse 2s ease-in-out infinite;
-}
-
-@keyframes bluePulse{
-  0%,100%{
-    text-shadow:
-      0 2px 0 #0288d1,
-      0 0 20px #4fc3f7,
-      0 0 40px #29b6f6,
-      0 0 70px #03a9f4;
+/* PISCAR FORTE COM LUZ */
+@keyframes alertEmergency{
+  0%{
+    background:linear-gradient(90deg,#ff0000,#8b0000,#ff0000);
+    box-shadow:
+      0 0 10px #ff0000,
+      0 0 20px #ff0000,
+      0 0 40px #ff0000;
+    transform:scale(1);
   }
   50%{
-    text-shadow:
-      0 2px 0 #0288d1,
-      0 0 35px #81d4fa,
-      0 0 60px #4fc3f7,
-      0 0 100px #29b6f6;
+    background:linear-gradient(90deg,#ff3b3b,#b30000,#ff3b3b);
+    box-shadow:
+      0 0 25px #ff0000,
+      0 0 50px #ff0000,
+      0 0 80px #ff0000,
+      0 0 120px #ff0000;
+    transform:scale(1.04);
+  }
+  100%{
+    background:linear-gradient(90deg,#ff0000,#8b0000,#ff0000);
+    box-shadow:
+      0 0 10px #ff0000,
+      0 0 20px #ff0000,
+      0 0 40px #ff0000;
+    transform:scale(1);
   }
 }
-@keyframes lilacPulse{
-  0%,100%{
-    text-shadow:
-      0 2px 0 #9d4edd,
-      0 0 20px #c77dff,
-      0 0 45px #c77dff,
-      0 0 70px #b5179e;
-  }
-  50%{
-    text-shadow:
-      0 2px 0 #9d4edd,
-      0 0 35px #e0aaff,
-      0 0 65px #c77dff,
-      0 0 100px #b5179e;
-  }
-}
-
 /* FOTO */
-.photo-wrapper{
-  position:relative;
-  margin:15px auto;
-  width:clamp(120px,22vh,200px);
-  height:clamp(120px,22vh,200px);
-}
-
-.photo-wrapper::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  padding:6px;
-  background:conic-gradient(#ffd700,#ffea00,#ffd700);
-  animation:rotate 6s linear infinite;
-  z-index:0;
-}
-
 .photo{
-  position:relative;
-  width:100%;
-  height:100%;
+  width:220px;
+  height:220px;
   border-radius:50%;
   overflow:hidden;
-  z-index:1;
+  margin:0 auto 30px;
+  box-shadow:0 0 40px rgba(255,215,0,0.6);
+  border:4px solid rgba(255,215,0,0.4);
 }
 
 .photo img{
@@ -173,189 +89,213 @@ h1{
   object-fit:cover;
 }
 
-@keyframes rotate{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
+/* TÍTULO */
+h1{
+  font-size:36px;
+  margin-bottom:10px;
+  color:#ffd700;
 }
+
+.subtitle{
+  font-size:18px;
+  opacity:0.85;
+  margin-bottom:35px;
+}
+
+/* VALOR PRINCIPAL */
+.value{
+  font-size:56px;
+  font-weight:900;
+  color:#ffd700;
+  margin-bottom:10px;
+}
+
 /* PROGRESSO */
 .progress-container{
   width:100%;
-  height:22px;
-  background:#222;
-  border-radius:50px;
-  margin:20px 0;
+  height:20px;
+  background:rgba(255,255,255,0.1);
+  border-radius:30px;
   overflow:hidden;
+  margin:25px 0;
 }
 
 .progress-bar{
-  position:relative;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#0288d1,#4fc3f7,#81d4fa,#4fc3f7,#0288d1);
-  background-size:300% 100%;
-  box-shadow:
-    0 0 15px #4fc3f7,
-    0 0 30px #29b6f6,
-    0 0 60px #0288d1;
-  overflow:visible;
-  animation:blueFlow 4s linear infinite;
+  background:linear-gradient(90deg,#ffd700,#ffb300);
+  border-radius:30px;
 }
 
-@keyframes blueFlow{
-  0%{background-position:0% 0;}
-  100%{background-position:300% 0;}
+/* STATS */
+.stats{
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:30px;
 }
 
-/* ENERGIA CORRENDO */
-.progress-bar::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-40%;
-  width:40%;
-  height:100%;
-  background:linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.7),
-    transparent
-  );
-  filter:blur(6px);
-  animation:energyRun 2s linear infinite;
+.emotional{
+  font-size:20px;
+  margin-bottom:30px;
+  line-height:1.6;
+  opacity:0.9;
 }
 
-@keyframes energyRun{
-  0%{left:-40%;}
-  100%{left:140%;}
-}
-
-@keyframes lilacFlow{
-  0%{background-position:0% 0;}
-  100%{background-position:300% 0;}
-}
-@keyframes lilacFlow{
-  0%{background-position:0% 0;}
-  100%{background-position:300% 0;}
+/* PIX */
+.pix-box{
+  background:rgba(255,215,0,0.08);
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:20px;
+  font-size:18px;
+  border:1px solid rgba(255,215,0,0.2);
 }
 
 /* BOTÃO */
 button{
-  margin-top:10px;
-  padding:10px 25px;
+  width:100%;
+  padding:18px;
   border:none;
-  border-radius:30px;
-  background:#ffd700;
+  border-radius:20px;
+  font-size:18px;
   font-weight:bold;
+  background:linear-gradient(90deg,#ffd700,#ffb300);
+  color:#0f1c2e;
   cursor:pointer;
   transition:.3s;
 }
-button:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 25px #ffd700;
-}
 
-/* ESTRELAS CLIQUE */
-.star{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:gold;
-  border-radius:50%;
-  pointer-events:none;
-  animation:explode 1s ease-out forwards;
-}
-@keyframes explode{
-  to{
-    transform:translate(var(--x),var(--y));
-    opacity:0;
-  }
+button:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 30px #ffd700;
 }
 
 .footer{
-  margin-top:20px;
+  margin-top:35px;
   font-size:14px;
-  line-height:1.5;
+  opacity:0.7;
 }
 
-.energy-particle{
+.progress-container{
+  position:relative;
+}
+
+.progress-bar{
+  position:relative;
+  overflow:hidden;
+}
+
+/* TEXTO SOBRE A BARRA */
+.progress-container{
+  position:relative;
+}
+
+.progress-text{
   position:absolute;
-  width:6px;
-  height:6px;
-  background:#e0aaff;
-  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-weight:900;
+  font-size:14px;
+  white-space:nowrap; /* força linha única */
+  opacity:0;
   pointer-events:none;
-  box-shadow:
-    0 0 6px #c77dff,
-    0 0 12px #b5179e;
-  animation:particleFloat 1.2s ease-out forwards;
+  color:#1a1a1a;
+  z-index:2;
 }
 
-@keyframes particleFloat{
-  0%{
-    opacity:1;
-    transform:translate(0,0) scale(1);
+/* OURO DERRETIDO */
+.progress-bar.completed{
+  background:linear-gradient(
+    120deg,
+    #ffd700 0%,
+    #fff8dc 25%,
+    #ffb300 50%,
+    #fff8dc 75%,
+    #ffd700 100%
+  );
+  background-size:300% 100%;
+  animation:goldFlow 3s linear infinite;
+}
+
+@keyframes goldFlow{
+  0%{background-position:0% 0;}
+  100%{background-position:300% 0;}
+}
+
+.progress-container.completed .progress-text{
+  opacity:1;
+  animation:goldPulse 1.2s infinite alternate;
+}
+
+@keyframes goldPulse{
+  from{
+    text-shadow:0 0 5px #ffd700;
   }
-  100%{
-    opacity:0;
-    transform:translate(var(--x), -30px) scale(0.3);
+  to{
+    text-shadow:
+      0 0 10px #ffd700,
+      0 0 20px #ffb300,
+      0 0 30px #ffd700;
   }
 }
-@media (max-height:680px){
-  .container{
-    transform:scale(0.88);
-  }
-}
+
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-
 <div class="container">
 
 <div class="alert">
-🚨 Estamos há <span id="timeWithoutDonation"></span> sem doações. MUDE ISSO!
+🚨 Estamos há <span id="timeWithoutDonation"></span> sem doações. SUA AJUDA MUDA ISSO.
 </div>
-<div class="deadline">
-DOAÇÕES ATÉ 14 DE MARÇO
+
+<div class="photo">
+<img src="SUA_FOTO_AQUI.jpg">
 </div>
-<h1>FORMATURE UM MÉDICO<br>• MEDICINA - UFS •</h1>
-<div class="deadline">
-DOE R$1,00
-</div>
-<div class="photo-wrapper">
-  <div class="photo">
-    <img src="SUA_FOTO_AQUI.jpg">
+
+<h1>FORMATURE UM MÉDICO</h1>
+<div class="subtitle">Medicina • UFS • DOAÇÕES ATÉ 14 DE MARÇO</div>
+
+<div class="value">R$ 2.614,59</div>
+
+<div class="progress-container">
+  <div class="progress-bar" id="bar"></div>
+  <div class="progress-text" id="progressText">
+      29,83% arrecadados
   </div>
 </div>
 
-<div class="value">• R$2614,59</div>
-<div class="progress-container">
-  <div class="progress-bar" id="bar"></div>
+<div class="stats">
+Meta: R$ 8.765,00<br>
+Faltam: <strong>R$ 6.150,41</strong>
 </div>
 
-<div>32,15% arrecadados</div>
-<div>• VALOR DO PACOTE DE FORMATURA R$8765,00</div>
-<div>• Restante R$6150,41,41</div>
-
-<div style="margin-top:10px">
-CHAVE PIX <strong>medicinacarlosjose@gmail.com</strong>
+<div class="emotional">
+Cada contribuição é um passo para transformar esforço em conquista.  
+Você pode fazer parte dessa história.
 </div>
 
-<button onclick="copyPix()">Copiar chave PIX</button>
+<div class="pix-box">
+CHAVE PIX<br>
+<strong>medicinacarlosjose@gmail.com</strong>
+</div>
+
+<button onclick="copyPix()">Doar Agora</button>
 
 <div class="footer">
-Os pacotes de formatura custam quase R$9.000,00, R$13.000,00 ou R$19.000,00. Ajude a alcançar o pacote básico de R$8765,00.<strong> Doe! Deus te abençoe!</strong><br><br>
-
+Sua contribuição aproxima um sonho da realidade. Obrigado por acreditar.
 </div>
 
 </div>
 
 <script>
 
-/* CONTADOR COM SEGUNDOS */
-const lastDonation = new Date("2026-02-28T17:29:00-03:00");function updateCounter(){
+/* CONTADOR */
+const lastDonation = new Date("2026-02-28T17:29:00-03:00");
+
+function updateCounter(){
   const now = new Date();
   const diff = now - lastDonation;
 
@@ -367,88 +307,34 @@ const lastDonation = new Date("2026-02-28T17:29:00-03:00");function updateCounte
   document.getElementById("timeWithoutDonation")
   .innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
+
 setInterval(updateCounter,1000);
 updateCounter();
 
-/* BARRA SUAVE E HARMÔNICA */
+/* BARRA */
+
 const bar = document.getElementById("bar");
-const target = 29,82;
+const target = 29.83;
+
 function animateBar(){
-  let start = null;
-  const duration = 5000; // 7 segundos enchendo suavemente
+  bar.style.transition = "width 2.5s ease";
+  bar.style.width = target + "%";
 
-  function easeInOut(t){
-    return t < 0.5 
-      ? 2 * t * t 
-      : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  }
-
-  function step(timestamp){
-    if(!start) start = timestamp;
-    const progress = timestamp - start;
-    const percentage = Math.min(progress / duration, 1);
-
-    const eased = easeInOut(percentage);
-    bar.style.width = (eased * target) + "%";
-
-    if(progress < duration){
-      requestAnimationFrame(step);
-    } else {
-      setTimeout(() => {
-        bar.style.transition = "opacity 0.4s";
-        bar.style.opacity = "0";
-        setTimeout(() => {
-          bar.style.width = "0%";
-          bar.style.opacity = "1";
-          start = null;
-          requestAnimationFrame(step);
-        }, 400);
-      }, 3000);
-    }
-  }
-
-  requestAnimationFrame(step);
+  setTimeout(()=>{
+      bar.classList.add("completed");
+      document.querySelector(".progress-container")
+              .classList.add("completed");
+  }, 2600);
 }
 
 animateBar();
-
-/* PARTÍCULAS ESCAPANDO DA BARRA */
-function spawnEnergy(){
-  const rect = bar.getBoundingClientRect();
-
-  const particle = document.createElement("div");
-  particle.className = "energy-particle";
-
-  particle.style.left = (rect.left + rect.width - 5) + "px";
-  particle.style.top = (rect.top + rect.height/2) + "px";
-
-  particle.style.setProperty("--x",(Math.random()*40 - 20)+"px");
-
-  document.body.appendChild(particle);
-
-  setTimeout(()=>particle.remove(),1200);
-}
-
-setInterval(spawnEnergy, 250);
-/* ESTRELAS AO CLICAR */
-document.addEventListener("click", function(e){
-  for(let i=0;i<20;i++){
-    const star=document.createElement("div");
-    star.className="star";
-    star.style.left=e.pageX+"px";
-    star.style.top=e.pageY+"px";
-    star.style.setProperty("--x",(Math.random()*200-100)+"px");
-    star.style.setProperty("--y",(Math.random()*200-100)+"px");
-    document.body.appendChild(star);
-    setTimeout(()=>star.remove(),1000);
-  }
-});
 
 /* COPIAR PIX */
 function copyPix(){
   navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
   alert("Chave PIX copiada!");
 }
+
 </script>
 
 </body>
