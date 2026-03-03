@@ -38,8 +38,8 @@ body{
   padding:16px;
   border-radius:18px;
   font-weight:900;
-  font-size:16px;
-  margin-bottom:30px;
+  font-size:20px;
+  margin-bottom:20px;
   letter-spacing:1px;
   animation:alertEmergency 0.6s infinite;
 }
@@ -78,7 +78,7 @@ body{
   height:220px;
   border-radius:50%;
   overflow:hidden;
-  margin:0 auto 30px;
+  margin:0 auto 3px;
   box-shadow:0 0 40px rgba(255,215,0,0.6);
   border:4px solid rgba(255,215,0,0.4);
 }
@@ -97,17 +97,18 @@ h1{
 }
 
 .subtitle{
-  font-size:18px;
+  font-size:21.5px;
+font-weight:700;
   opacity:0.85;
-  margin-bottom:35px;
+  margin-bottom:5px;
 }
 
 /* VALOR PRINCIPAL */
 .value{
-  font-size:56px;
+  font-size:30px;
   font-weight:900;
   color:#ffd700;
-  margin-bottom:10px;
+  margin-bottom:0px;
 }
 
 /* PROGRESSO */
@@ -117,7 +118,7 @@ h1{
   background:rgba(255,255,255,0.1);
   border-radius:30px;
   overflow:hidden;
-  margin:25px 0;
+  margin:2px 0;
 }
 
 .progress-bar{
@@ -131,7 +132,7 @@ h1{
 .stats{
   font-size:18px;
   line-height:1.8;
-  margin-bottom:30px;
+  margin-bottom:5px;
 }
 
 .emotional{
@@ -143,17 +144,23 @@ h1{
 
 /* PIX */
 .pix-box{
+  width:40%;
+margin: 0 auto;
+  transform:scale(1.05);
+  box-shadow:0 0 10px #ffd700;
   background:rgba(255,215,0,0.08);
-  padding:20px;
+  padding:2px;
   border-radius:20px;
-  margin-bottom:20px;
+  margin-bottom:15px;
   font-size:18px;
-  border:1px solid rgba(255,215,0,0.2);
+  border:1px solid rgba(255,215,0,0.9);
+  transition:.3s;
+position:relative;
 }
 
 /* BOTÃO */
 button{
-  width:100%;
+  width:30%;
   padding:18px;
   border:none;
   border-radius:20px;
@@ -240,6 +247,131 @@ button:hover{
   }
 }
 
+/* ======================================
+   RESPONSIVIDADE PARA CELULAR E TABLET
+   ====================================== */
+
+/* Tablet */
+@media (max-width: 1024px){
+
+  .container{
+    padding:30px;
+  }
+
+  .photo{
+    width:180px;
+    height:180px;
+    margin-bottom:20px;
+  }
+
+  h1{
+    font-size:28px;
+  }
+
+  .subtitle{
+    font-size:16px;
+    margin-bottom:25px;
+  }
+
+  .value{
+    font-size:42px;
+  }
+
+  .stats{
+    font-size:16px;
+    margin-bottom:20px;
+  }
+
+  .emotional{
+    font-size:16px;
+    margin-bottom:20px;
+  }
+
+  .pix-box{
+    font-size:16px;
+    padding:15px;
+  }
+
+  button{
+    padding:14px;
+    font-size:16px;
+  }
+
+}
+
+/* Celular */
+@media (max-width: 600px){
+
+  body{
+    padding:10px;
+  }
+
+  .container{
+    padding:20px;
+    border-radius:20px;
+  }
+
+  .alert{
+    font-size:13px;
+    padding:12px;
+    margin-bottom:20px;
+  }
+
+  .photo{
+    width:140px;
+    height:140px;
+    margin-bottom:15px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+
+  .subtitle{
+    font-size:14px;
+    margin-bottom:20px;
+  }
+
+  .value{
+    font-size:32px;
+  }
+
+  .progress-container{
+    height:14px;
+    margin:15px 0;
+  }
+
+  .progress-text{
+    font-size:11px;
+  }
+
+  .stats{
+    font-size:14px;
+    margin-bottom:15px;
+  }
+
+  .emotional{
+    font-size:14px;
+    margin-bottom:15px;
+  }
+
+  .pix-box{
+    font-size:14px;
+    padding:12px;
+  }
+
+  button{
+    padding:12px;
+    font-size:14px;
+  }
+
+  .footer{
+    font-size:12px;
+    margin-top:20px;
+  }
+
+}
+
 </style>
 </head>
 
@@ -268,12 +400,8 @@ button:hover{
 </div>
 
 <div class="stats">
-Meta: R$ 8.765,00<br>
-Faltam: <strong>R$ 6.150,41</strong>
-</div>
-
-<div class="emotional">
-Cada contribuição é um passo para transformar esforço em conquista.  
+Meta: R$ 8.765,00   •   Faltam: <strong>R$ 6.150,41</strong><br>
+</div> <div class="emotional"> Cada contribuição é um passo para transformar esforço em conquista.  
 Você pode fazer parte dessa história.
 </div>
 
@@ -283,13 +411,7 @@ CHAVE PIX<br>
 </div>
 
 <button onclick="copyPix()">Doar Agora</button>
-
-<div class="footer">
-Sua contribuição aproxima um sonho da realidade. Obrigado por acreditar.
 </div>
-
-</div>
-
 <script>
 
 /* CONTADOR */
