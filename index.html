@@ -17,39 +17,64 @@ body{
 font-family:'Segoe UI',Arial;
 background:radial-gradient(circle at top,#0f1c2e,#08111d 70%);
 color:#ffffff;
-min-height:100vh;
 
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 
-padding:25px;
+padding:10px;
 }
 
 /* CONTAINER */
 
 .container{
-max-width:900px;
+
+position:relative;
+
 width:100%;
+max-width:750px;
+
+height:100%;
+max-height:900px;
+
 background:#132235;
+
 border-radius:22px;
-padding:45px;
-box-shadow:0 0 60px rgba(0,0,0,0.6);
+
+padding:20px;
+
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+
 text-align:center;
+
+overflow:hidden;
+}
+
+/* CANVAS ESTRELAS */
+
+#stars{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
 }
 
 /* TITULOS */
 
 h1{
-font-size:36px;
+font-size:clamp(20px,3vw,32px);
 color:#ffd700;
-margin-bottom:6px;
 }
 
 .subtitle{
-font-size:20px;
+font-size:clamp(14px,2vw,18px);
 opacity:.85;
-margin-bottom:20px;
+margin-bottom:6px;
 }
 
 /* TARJA ALERTA */
@@ -59,60 +84,18 @@ background:#ff0000;
 color:white;
 font-weight:900;
 letter-spacing:1px;
-padding:12px;
+padding:8px 14px;
 border-radius:10px;
 width:max-content;
-margin:0 auto 18px;
+margin:6px auto;
+
 animation:blink 1s infinite;
 }
 
 @keyframes blink{
-0%{background:#ff0000;box-shadow:0 0 10px #ff0000;}
-50%{background:#ff3b3b;box-shadow:0 0 25px #ff0000;}
-100%{background:#ff0000;box-shadow:0 0 10px #ff0000;}
-}
-
-/* TARJA FINAL */
-
-.final-banner{
-
-display:none;
-
-margin-top:18px;
-
-background:linear-gradient(90deg,#ff0000,#8b0000,#ff0000);
-
-color:white;
-
-font-weight:900;
-
-padding:16px;
-
-border-radius:12px;
-
-font-size:18px;
-
-animation:finalBlink 1s infinite;
-
-}
-
-@keyframes finalBlink{
-
-0%{
-opacity:1;
-box-shadow:0 0 10px #ff0000;
-}
-
-50%{
-opacity:0.6;
-box-shadow:0 0 30px #ff0000;
-}
-
-100%{
-opacity:1;
-box-shadow:0 0 10px #ff0000;
-}
-
+0%{background:#ff0000;box-shadow:0 0 8px #ff0000;}
+50%{background:#ff3b3b;box-shadow:0 0 20px #ff0000;}
+100%{background:#ff0000;box-shadow:0 0 8px #ff0000;}
 }
 
 /* CONTADOR */
@@ -120,103 +103,58 @@ box-shadow:0 0 10px #ff0000;
 .countdown-grid{
 display:flex;
 justify-content:center;
-gap:18px;
-margin-bottom:20px;
+gap:8px;
 }
 
 .time-box{
+
 background:#0d1a2a;
-border-radius:12px;
-padding:18px 20px;
-min-width:90px;
-position:relative;
+border-radius:10px;
+
+padding:8px 12px;
+
+min-width:60px;
+
 border:2px solid #ffd700;
-overflow:hidden;
+
 box-shadow:
-0 0 10px rgba(255,215,0,0.6),
-0 0 20px rgba(255,215,0,0.5),
-0 0 40px rgba(255,215,0,0.4);
-animation:pulseGlow 2s infinite;
-}
+0 0 8px rgba(255,215,0,0.6),
+0 0 15px rgba(255,215,0,0.5);
 
-.time-box::before{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:200%;
-height:100%;
-background:linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,0.6),
-transparent
-);
-animation:shineMove 3s linear infinite;
-}
-
-@keyframes pulseGlow{
-
-0%{
-box-shadow:
-0 0 10px rgba(255,215,0,0.6),
-0 0 20px rgba(255,215,0,0.5),
-0 0 40px rgba(255,215,0,0.4);
-}
-
-50%{
-box-shadow:
-0 0 20px rgba(255,215,0,0.9),
-0 0 40px rgba(255,215,0,0.8),
-0 0 70px rgba(255,215,0,0.7);
-}
-
-100%{
-box-shadow:
-0 0 10px rgba(255,215,0,0.6),
-0 0 20px rgba(255,215,0,0.5),
-0 0 40px rgba(255,215,0,0.4);
-}
-
-}
-
-@keyframes shineMove{
-0%{left:-100%;}
-100%{left:100%;}
 }
 
 .time-box span{
-font-size:36px;
+
+font-size:clamp(18px,4vw,28px);
 font-weight:900;
 color:#ffd700;
-display:block;
-text-shadow:
-0 0 10px #ffd700,
-0 0 20px #ffd700,
-0 0 30px #ffb300;
-animation:numberPulse 1.5s infinite alternate;
-}
 
-@keyframes numberPulse{
-from{transform:scale(1);}
-to{transform:scale(1.1);}
+display:block;
+
+text-shadow:
+0 0 8px #ffd700;
+
 }
 
 .time-box small{
-font-size:12px;
-letter-spacing:1px;
-opacity:.7;
+font-size:10px;
+opacity:.8;
 }
 
 /* GIF */
 
 .gif{
-width:240px;
-margin:25px auto;
-border-radius:16px;
+
+width:clamp(120px,40vw,200px);
+margin:auto;
+
+border-radius:14px;
 overflow:hidden;
+
 border:2px solid rgba(255,215,0,0.5);
-box-shadow:0 0 25px rgba(255,215,0,0.4);
+
+box-shadow:0 0 18px rgba(255,215,0,0.4);
+
 }
 
 .gif img{
@@ -227,85 +165,103 @@ display:block;
 /* VALOR */
 
 .amount{
-font-size:32px;
+font-size:clamp(22px,4vw,30px);
 font-weight:900;
 color:#ffd700;
-margin-bottom:5px;
-}
-
-/* BARRA */
-
-.progress-track{
-width:85%;
-margin:12px auto;
-height:22px;
-background:#3b4654;
-border-radius:50px;
-overflow:hidden;
-}
-
-.progress-fill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#ffc400,#ffd900,#ffc400);
-border-radius:50px;
 }
 
 /* PORCENTAGEM */
 
 .percent{
-font-weight:800;
-margin-bottom:10px;
+font-weight:700;
+font-size:14px;
+}
+
+/* BARRA */
+
+.progress-track{
+
+width:90%;
+margin:6px auto;
+
+height:14px;
+
+background:#3b4654;
+border-radius:50px;
+overflow:hidden;
+
+}
+
+.progress-fill{
+
+height:100%;
+width:0%;
+
+background:linear-gradient(90deg,#ffc400,#ffd900,#ffc400);
+
 }
 
 /* META */
 
 .goal{
-font-size:18px;
-margin-bottom:18px;
+font-size:14px;
 }
 
 /* TEXTO */
 
 .message{
-font-size:18px;
+font-size:14px;
 opacity:.9;
-margin-bottom:25px;
 }
 
 /* PIX */
 
 .pix{
-width:70%;
-margin:0 auto 25px;
+
+width:90%;
+margin:auto;
+
 background:#0f1e2f;
+
 border:2px solid #ffd700;
-border-radius:18px;
-padding:18px;
-box-shadow:0 0 15px rgba(255,215,0,0.3);
+
+border-radius:16px;
+
+padding:12px;
+
 }
 
 .pix strong{
-font-size:18px;
+font-size:14px;
 }
 
 /* BOTÃO */
 
 button{
-width:230px;
-padding:16px;
-font-size:18px;
+
+width:180px;
+
+margin:auto;
+
+padding:12px;
+
+font-size:15px;
 font-weight:700;
+
 border:none;
-border-radius:14px;
+border-radius:12px;
+
 background:linear-gradient(90deg,#ffd700,#ffb300);
+
 cursor:pointer;
+
 color:#0b1624;
+
 }
 
 button:hover{
 transform:scale(1.05);
-box-shadow:0 0 25px #ffd700;
+box-shadow:0 0 20px #ffd700;
 }
 
 </style>
@@ -315,6 +271,10 @@ box-shadow:0 0 25px #ffd700;
 
 <div class="container">
 
+<canvas id="stars"></canvas>
+
+<div>
+
 <h1>FORMATURE UM MÉDICO</h1>
 
 <div class="subtitle">
@@ -323,6 +283,8 @@ Medicina • UFS
 
 <div class="alert-banner">
 ⏳ PRAZO FINAL DA CAMPANHA
+</div>
+
 </div>
 
 <div class="countdown-grid">
@@ -349,13 +311,11 @@ Medicina • UFS
 
 </div>
 
-<div id="finalBanner" class="final-banner">
-Infelizmente, não deu. De todo modo, a sua generosidade rendeu esperança. Obrigado. Deus nos proteja!
-</div>
-
 <div class="gif">
 <img src="tenor.gif">
 </div>
+
+<div>
 
 <div class="amount">
 R$ 2.715,59
@@ -373,6 +333,8 @@ R$ 2.715,59
 Meta R$ 8.765,00 • Faltam <strong>R$ 6.049,41</strong>
 </div>
 
+</div>
+
 <div class="message">
 A torcida de cada um foi a principal vitória. Obrigado a todos. Deus abençoe cada um!
 </div>
@@ -388,6 +350,8 @@ CHAVE PIX<br>
 
 <script>
 
+/* CONTADOR */
+
 const deadline = new Date("2026-03-14T19:00:00-03:00");
 
 function updateCountdown(){
@@ -395,18 +359,7 @@ function updateCountdown(){
 const now = new Date();
 const diff = deadline - now;
 
-if(diff<=0){
-
-document.getElementById("days").innerText="00";
-document.getElementById("hours").innerText="00";
-document.getElementById("minutes").innerText="00";
-document.getElementById("seconds").innerText="00";
-
-document.getElementById("finalBanner").style.display="block";
-
-return;
-
-}
+if(diff<=0) return;
 
 const d=Math.floor(diff/(1000*60*60*24));
 const h=Math.floor((diff/(1000*60*60))%24);
@@ -457,6 +410,57 @@ btn.innerText="Doar Agora";
 },2000);
 
 }
+
+/* ESTRELAS */
+
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+let stars=[];
+
+function resize(){
+canvas.width=canvas.offsetWidth;
+canvas.height=canvas.offsetHeight;
+}
+
+window.addEventListener("resize",resize);
+resize();
+
+for(let i=0;i<70;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2+1,
+speed:Math.random()*0.7+0.2
+});
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#cfd8dc";
+
+stars.forEach(star=>{
+
+ctx.beginPath();
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
+ctx.fill();
+
+star.y+=star.speed;
+
+if(star.y>canvas.height){
+star.y=0;
+star.x=Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
 
 </script>
 
