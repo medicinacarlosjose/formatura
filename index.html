@@ -1,468 +1,180 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formature um Médico - UFS</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:'Segoe UI',Arial;
-background:radial-gradient(circle at top,#0f1c2e,#08111d 70%);
-color:#ffffff;
-
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-
-padding:10px;
-}
-
-/* CONTAINER */
-
-.container{
-
-position:relative;
-
-width:100%;
-max-width:750px;
-
-height:100%;
-max-height:900px;
-
-background:#132235;
-
-border-radius:22px;
-
-padding:20px;
-
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-
-text-align:center;
-
-overflow:hidden;
-}
-
-/* CANVAS ESTRELAS */
-
-#stars{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-}
-
-/* TITULOS */
-
-h1{
-font-size:clamp(20px,3vw,32px);
-color:#ffd700;
-}
-
-.subtitle{
-font-size:clamp(14px,2vw,18px);
-opacity:.85;
-margin-bottom:6px;
-}
-
-/* TARJA ALERTA */
-
-.alert-banner{
-background:#ff0000;
-color:white;
-font-weight:900;
-letter-spacing:1px;
-padding:8px 14px;
-border-radius:10px;
-width:max-content;
-margin:6px auto;
-
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%{background:#ff0000;box-shadow:0 0 8px #ff0000;}
-50%{background:#ff3b3b;box-shadow:0 0 20px #ff0000;}
-100%{background:#ff0000;box-shadow:0 0 8px #ff0000;}
-}
-
-/* CONTADOR */
-
-.countdown-grid{
-display:flex;
-justify-content:center;
-gap:8px;
-}
-
-.time-box{
-
-background:#0d1a2a;
-border-radius:10px;
-
-padding:8px 12px;
-
-min-width:60px;
-
-border:2px solid #ffd700;
-
-box-shadow:
-0 0 8px rgba(255,215,0,0.6),
-0 0 15px rgba(255,215,0,0.5);
-
-}
-
-.time-box span{
-
-font-size:clamp(18px,4vw,28px);
-font-weight:900;
-color:#ffd700;
-
-display:block;
-
-text-shadow:
-0 0 8px #ffd700;
-
-}
-
-.time-box small{
-font-size:10px;
-opacity:.8;
-}
-
-/* GIF */
-
-.gif{
-
-width:clamp(120px,40vw,200px);
-margin:auto;
-
-border-radius:14px;
-overflow:hidden;
-
-border:2px solid rgba(255,215,0,0.5);
-
-box-shadow:0 0 18px rgba(255,215,0,0.4);
-
-}
-
-.gif img{
-width:100%;
-display:block;
-}
-
-/* VALOR */
-
-.amount{
-font-size:clamp(22px,4vw,30px);
-font-weight:900;
-color:#ffd700;
-}
-
-/* PORCENTAGEM */
-
-.percent{
-font-weight:700;
-font-size:14px;
-}
-
-/* BARRA */
-
-.progress-track{
-
-width:90%;
-margin:6px auto;
-
-height:14px;
-
-background:#3b4654;
-border-radius:50px;
-overflow:hidden;
-
-}
-
-.progress-fill{
-
-height:100%;
-width:0%;
-
-background:linear-gradient(90deg,#ffc400,#ffd900,#ffc400);
-
-}
-
-/* META */
-
-.goal{
-font-size:14px;
-}
-
-/* TEXTO */
-
-.message{
-font-size:14px;
-opacity:.9;
-}
-
-/* PIX */
-
-.pix{
-
-width:90%;
-margin:auto;
-
-background:#0f1e2f;
-
-border:2px solid #ffd700;
-
-border-radius:16px;
-
-padding:12px;
-
-}
-
-.pix strong{
-font-size:14px;
-}
-
-/* BOTÃO */
-
-button{
-
-width:180px;
-
-margin:auto;
-
-padding:12px;
-
-font-size:15px;
-font-weight:700;
-
-border:none;
-border-radius:12px;
-
-background:linear-gradient(90deg,#ffd700,#ffb300);
-
-cursor:pointer;
-
-color:#0b1624;
-
-}
-
-button:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #ffd700;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formature um Médico | Carlos José</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #0f172a, #1e40af, #0d9488, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .progress-fill {
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #2dd4bf, #fbbf24);
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.6);
+        }
+
+        .pulse-red {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Estilo para o feedback de cópia */
+        .copy-success {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2dd4bf;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+    </style>
 </head>
-
-<body>
-
-<div class="container">
-
-<canvas id="stars"></canvas>
-
-<div>
-
-<h1>FORMATURE UM MÉDICO</h1>
-
-<div class="subtitle">
-Medicina • UFS
-</div>
-
-<div class="alert-banner">
-⏳ PRAZO FINAL DA CAMPANHA
-</div>
-
-</div>
-
-<div class="countdown-grid">
-
-<div class="time-box">
-<span id="days">00</span>
-<small>DIAS</small>
-</div>
-
-<div class="time-box">
-<span id="hours">00</span>
-<small>HORAS</small>
-</div>
-
-<div class="time-box">
-<span id="minutes">00</span>
-<small>MIN</small>
-</div>
-
-<div class="time-box">
-<span id="seconds">00</span>
-<small>SEG</small>
-</div>
-
-</div>
-
-<div class="gif">
-<img src="tenor.gif">
-</div>
-
-<div>
-
-<div class="amount">
-R$ 2.715,59
-</div>
-
-<div class="percent">
-30,98% arrecadados
-</div>
-
-<div class="progress-track">
-<div class="progress-fill" id="bar"></div>
-</div>
-
-<div class="goal">
-Meta R$ 8.765,00 • Faltam <strong>R$ 6.049,41</strong>
-</div>
-
-</div>
-
-<div class="message">
-A torcida de cada um foi a principal vitória. Obrigado a todos. Deus abençoe cada um!
-</div>
-
-<div class="pix">
-CHAVE PIX<br>
-<strong>medicinacarlosjose@gmail.com</strong>
-</div>
-
-<button onclick="copyPix()">Doar Agora</button>
-
-</div>
-
-<script>
-
-/* CONTADOR */
-
-const deadline = new Date("2026-03-14T19:00:00-03:00");
-
-function updateCountdown(){
-
-const now = new Date();
-const diff = deadline - now;
-
-if(diff<=0) return;
-
-const d=Math.floor(diff/(1000*60*60*24));
-const h=Math.floor((diff/(1000*60*60))%24);
-const m=Math.floor((diff/(1000*60))%60);
-const s=Math.floor((diff/1000)%60);
-
-document.getElementById("days").innerText=d.toString().padStart(2,"0");
-document.getElementById("hours").innerText=h.toString().padStart(2,"0");
-document.getElementById("minutes").innerText=m.toString().padStart(2,"0");
-document.getElementById("seconds").innerText=s.toString().padStart(2,"0");
-
-}
-
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-/* BARRA */
-
-const bar=document.getElementById("bar");
-
-let progress=0;
-const target=30.98;
-
-const anim=setInterval(()=>{
-
-if(progress>=target){
-clearInterval(anim);
-return;
-}
-
-progress+=0.2;
-bar.style.width=progress+"%";
-
-},15);
-
-/* PIX */
-
-function copyPix(){
-
-navigator.clipboard.writeText("medicinacarlosjose@gmail.com");
-
-const btn=document.querySelector("button");
-
-btn.innerText="PIX COPIADO ✓";
-
-setTimeout(()=>{
-btn.innerText="Doar Agora";
-},2000);
-
-}
-
-/* ESTRELAS */
-
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-
-let stars=[];
-
-function resize(){
-canvas.width=canvas.offsetWidth;
-canvas.height=canvas.offsetHeight;
-}
-
-window.addEventListener("resize",resize);
-resize();
-
-for(let i=0;i<70;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2+1,
-speed:Math.random()*0.7+0.2
-});
-}
-
-function draw(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#cfd8dc";
-
-stars.forEach(star=>{
-
-ctx.beginPath();
-ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
-ctx.fill();
-
-star.y+=star.speed;
-
-if(star.y>canvas.height){
-star.y=0;
-star.x=Math.random()*canvas.width;
-}
-
-});
-
-requestAnimationFrame(draw);
-
-}
-
-draw();
-
-</script>
-
+<body class="p-4">
+
+    <div id="copyAlert" class="copy-success">Chave PIX copiada!</div>
+
+    <div class="glass-container max-w-xl w-full rounded-[2rem] p-8 md:p-12 text-white relative">
+        
+        <div class="text-center space-y-2 mb-8">
+            <h2 class="text-teal-300 font-bold tracking-[0.2em] text-xs uppercase">Medicina • UFS</h2>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">FORMATURE <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-teal-400">UM MÉDICO</span></h1>
+            
+            <div class="inline-block mt-4 bg-red-600/20 border border-red-500/50 px-4 py-1 rounded-full text-[10px] font-black tracking-tighter pulse-red">
+                ⏳ PRAZO FINAL DA CAMPANHA
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-3 mb-10">
+            <div class="bg-black/30 p-3 rounded-2xl text-center border border-white/10">
+                <span id="days" class="text-2xl md:text-3xl font-black block text-yellow-400">00</span>
+                <span class="text-[9px] uppercase opacity-60">Dias</span>
+            </div>
+            <div class="bg-black/30 p-3 rounded-2xl text-center border border-white/10">
+                <span id="hours" class="text-2xl md:text-3xl font-black block">00</span>
+                <span class="text-[9px] uppercase opacity-60">Horas</span>
+            </div>
+            <div class="bg-black/30 p-3 rounded-2xl text-center border border-white/10">
+                <span id="minutes" class="text-2xl md:text-3xl font-black block text-teal-300">00</span>
+                <span class="text-[9px] uppercase opacity-60">Minutos</span>
+            </div>
+            <div class="bg-black/30 p-3 rounded-2xl text-center border border-white/10">
+                <span id="seconds" class="text-2xl md:text-3xl font-black block text-red-400 animate-pulse">00</span>
+                <span class="text-[9px] uppercase opacity-60">Segundos</span>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex justify-between items-end mb-2">
+                <span class="text-4xl font-black tracking-tighter">R$ 2.715,59</span>
+                <span class="text-teal-400 font-bold text-sm">30.98%</span>
+            </div>
+            <div class="w-full bg-white/10 h-4 rounded-full p-1 border border-white/5">
+                <div id="bar" class="progress-fill h-full rounded-full" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between mt-3 text-[11px] font-medium text-slate-300 italic">
+                <span>Meta: R$ 8.765,00</span>
+                <span>Faltam: R$ 6.049,41</span>
+            </div>
+        </div>
+
+        <div onclick="copyPix()" class="bg-white/5 border-2 border-dashed border-teal-500/50 rounded-2xl p-6 text-center mb-4 cursor-pointer hover:bg-white/10 hover:border-teal-400 transition-all active:scale-95 group">
+            <p class="text-xs opacity-70 mb-2 font-bold uppercase tracking-widest group-hover:text-teal-300 transition-colors">Toque para copiar a Chave PIX</p>
+            <div id="pixKey" class="text-lg font-mono text-teal-300 break-all underline decoration-teal-500/30">
+                medicinacarlosjose@gmail.com
+            </div>
+        </div>
+
+        <p class="text-[10px] text-center mt-6 opacity-60 leading-relaxed uppercase tracking-tighter font-bold">
+            Deus abençoe cada um. <br> A torcida de cada um foi a principal vitória!
+        </p>
+    </div>
+
+    <script>
+        // Função para Copiar a Chave PIX
+        function copyPix() {
+            const pixText = document.getElementById('pixKey').innerText;
+            navigator.clipboard.writeText(pixText).then(() => {
+                const alertBox = document.getElementById('copyAlert');
+                alertBox.style.display = 'block';
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                }, 2000);
+            });
+        }
+
+        // Animação da barra ao carregar
+        setTimeout(() => {
+            document.getElementById('bar').style.width = '30.98%';
+        }, 500);
+
+        // Contador Regressivo (Simulação de 2 dias a partir de agora)
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 2);
+        targetDate.setHours(targetDate.getHours() + 9);
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if(diff > 0) {
+                document.getElementById('days').innerText = d.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
