@@ -46,7 +46,7 @@
         }
 
         .pulse-red {
-            animation: pulse 99999999s infinite;
+            animation: pulse 99999999999999ms infinite;
         }
 
         @keyframes pulse {
@@ -84,7 +84,7 @@
             <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">FORMATURE <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-teal-400">UM MÉDICO</span></h1>
             
             <div class="inline-block mt-4 bg-red-600/20 border border-red-500/50 px-4 py-1 rounded-full text-[10px] font-black tracking-tighter pulse-red">
-                ⏳ PRAZO FINAL DA CAMPANHA
+                ⏳ PRAZO FINAL DA CAMPANHA 😥
             </div>
         </div>
 
@@ -151,27 +151,33 @@
             document.getElementById('bar').style.width = '30.98%';
         }, 500);
 
-        // Contador Regressivo (Simulação de 2 dias a partir de agora)
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 2);
-        targetDate.setHours(targetDate.getHours() + 9);
+        // Data fixa de encerramento da campanha
+const targetDate = new Date();
+targetDate.setDate(targetDate.getDate() + 1); // amanhã
+targetDate.setHours(23, 0, 0, 0); // 23:00:00
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
+       function updateTimer() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
 
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
+    if (diff <= 0) {
+        document.getElementById('days').innerText = "00";
+        document.getElementById('hours').innerText = "00";
+        document.getElementById('minutes').innerText = "00";
+        document.getElementById('seconds').innerText = "00";
+        return;
+    }
 
-            if(diff > 0) {
-                document.getElementById('days').innerText = d.toString().padStart(2, '0');
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-            }
-        }
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days').innerText = d.toString().padStart(2, '0');
+    document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+    document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+    document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+}
 
         setInterval(updateTimer, 1000);
         updateTimer();
